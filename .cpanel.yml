@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export APP_DIR=/home/hala2992/aplikasi_laravel
+    - /usr/bin/rsync -av --exclude='.git' ./ $APP_DIR
