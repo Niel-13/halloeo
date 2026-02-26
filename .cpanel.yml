@@ -1,5 +1,9 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/hala2992/public_html
-    - /usr/bin/rsync -av --exclude='.git' ./ $DEPLOYPATH
+    - export APP_PATH=/home/hala2992/laravel_app/
+    - export PUBLIC_PATH=/home/hala2992/public_html/
+    - /bin/cp -R * $APP_PATH
+    - /bin/cp -R public/* $PUBLIC_PATH
+    - /bin/sed -i "s|/../vendor|/../laravel_app/vendor|g" $PUBLIC_PATH/index.php
+    - /bin/sed -i "s|/../bootstrap|/../laravel_app/bootstrap|g" $PUBLIC_PATH/index.php
