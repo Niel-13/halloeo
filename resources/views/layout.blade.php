@@ -33,7 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Navbar Styles */
         .navbar {
             position: fixed;
             top: 0;
