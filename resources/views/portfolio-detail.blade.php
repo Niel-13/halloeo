@@ -40,7 +40,7 @@
     }
 
     .detail-title {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 3.5rem;
         margin-bottom: 1rem;
         animation: fadeInUp 0.8s ease-out;
@@ -99,7 +99,7 @@
     }
 
     .section-heading {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 2rem;
         color: var(--dark);
         margin-bottom: 1.5rem;
@@ -150,7 +150,7 @@
     }
 
     .spec-value {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 1.2rem;
         color: var(--dark);
         font-weight: 600;
@@ -166,7 +166,7 @@
     }
 
     .cta-box h3 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 2rem;
         margin-bottom: 1rem;
     }
@@ -217,7 +217,7 @@
     }
 
     .related-section h2 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 2.5rem;
         color: var(--dark);
         text-align: center;
@@ -274,7 +274,7 @@
     }
 
     .related-title {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 1.4rem;
         color: var(--dark);
         margin-bottom: 0.5rem;
@@ -288,7 +288,7 @@
     }
 
     .share-section h4 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 1.3rem;
         color: var(--dark);
         margin-bottom: 1rem;

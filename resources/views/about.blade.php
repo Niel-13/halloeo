@@ -12,7 +12,7 @@
     }
 
     .about-hero h1 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 3.5rem;
         margin-bottom: 1.5rem;
         animation: fadeInUp 0.8s ease-out;
@@ -60,7 +60,7 @@
     }
 
     .about-text h2 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 2.5rem;
         color: var(--dark);
         margin-bottom: 1.5rem;
@@ -112,7 +112,7 @@
     }
 
     .stat-number {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 4rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
@@ -165,7 +165,7 @@
     }
 
     .value-card h3 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 1.6rem;
         color: var(--dark);
         margin-bottom: 1rem;
@@ -215,7 +215,7 @@
         justify-content: center;
         font-size: 4rem;
         color: var(--white);
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-weight: 700;
     }
 
@@ -224,7 +224,7 @@
     }
 
     .team-info h3 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 1.5rem;
         color: var(--dark);
         margin-bottom: 0.5rem;

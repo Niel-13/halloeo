@@ -12,7 +12,7 @@
     }
 
     .portfolio-hero h1 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 3.5rem;
         margin-bottom: 1.5rem;
         animation: fadeInUp 0.8s ease-out;
@@ -171,7 +171,7 @@
     }
 
     .portfolio-title {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 1.7rem;
         color: var(--dark);
         margin-bottom: 0.8rem;
@@ -237,7 +237,7 @@
     }
 
     .empty-state h3 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 2rem;
         margin-bottom: 1rem;
     }

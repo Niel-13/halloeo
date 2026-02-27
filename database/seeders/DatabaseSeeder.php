@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'admin@halloeo.com',
             'username' => 'admin',
-            'password' => 'halloeo2024', // Will be auto-hashed by model
+            'password' => 'halloeo2024', 
             'role' => 'admin',
             'is_active' => true,
         ]);

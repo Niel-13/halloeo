@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - HalloEO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair Display:wght@400;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -50,35 +53,25 @@
         }
 
         .logo{
-            /* 1. Tentukan ukuran wadah lingkaran (harus persegi, lebar = tinggi) */
             width: 130px;
             height: 130px;
-            /* 2. Posisi di tengah horizontal */
-            margin: 0 auto 1.5rem auto;
-            /* 3. Membuatnya jadi lingkaran sempurna */
-            border-radius: 50%;
-            /* 4. Memberi warna latar belakang pada lingkaran (misal putih sedikit abu) */
+            margin: 0 auto 1.5rem auto;            border-radius: 50%;
             background: #f0f4f8; 
-            /* 5. Agar gambar di dalamnya pas di tengah */
             display: flex;
             justify-content: center;
             align-items: center;
-            /* 6. Memberi sedikit bayangan agar lingkarannya "muncul" */
             box-shadow:  0 4px 8px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.5);
-            /* 7. Penting: memotong apapun yang keluar dari batas lingkaran */
             overflow: hidden;
         }
 
         .logo img {
-            /* Mengatur seberapa besar gambar mengisi lingkaran */
-            width: 90%; /* Sesuaikan angka ini (misal 80% - 100%) agar pas */
+            width: 90%;
             height: auto;
             object-fit: contain;
-            /* Kita hapus style sebelumnya karena sudah diatur oleh wadah lingkarannya */
         }
 
         .login-header h2 {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Playfair Display', sans-serif;
             color: #2C3E50;
             margin-bottom: 0.5rem;
         }
@@ -146,7 +139,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Playfair Display', sans-serif;
             margin-top: 1rem;
         }
 

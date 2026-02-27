@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Portfolio;
 use App\Models\Testimonial;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,7 +21,9 @@ class HomeController extends Controller
             ->limit(6)
             ->get();
 
-        return view('home', compact('featuredPortfolios', 'testimonials'));
+        $galleries = Gallery::where('is_visible', true)->latest()->get();
+
+        return view('home', compact('featuredPortfolios', 'testimonials', 'galleries'));
     }
 
     public function about()

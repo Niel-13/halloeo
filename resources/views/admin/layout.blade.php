@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Admin Panel') - HalloEO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -50,7 +52,7 @@
         }
 
         .sidebar-logo h1 {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Playfair Display', sans-serif;
             color: white;
             font-size: 1.8rem;
         }
@@ -97,7 +99,7 @@
         }
 
         .topbar-title h2 {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Playfair Display', sans-serif;
             color: var(--dark);
         }
 
@@ -179,7 +181,7 @@
         }
 
         .card-header h3 {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Playfair Display', sans-serif;
             color: var(--dark);
         }
 
@@ -298,7 +300,7 @@
             <div style="width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
                 <img src="{{ asset('images/logohalloeo.png') }}" alt="Logo HalloEO" style="width: 85%; height: auto; object-fit: contain; transform: scale(1.2);">
             </div>
-            <h1 style="font-family: 'Fredoka', sans-serif; color: white; font-size: 1.5rem; letter-spacing: 1px;">HalloEO</h1>
+            <h1 style="font-family: 'Playfair Display', sans-serif; color: white; font-size: 1.5rem; letter-spacing: 1px;">HalloEO</h1>
             <p style="color: white; opacity: 0.9; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 500;">Admin Panel</p>
         </div>
 
@@ -325,6 +327,12 @@
                 <a href="{{ route('admin.testimonials.index') }}" class="{{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">
                     <i class="fas fa-star"></i>
                     <span>Testimonials</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.galleries.index') }}" class="{{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}">
+                    <i class="fas fa-images"></i>
+                    <span>Galeri</span>
                 </a>
             </li>
             <li>

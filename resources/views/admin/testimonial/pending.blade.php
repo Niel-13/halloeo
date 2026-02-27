@@ -6,7 +6,7 @@
 @section('content')
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
     <div>
-        <h3 style="font-family: 'Fredoka', sans-serif; color: var(--dark-pastel-red);">
+        <h3 style="font-family: 'Playfair Display', sans-serif; color: var(--dark-pastel-red);">
             <i class="fas fa-clock"></i> Menunggu Review
         </h3>
         <p style="color: #7f8c8d;">Anda memiliki {{ $pendingCount }} testimonial yang perlu diperiksa.</p>

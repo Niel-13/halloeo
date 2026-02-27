@@ -13,12 +13,8 @@ use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes - Public
-|--------------------------------------------------------------------------
-*/
 
+// Web Routes - Public
 // Home & Static Pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang-kami', [HomeController::class, 'about'])->name('about');
@@ -28,7 +24,6 @@ Route::get('/kontak', [HomeController::class, 'contact'])->name('contact');
 // Portfolio
 Route::get('/portofolio', [PortfolioController::class, 'index'])->name('portfolio.index');
 Route::get('/portofolio/{id}', [PortfolioController::class, 'show'])->name('portfolio.show');
-
 
 
 // Testimonials
@@ -72,6 +67,9 @@ Route::middleware(['admin.auth'])->prefix('admin')->name('admin.')->group(functi
     Route::post('/testimonials/{id}/reject', [AdminTestimonialController::class, 'reject'])->name('testimonials.reject');
     Route::delete('/testimonials/{id}', [AdminTestimonialController::class, 'destroy'])->name('testimonials.destroy');
     
+    Route::resource('galleries', App\Http\Controllers\Admin\GalleryController::class)->except(['edit', 'update']);
+    Route::post('galleries/{id}/toggle', [App\Http\Controllers\Admin\GalleryController::class, 'toggleVisibility'])->name('galleries.toggle');
+
     // Contact Messages Management
     Route::get('/messages', [AdminContactController::class, 'index'])->name('messages.index');
     Route::get('/messages/{id}', [AdminContactController::class, 'show'])->name('messages.show');

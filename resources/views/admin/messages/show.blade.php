@@ -16,7 +16,7 @@
         <div style="padding: 2rem; border-bottom: 2px solid var(--light);">
             <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 1rem;">
                 <div>
-                    <h3 style="font-family: 'Fredoka', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem;">
+                    <h3 style="font-family: 'Playfair Display', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem;">
                         {{ $message->subject ?? 'Tidak ada subjek' }}
                     </h3>
                     <span class="badge {{ $message->statusBadge }}" style="font-size: 1rem;">
@@ -38,7 +38,7 @@
 
         <!-- Sender Info -->
         <div style="padding: 2rem; background: var(--light); border-bottom: 1px solid #e0e0e0;">
-            <h4 style="font-family: 'Fredoka', sans-serif; margin-bottom: 1rem;">
+            <h4 style="font-family: 'Playfair Display', sans-serif; margin-bottom: 1rem;">
                 <i class="fas fa-user"></i> Informasi Pengirim
             </h4>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
@@ -73,7 +73,7 @@
 
         <!-- Message Content -->
         <div style="padding: 2rem;">
-            <h4 style="font-family: 'Fredoka', sans-serif; margin-bottom: 1rem;">
+            <h4 style="font-family: 'Playfair Display', sans-serif; margin-bottom: 1rem;">
                 <i class="fas fa-comment"></i> Isi Pesan
             </h4>
             <div style="background: var(--light); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--pastel-blue);">
@@ -83,7 +83,7 @@
 
         <!-- Admin Notes -->
         <div style="padding: 2rem; background: var(--light); border-top: 1px solid #e0e0e0;">
-            <h4 style="font-family: 'Fredoka', sans-serif; margin-bottom: 1rem;">
+            <h4 style="font-family: 'Playfair Display', sans-serif; margin-bottom: 1rem;">
                 <i class="fas fa-sticky-note"></i> Catatan Admin
             </h4>
             <form action="{{ route('admin.messages.update-notes', $message->id) }}" method="POST">
@@ -101,7 +101,7 @@
 
         <!-- Quick Actions -->
         <div style="padding: 2rem; border-top: 2px solid var(--light); display: flex; gap: 1rem; flex-wrap: wrap;">
-            <h4 style="font-family: 'Fredoka', sans-serif; width: 100%; margin-bottom: 0.5rem;">
+            <h4 style="font-family: 'Playfair Display', sans-serif; width: 100%; margin-bottom: 0.5rem;">
                 <i class="fas fa-bolt"></i> Quick Actions
             </h4>
 

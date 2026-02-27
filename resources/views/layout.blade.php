@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
      <link rel="icon" type="image/png" href="{{ asset('images/logohalloeo.png') }}?v={{ time() }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'HalloEO - Dekorasi & Maskot Styrofoam Profesional')</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -69,7 +71,7 @@
         }
 
         .logo {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Playfair Display', sans-serif;
             font-size: 2rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
@@ -187,7 +189,7 @@
         }
 
         .footer-section h3 {
-            font-family: 'Fredoka', sans-serif;
+            font-family: 'Playfair Display', sans-serif;
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             color: var(--dark);

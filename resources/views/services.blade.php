@@ -12,7 +12,7 @@
     }
 
     .services-hero h1 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 3.5rem;
         margin-bottom: 1.5rem;
         animation: fadeInUp 0.8s ease-out;
@@ -121,7 +121,7 @@
     }
 
     .service-title {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 2rem;
         color: var(--dark);
         margin-bottom: 1rem;
@@ -222,7 +222,7 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto 1.5rem;
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 3rem;
         color: var(--white);
         font-weight: 700;
@@ -235,7 +235,7 @@
     }
 
     .process-step h3 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 1.5rem;
         color: var(--dark);
         margin-bottom: 1rem;
@@ -255,7 +255,7 @@
     }
 
     .cta-section h2 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 3rem;
         margin-bottom: 1.5rem;
     }
@@ -337,7 +337,7 @@
 <section class="process-section">
     <div class="process-container">
         <div class="section-title" style="text-align: center; margin-bottom: 3rem;">
-            <h2 style="font-family: 'Fredoka', sans-serif; font-size: 2.5rem; color: var(--dark);">Alur Kerja Kami</h2>
+            <h2 style="font-family: 'Playfair Display', sans-serif; font-size: 2.5rem; color: var(--dark);">Alur Kerja Kami</h2>
             <p style="color: #7f8c8d;">Proses mudah dan transparan dari konsultasi hingga pengiriman</p>
         </div>
         <div class="process-steps">

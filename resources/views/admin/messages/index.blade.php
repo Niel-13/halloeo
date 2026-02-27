@@ -6,7 +6,7 @@
 @section('content')
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
     <div>
-        <h3 style="font-family: 'Fredoka', sans-serif;">Daftar Pesan</h3>
+        <h3 style="font-family: 'Playfair Display', sans-serif;">Daftar Pesan</h3>
         <p style="color: #7f8c8d;">Total: {{ $messages->total() }} pesan</p>
     </div>
     @if($newCount > 0)

@@ -12,7 +12,7 @@
     }
 
     .contact-hero h1 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 3.5rem;
         margin-bottom: 1.5rem;
         animation: fadeInUp 0.8s ease-out;
@@ -49,7 +49,7 @@
     }
 
     .contact-info h2 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 2rem;
         color: var(--dark);
         margin-bottom: 2rem;
@@ -83,7 +83,7 @@
     }
 
     .info-content h3 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 1.3rem;
         color: var(--dark);
         margin-bottom: 0.5rem;
@@ -157,7 +157,7 @@
     }
 
     .contact-form h2 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 2rem;
         color: var(--dark);
         margin-bottom: 2rem;
@@ -218,7 +218,7 @@
         border-radius: 15px;
         font-size: 1.2rem;
         font-weight: 700;
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         cursor: pointer;
         transition: all 0.3s ease;
         display: flex;
@@ -252,7 +252,7 @@
     }
 
     .faq-section h2 {
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 2.5rem;
         color: var(--dark);
         text-align: center;
@@ -277,7 +277,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-family: 'Fredoka', sans-serif;
+        font-family: 'Playfair Display', sans-serif;
         font-size: 1.3rem;
         color: var(--dark);
         font-weight: 600;

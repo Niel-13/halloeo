@@ -6,7 +6,7 @@
 @section('content')
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
     <div>
-        <h3 style="font-family: 'Fredoka', sans-serif;">Daftar Portfolio</h3>
+        <h3 style="font-family: 'Playfair Display', sans-serif;">Daftar Portfolio</h3>
         <p style="color: #7f8c8d;">Total: {{ $portfolios->total() }} karya</p>
     </div>
     <a href="{{ route('admin.portfolio.create') }}" class="btn btn-primary">

@@ -5,12 +5,12 @@
 
 @section('content')
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-    <div class="card" style="background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));">
+    <div class="card" style="background: var(--pastel-blue);">
         <div style="color: white;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
                     <p style="opacity: 0.9; margin-bottom: 0.5rem;">Total Portfolio</p>
-                    <h2 style="font-family: 'Fredoka', sans-serif; font-size: 3rem;">{{ $stats['total_portfolios'] }}</h2>
+                    <h2 style="font-family: 'Playfair Display', sans-serif; font-size: 3rem;">{{ $stats['total_portfolios'] }}</h2>
                 </div>
                 <i class="fas fa-images" style="font-size: 3rem; opacity: 0.3;"></i>
             </div>
@@ -20,12 +20,12 @@
         </div>
     </div>
 
-    <div class="card" style="background: linear-gradient(135deg, var(--pastel-green), var(--dark-pastel-red));">
+    <div class="card" style="background: var(--pastel-green);">
         <div style="color: white;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
                     <p style="opacity: 0.9; margin-bottom: 0.5rem;">Total Testimonial</p>
-                    <h2 style="font-family: 'Fredoka', sans-serif; font-size: 3rem;">{{ $stats['total_testimonials'] }}</h2>
+                    <h2 style="font-family: 'Playfair Display', sans-serif; font-size: 3rem;">{{ $stats['total_testimonials'] }}</h2>
                 </div>
                 <i class="fas fa-star" style="font-size: 3rem; opacity: 0.3;"></i>
             </div>
@@ -35,12 +35,12 @@
         </div>
     </div>
 
-    <div class="card" style="background: linear-gradient(135deg, var(--dark-pastel-red), var(--pastel-blue));">
+    <div class="card" style="background: var(--dark-pastel-red);">
         <div style="color: white;">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
                     <p style="opacity: 0.9; margin-bottom: 0.5rem;">Pending Review</p>
-                    <h2 style="font-family: 'Fredoka', sans-serif; font-size: 3rem;">{{ $stats['pending_testimonials'] }}</h2>
+                    <h2 style="font-family: 'Playfair Display', sans-serif; font-size: 3rem;">{{ $stats['pending_testimonials'] }}</h2>
                 </div>
                 <i class="fas fa-clock" style="font-size: 3rem; opacity: 0.3;"></i>
             </div>
