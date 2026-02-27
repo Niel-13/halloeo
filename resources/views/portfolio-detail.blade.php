@@ -405,10 +405,10 @@
     <div class="detail-content">
         <!-- Main Image -->
         <div class="detail-image-section">
-            <img src="{{ asset('storage/' . $portfolio->image_path) }}" 
-                 alt="{{ $portfolio->title }}" 
-                 class="main-image"
-                 onerror="this.src='https://via.placeholder.com/1200x600/A8D8EA/FFFFFF?text={{ urlencode($portfolio->title) }}'">
+            <img src="{{ asset($portfolio->image_path) }}" 
+                alt="{{ $portfolio->title }}" 
+                class="main-image"
+                onerror="this.src='https://via.placeholder.com/1200x600/A8D8EA/FFFFFF?text={{ urlencode($portfolio->title) }}'">
         </div>
 
         <!-- Detail Info -->

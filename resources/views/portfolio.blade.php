@@ -291,7 +291,8 @@
         @forelse($portfolios as $portfolio)
         <div class="portfolio-item" onclick="window.location='{{ route('portfolio.show', $portfolio->id) }}'">
             <div class="portfolio-image-wrapper">
-                <img src="{{ asset('storage/' . $portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="portfolio-image" onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($portfolio->title) }}'">
+                <img src="{{ asset($portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="portfolio-image" onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($portfolio->title) }}'">
+                
                 <div class="portfolio-overlay">
                     <i class="fas fa-search-plus overlay-icon"></i>
                 </div>

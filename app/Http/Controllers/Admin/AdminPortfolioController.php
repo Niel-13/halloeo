@@ -36,7 +36,11 @@ class AdminPortfolioController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image_path'] = $request->file('image')->store('portfolio', 'public');
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            // Pindah langsung ke public/portfolio
+            $file->move(public_path('portfolio'), $filename);
+            $validated['image_path'] = 'portfolio/' . $filename;
         }
 
         Portfolio::create($validated);
@@ -67,11 +71,15 @@ class AdminPortfolioController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Delete old image
-            if ($portfolio->image_path) {
-                Storage::disk('public')->delete($portfolio->image_path);
+            // Hapus foto lama di public_html/portfolio
+            if ($portfolio->image_path && file_exists(public_path($portfolio->image_path))) {
+                unlink(public_path($portfolio->image_path));
             }
-            $validated['image_path'] = $request->file('image')->store('portfolio', 'public');
+            
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $file->move(public_path('portfolio'), $filename);
+            $validated['image_path'] = 'portfolio/' . $filename;
         }
 
         $portfolio->update($validated);
@@ -84,9 +92,9 @@ class AdminPortfolioController extends Controller
     {
         $portfolio = Portfolio::findOrFail($id);
         
-        // Delete image
-        if ($portfolio->image_path) {
-            Storage::disk('public')->delete($portfolio->image_path);
+        // Hapus file fisik dari public_html/portfolio
+        if ($portfolio->image_path && file_exists(public_path($portfolio->image_path))) {
+            unlink(public_path($portfolio->image_path));
         }
 
         $portfolio->delete();

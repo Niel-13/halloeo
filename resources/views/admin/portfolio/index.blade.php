@@ -31,7 +31,7 @@
                 <tr>
                     <td>
                         @if($portfolio->image_path)
-                            <img src="{{ asset('storage/' . $portfolio->image_path) }}" alt="{{ $portfolio->title }}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px;">
+                            <img src="{{ asset($portfolio->image_path) }}" alt="{{ $portfolio->title }}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px;">
                         @else
                             <div style="width: 80px; height: 60px; background: #eee; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #aaa;">
                                 <i class="fas fa-image"></i>

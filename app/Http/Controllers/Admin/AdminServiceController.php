@@ -25,13 +25,17 @@ class AdminServiceController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'icon' => 'required|string|max:50', // Contoh: fas fa-star
-            'features' => 'nullable|string', // Bisa diisi dengan teks yang dipisahkan koma/baris baru
+            'icon' => 'required|string|max:50',
+            'features' => 'nullable|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image_path'] = $request->file('image')->store('services', 'public');
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            // Pindah langsung ke public/services
+            $file->move(public_path('services'), $filename);
+            $validated['image_path'] = 'services/' . $filename;
         }
 
         Service::create($validated);
@@ -59,10 +63,15 @@ class AdminServiceController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            if ($service->image_path) {
-                Storage::disk('public')->delete($service->image_path);
+            // Hapus foto lama di public_html/services menggunakan unlink()
+            if ($service->image_path && file_exists(public_path($service->image_path))) {
+                unlink(public_path($service->image_path));
             }
-            $validated['image_path'] = $request->file('image')->store('services', 'public');
+            
+            $file = $request->file('image');
+            $filename = $file->hashName();
+            $file->move(public_path('services'), $filename);
+            $validated['image_path'] = 'services/' . $filename;
         }
 
         $service->update($validated);
@@ -75,8 +84,9 @@ class AdminServiceController extends Controller
     {
         $service = Service::findOrFail($id);
         
-        if ($service->image_path) {
-            Storage::disk('public')->delete($service->image_path);
+        // Hapus file fisik dari public_html/services
+        if ($service->image_path && file_exists(public_path($service->image_path))) {
+            unlink(public_path($service->image_path));
         }
 
         $service->delete();

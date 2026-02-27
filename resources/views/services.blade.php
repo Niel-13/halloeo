@@ -296,7 +296,8 @@
         @forelse($services as $service)
         <div class="service-card">
             <div class="service-image">
-                <img src="{{ asset('storage/' . $service->image_path) }}" alt="{{ $service->title }}" onerror="this.src='https://via.placeholder.com/800x600?text=HalloEO+Service'">
+                <img src="{{ asset($service->image_path) }}" alt="{{ $service->title }}" onerror="this.src='https://via.placeholder.com/800x600?text=HalloEO+Service'">
+                
                 <div class="service-overlay">
                     <i class="{{ $service->icon }} service-icon"></i>
                 </div>

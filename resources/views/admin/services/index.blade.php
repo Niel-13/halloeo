@@ -31,7 +31,8 @@
                 <tr>
                     <td>
                         @if($service->image_path)
-                            <img src="{{ asset('storage/' . $service->image_path) }}" alt="{{ $service->title }}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px;">
+                            {{-- PERBAIKAN: Hapus 'storage/' karena file sudah berada di public_html/services --}}
+                            <img src="{{ asset($service->image_path) }}" alt="{{ $service->title }}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px;">
                         @else
                             <div style="width: 80px; height: 60px; background: #eee; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #aaa;">
                                 <i class="fas fa-image"></i>

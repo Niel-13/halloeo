@@ -757,7 +757,8 @@
     <div class="portfolio-grid">
     @forelse($featuredPortfolios ?? [] as $portfolio)
     <div class="portfolio-card" onclick="window.location='{{ route('portfolio.show', $portfolio->id) }}'" style="cursor: pointer;">
-        <img src="{{ asset('storage/' . $portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="portfolio-img" onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text=HalloEO'">
+        <img src="{{ asset($portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="portfolio-img" onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text=HalloEO'">
+        
         <div class="portfolio-info">
             <span class="portfolio-category">{{ ucfirst($portfolio->category) }}</span>
             <h3>{{ $portfolio->title }}</h3>
@@ -795,20 +796,19 @@
 
         <div class="gallery-grid" id="galleryGrid">
             @forelse($galleries ?? [] as $gallery)
-                <div class="gallery-item" onclick="openLightbox('{{ asset('storage/' . $gallery->file_path) }}', '{{ $gallery->type }}')">
-                    
+                <div class="gallery-item" onclick="openLightbox('{{ asset($gallery->file_path) }}', '{{ $gallery->type }}')">
                     @if($gallery->type == 'video')
-                        <video src="{{ asset('storage/' . $gallery->file_path) }}" muted loop playsinline></video>
+                        <video src="{{ asset($gallery->file_path) }}" muted loop playsinline></video>
                         <div class="gallery-overlay">
                             <i class="fas fa-play-circle play-icon"></i>
                         </div>
                     @else
-                        <img src="{{ asset('storage/' . $gallery->file_path) }}" alt="Galeri HalloEO">
+                        <img src="{{ asset($gallery->file_path) }}" alt="Galeri HalloEO">
                         <div class="gallery-overlay">
                             <i class="fas fa-expand play-icon" style="font-size: 2.5rem;"></i>
                         </div>
                     @endif
-                    </div>
+                </div>
             @empty
                 <div style="text-align: center; width: 100%; padding: 2rem;">
                     <p>Galeri masih kosong.</p>
