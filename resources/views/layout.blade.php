@@ -45,6 +45,7 @@
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
+            font-family: 'Playfair Display', sans-serif;
         }
 
         .nav-container {
@@ -71,9 +72,6 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
             background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -339,7 +337,7 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="{{ route('home') }}" class="logo" style="display: inline-flex; align-items: center; text-decoration: none; height: 75px;">
+            <a href="{{ route('home') }}" class="logo" style="display: inline-flex; align-items: center; text-decoration: none; height: 65px;">
                 
                 <img src="{{ asset('images/logohalloeo.png') }}" alt="Logo HalloEO" style="max-height: 100%; width: auto; object-fit: contain;">
                 

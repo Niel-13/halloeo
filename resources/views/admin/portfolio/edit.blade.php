@@ -27,15 +27,18 @@
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
             <div class="form-group">
-                <label for="category">Kategori <span style="color: red;">*</span></label>
-                <select id="category" name="category" required>
-                    <option value="">-- Pilih Kategori --</option>
-                    <option value="dekorasi" {{ old('category', $portfolio->category) == 'dekorasi' ? 'selected' : '' }}>Dekorasi Styrofoam</option>
-                    <option value="maskot" {{ old('category', $portfolio->category) == 'maskot' ? 'selected' : '' }}>Pembuatan Maskot</option>
-                    <option value="event" {{ old('category', $portfolio->category) == 'event' ? 'selected' : '' }}>Event Organizer</option>
+                <label for="category">Kategori *</label>
+                <select name="category" required>
+                    <option value="">Pilih Kategori</option>
+                    @foreach($services as $service)
+                        <option value="{{ $service->title }}" 
+                            {{ old('category', $portfolio->category ?? '') == $service->title ? 'selected' : '' }}>
+                            {{ $service->title }}
+                        </option>
+                    @endforeach
                 </select>
                 @error('category')
-                    <span style="color: red; font-size: 0.85rem; display: block;">{{ $message }}</span>
+                    <small style="color: #D88A8A;">{{ $message }}</small>
                 @enderror
             </div>
 

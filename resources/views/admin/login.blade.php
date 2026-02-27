@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ asset('images/logohalloeo.png') }}?v={{ time() }}">
     <title>Admin Login - HalloEO</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,12 +56,10 @@
         .logo{
             width: 130px;
             height: 130px;
-            margin: 0 auto 1.5rem auto;            border-radius: 50%;
-            background: #f0f4f8; 
+            margin: 0 auto 1.5rem auto;          
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow:  0 4px 8px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.5);
             overflow: hidden;
         }
 

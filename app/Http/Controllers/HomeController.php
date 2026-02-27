@@ -6,6 +6,7 @@ use App\Models\Portfolio;
 use App\Models\Testimonial;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use App\Models\Service;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,9 @@ class HomeController extends Controller
 
         $galleries = Gallery::where('is_visible', true)->latest()->get();
 
-        return view('home', compact('featuredPortfolios', 'testimonials', 'galleries'));
+        $services = Service::all();
+
+        return view('home', compact('featuredPortfolios', 'testimonials', 'galleries', 'services'));
     }
 
     public function about()

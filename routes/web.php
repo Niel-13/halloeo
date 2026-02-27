@@ -31,6 +31,7 @@ Route::post('/testimonial', [TestimonialController::class, 'store'])->name('test
 
 // Contact Form
 Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
 
 
 // Admin Login (No Auth Required)

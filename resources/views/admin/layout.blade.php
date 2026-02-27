@@ -59,6 +59,7 @@
 
         .sidebar-menu {
             list-style: none;
+            font-family: 'Playfair Display', sans-serif;
         }
 
         .sidebar-menu a {
@@ -297,7 +298,7 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-logo">
-            <div style="width: 80px; height: 80px; background: white; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
+            <div style="width: 70px; height: 70px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; overflow: hidden;">
                 <img src="{{ asset('images/logohalloeo.png') }}" alt="Logo HalloEO" style="width: 85%; height: auto; object-fit: contain; transform: scale(1.2);">
             </div>
             <h1 style="font-family: 'Playfair Display', sans-serif; color: white; font-size: 1.5rem; letter-spacing: 1px;">HalloEO</h1>

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Portfolio;
-use App\Models\Testimonial; // JANGAN LUPA TAMBAHKAN INI
+use App\Models\Testimonial;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,7 +13,6 @@ class AdminPortfolioController extends Controller
 {
     public function index()
     {
-        // Hanya ambil data portfolio, tidak perlu data statistik/testimonial
         $portfolios = Portfolio::latest()->paginate(15);
         
         return view('admin.portfolio.index', compact('portfolios'));
@@ -20,15 +20,15 @@ class AdminPortfolioController extends Controller
     
     public function create()
     {
-        return view('admin.portfolio.create');
+        $services = \App\Models\Service::all();
+        return view('admin.portfolio.create', compact('services'));
     }
-
     public function store(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'category' => 'required|in:dekorasi,maskot,event',
+            'category' => 'required|exists:services,title',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
             'client_name' => 'nullable|string|max:255',
             'project_date' => 'nullable|date',
@@ -48,7 +48,8 @@ class AdminPortfolioController extends Controller
     public function edit($id)
     {
         $portfolio = Portfolio::findOrFail($id);
-        return view('admin.portfolio.edit', compact('portfolio'));
+        $services = \App\Models\Service::all();
+        return view('admin.portfolio.edit', compact('portfolio', 'services'));
     }
 
     public function update(Request $request, $id)
@@ -58,7 +59,7 @@ class AdminPortfolioController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'category' => 'required|in:dekorasi,maskot,event',
+            'category' => 'required|exists:services,title',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'client_name' => 'nullable|string|max:255',
             'project_date' => 'nullable|date',

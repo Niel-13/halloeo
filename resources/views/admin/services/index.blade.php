@@ -14,12 +14,6 @@
     </a>
 </div>
 
-@if(session('success'))
-<div class="card" style="margin-bottom: 1.5rem; background: #d4edda; border-left: 4px solid #28a745; color: #155724; padding: 1rem;">
-    <i class="fas fa-check-circle"></i> {{ session('success') }}
-</div>
-@endif
-
 <div class="card">
     <div class="table-responsive">
         <table>

@@ -9,14 +9,15 @@ class PortfolioController extends Controller
 {
     public function index(Request $request)
     {
+        $categories = \App\Models\Service::all();
+        
         $query = Portfolio::query();
 
         if ($request->has('category') && $request->category != 'all') {
-            $query->byCategory($request->category);
+            $query->where('category', $request->category);
         }
 
-        $portfolios = $query->latest()->paginate(12);
-        $categories = ['all', 'dekorasi', 'maskot', 'event'];
+        $portfolios = $query->latest()->paginate(9);
 
         return view('portfolio', compact('portfolios', 'categories'));
     }

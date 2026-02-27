@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContactMessage;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -22,5 +23,11 @@ class ContactController extends Controller
 
         return redirect()->back()
             ->with('success', 'Terima kasih! Pesan Anda telah diterima. Kami akan segera menghubungi Anda.');
+    }
+
+    public function index()
+    {
+        $services = Service::all(); 
+        return view('contact', compact('services'));
     }
 }

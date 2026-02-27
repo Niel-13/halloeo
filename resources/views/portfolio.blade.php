@@ -273,19 +273,17 @@
 <!-- Portfolio Container -->
 <div class="portfolio-container">
     <!-- Filter Buttons -->
-    <div class="filter-buttons">
+    <div class="filter-buttons" style="font-family: 'Playfair Display', serif;">
         <a href="{{ route('portfolio.index') }}" class="filter-btn {{ !request('category') || request('category') == 'all' ? 'active' : '' }}">
             <i class="fas fa-th"></i> Semua
         </a>
-        <a href="{{ route('portfolio.index', ['category' => 'dekorasi']) }}" class="filter-btn {{ request('category') == 'dekorasi' ? 'active' : '' }}">
-            <i class="fas fa-star"></i> Dekorasi
-        </a>
-        <a href="{{ route('portfolio.index', ['category' => 'maskot']) }}" class="filter-btn {{ request('category') == 'maskot' ? 'active' : '' }}">
-            <i class="fas fa-cube"></i> Maskot
-        </a>
-        <a href="{{ route('portfolio.index', ['category' => 'event']) }}" class="filter-btn {{ request('category') == 'event' ? 'active' : '' }}">
-            <i class="fas fa-calendar"></i> Event
-        </a>
+
+        @foreach($categories as $category)
+            <a href="{{ route('portfolio.index', ['category' => $category->title]) }}" 
+            class="filter-btn {{ request('category') == $category->title ? 'active' : '' }}">
+                <i class="fas fa-tag"></i> {{ $category->title }}
+            </a>
+        @endforeach
     </div>
 
     <!-- Portfolio Grid -->

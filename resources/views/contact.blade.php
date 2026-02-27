@@ -186,22 +186,26 @@
     .form-group textarea,
     .form-group select {
         width: 100%;
-        padding: 1.1rem 1.5rem;
-        border: 2px solid rgba(0, 0, 0, 0.1);
+        padding: 1rem 1.5rem;
+        border: none;
         border-radius: 15px;
         font-size: 1rem;
-        font-family: 'Outfit', sans-serif;
-        transition: all 0.3s ease;
-        background: var(--light);
+        font-family: 'Playfair Display', serif; /* Mengikuti font pilihanmu */
+        background: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+        appearance: none; /* Menghilangkan panah default browser agar lebih bersih */
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1.5rem center;
+        background-size: 1em;
     }
 
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group select:focus {
         outline: none;
-        border-color: var(--pastel-blue);
         background: var(--white);
-        box-shadow: 0 5px 20px rgba(168, 216, 234, 0.3);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     }
 
     .form-group textarea {
@@ -437,14 +441,13 @@
                     </div>
                     <div class="form-group">
                         <label for="service">Layanan Yang Dibutuhkan *</label>
-                        <select id="service" name="service" required>
+                        <select id="service" name="service" required style="font-family: 'Playfair Display', serif;">
                             <option value="">Pilih Layanan</option>
-                            <option value="dekorasi">Dekorasi Event</option>
-                            <option value="maskot">Maskot Custom</option>
-                            <option value="huruf">Huruf Timbul 3D</option>
-                            <option value="display">Display Product</option>
-                            <option value="patung">Patung & Replika</option>
-                            <option value="props">Props Photo Studio</option>
+                            
+                            @foreach($services as $service)
+                                <option value="{{ $service->id }}">{{ $service->title }}</option>
+                            @endforeach
+                            
                             <option value="other">Lainnya</option>
                         </select>
                     </div>

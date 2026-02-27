@@ -279,6 +279,16 @@
 
     .portfolio-info p { color: var(--dark); opacity: 0.7; line-height: 1.6; }
 
+    .portfolio-item {
+        background: var(--white);
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+        cursor: pointer;
+        animation: fadeInScale 0.6s ease-out backwards;
+    }
+
     .gallery-section {
         padding: 6rem 2rem;
         background: var(--white);
@@ -745,25 +755,25 @@
         <p>Lihat hasil karya terbaik kami</p>
     </div>
     <div class="portfolio-grid">
-        @forelse($featuredPortfolios ?? [] as $portfolio)
-        <div class="portfolio-card">
-            <img src="{{ asset('storage/' . $portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="portfolio-img" onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text=HalloEO'">
-            <div class="portfolio-info">
-                <span class="portfolio-category">{{ ucfirst($portfolio->category) }}</span>
-                <h3>{{ $portfolio->title }}</h3>
-                <p>{{ Str::limit($portfolio->description, 100) }}</p>
-            </div>
+    @forelse($featuredPortfolios ?? [] as $portfolio)
+    <div class="portfolio-card" onclick="window.location='{{ route('portfolio.show', $portfolio->id) }}'" style="cursor: pointer;">
+        <img src="{{ asset('storage/' . $portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="portfolio-img" onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text=HalloEO'">
+        <div class="portfolio-info">
+            <span class="portfolio-category">{{ ucfirst($portfolio->category) }}</span>
+            <h3>{{ $portfolio->title }}</h3>
+            <p>{{ Str::limit($portfolio->description, 100) }}</p>
         </div>
-        @empty
-        <div class="portfolio-card">
-            <img src="https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text=Dekorasi+Pernikahan" alt="Sample" class="portfolio-img">
-            <div class="portfolio-info">
-                <span class="portfolio-category">Dekorasi</span>
-                <h3>Dekorasi Pernikahan Elegant</h3>
-                <p>Dekorasi pernikahan dengan tema elegant dan modern menggunakan styrofoam berkualitas premium</p>
-            </div>
+    </div>
+    @empty
+    <div class="portfolio-card">
+        <img src="https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text=Dekorasi+Pernikahan" alt="Sample" class="portfolio-img">
+        <div class="portfolio-info">
+            <span class="portfolio-category">Dekorasi</span>
+            <h3>Dekorasi Pernikahan Elegant</h3>
+            <p>Dekorasi pernikahan dengan tema elegant dan modern menggunakan styrofoam berkualitas premium</p>
         </div>
-        @endforelse
+    </div>
+    @endforelse
     </div>
     <div style="text-align: center; margin-top: 3rem;">
         <a href="{{ route('portfolio.index') }}" class="btn btn-primary" style="background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green)); color: white;">
