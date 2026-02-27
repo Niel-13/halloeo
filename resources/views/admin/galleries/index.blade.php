@@ -18,12 +18,12 @@
     @forelse($galleries as $gallery)
     <div class="card" style="padding: 0; overflow: hidden; position: relative; aspect-ratio: 1/1;">
         @if($gallery->type == 'video')
-            <video src="{{ asset('storage/' . $gallery->file_path) }}" style="width: 100%; height: 100%; object-fit: cover;" muted></video>
+            <video src="{{ asset($gallery->file_path) }}" style="width: 100%; height: 100%; object-fit: cover;" muted></video>
             <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.6); color: white; padding: 0.2rem 0.5rem; border-radius: 5px; font-size: 0.8rem;">
                 <i class="fas fa-video"></i> Video
             </div>
         @else
-            <img src="{{ asset('storage/' . $gallery->file_path) }}" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="{{ asset($gallery->file_path) }}" style="width: 100%; height: 100%; object-fit: cover;">
             <div style="position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.6); color: white; padding: 0.2rem 0.5rem; border-radius: 5px; font-size: 0.8rem;">
                 <i class="fas fa-image"></i> Gambar
             </div>

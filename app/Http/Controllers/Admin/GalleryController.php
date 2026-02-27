@@ -32,7 +32,14 @@ class GalleryController extends Controller
         // Deteksi apakah ini gambar atau video berdasarkan ekstensi
         $type = in_array(strtolower($extension), ['mp4', 'mov', 'avi']) ? 'video' : 'image';
 
-        $path = $file->store('galleries', 'public');
+        // Hasilkan nama file acak yang unik (bawaan Laravel)
+        $filename = $file->hashName();
+
+        // Pindahkan file langsung ke folder 'public/galleries' di lokalmu
+        $file->move(public_path('galleries'), $filename);
+
+        // Simpan path-nya untuk database
+        $path = 'galleries/' . $filename;
 
         Gallery::create([
             'file_path' => $path,
