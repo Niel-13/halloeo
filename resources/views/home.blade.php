@@ -654,34 +654,53 @@
         opacity: 0.95;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
-        .hero-content {
-            grid-template-columns: 1fr;
-            text-align: center;
+        /* Hero Section - Dibuat lebih padat dan tombol responsif */
+        .hero { min-height: auto; padding-top: 6rem; padding-bottom: 3rem; }
+        .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; padding: 1rem; }
+        .hero-text h1 { font-size: 2.2rem; margin-bottom: 1rem; }
+        .hero-text p { font-size: 1.05rem; margin-bottom: 1.5rem; }
+        .hero-buttons { flex-direction: column; width: 100%; gap: 1rem; }
+        .hero-buttons .btn { width: 100%; justify-content: center; }
+        .hero-image-container { height: 280px; }
+
+        /* General Sections - Mengurangi padding raksasa menjadi ramah jempol */
+        .features, .portfolio-section, .gallery-section, .testimonials, .testimonial-form-section, .cta-section {
+            padding: 3rem 1.2rem; 
+        }
+        .section-title { margin-bottom: 2rem; }
+        .section-title h2 { font-size: 1.8rem; }
+        .section-title p { font-size: 1rem; }
+
+        /* Grids & Cards - Jarak antar elemen diperkecil */
+        .features-grid, .portfolio-grid, .testimonials-grid { 
+            grid-template-columns: 1fr; 
+            gap: 1.2rem; 
+        }
+        .feature-card, .testimonial-card, .portfolio-info { padding: 1.5rem; }
+        .feature-card h3, .portfolio-info h3 { font-size: 1.3rem; }
+        
+        /* Gallery (Swipeable UX Hint) */
+        .gallery-wrapper { padding: 0; }
+        .gallery-btn { display: none; } /* Sembunyikan panah, paksa user swipe natural */
+        .gallery-grid { padding: 0.5rem 1rem; gap: 1rem; }
+        .gallery-item { 
+            /* Lebar 240px memastikan gambar sebelahnya "ngintip" sedikit sebagai kode untuk di-swipe */
+            width: 240px !important; 
+            height: 240px !important; 
+            flex: 0 0 240px !important; 
         }
 
-        .hero-text h1 {
-            font-size: 2.5rem;
-        }
-
-        .hero-buttons {
-            justify-content: center;
-        }
-
-        .hero-image-container {
-            height: 350px;
-        }
-
-        .section-title h2 {
-            font-size: 2rem;
-        }
-
-        .portfolio-grid,
-        .testimonials-grid,
-        .gallery-grid {
-            grid-template-columns: 1fr;
-        }
+        /* Form Testimoni - Mencegah form terlihat sesak di layar kecil */
+        .form-container { padding: 1.5rem; border-radius: 20px; }
+        .form-group label { font-size: 0.95rem; }
+        .form-group input, .form-group textarea { padding: 0.8rem 1.2rem; font-size: 0.95rem; }
+        .rating-input label { font-size: 1.5rem; } /* Bintang sedikit diperkecil */
+        .btn-submit { font-size: 1.1rem; padding: 1rem; }
+        
+        /* CTA Section */
+        .cta-section h2 { font-size: 1.8rem; }
+        .cta-section p { font-size: 1.05rem; margin-bottom: 1.5rem; }
     }
 </style>
 @endsection
