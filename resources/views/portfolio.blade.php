@@ -243,21 +243,44 @@
     }
 
     @media (max-width: 768px) {
+        .portfolio-hero {
+            padding: 4rem 1.2rem 2rem;
+        }
+
         .portfolio-hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem; 
+            margin-bottom: 1rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: nowrap; 
+            overflow-x: auto; 
+            gap: 0.8rem;
+            padding: 0.5rem 1.2rem 1rem 1.2rem; 
+            justify-content: flex-start; 
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+        }
+
+        .filter-buttons::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            font-size: 0.95rem;
+            white-space: nowrap; 
+            flex-shrink: 0; 
+        }
+
+        .portfolio-section { 
+            padding: 2rem 1.2rem;
         }
 
         .portfolio-grid {
             grid-template-columns: 1fr;
-        }
-
-        .filter-buttons {
-            gap: 0.5rem;
-        }
-
-        .filter-btn {
-            padding: 0.7rem 1.5rem;
-            font-size: 0.95rem;
+            gap: 1.5rem; 
         }
     }
 </style>

@@ -334,31 +334,44 @@
     }
 
     @media (max-width: 768px) {
+        /* Judul 2.5rem akan memakan 3-4 baris di layar HP kecil. 
+           Kita susutkan menjadi 2rem agar tetap elegan namun tidak mendominasi layar. */
         .detail-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
         }
 
+        /* Tinggi 400px akan memakan hampir seluruh tinggi layar HP vertikal, 
+           memaksa pengunjung men-scroll jauh hanya untuk membaca teks pertama. */
         .main-image {
-            height: 400px;
+            height: 280px; /* 250px - 300px adalah sweet spot untuk gambar hero di mobile */
+            border-radius: 12px; /* Opsional: memberi kesan modern pada sudut gambar */
         }
 
+        /* Padding 2rem (32px) terlalu boros ruang horizontal di HP. 
+           Kita tipiskan agar teks punya ruang baca yang lebih lebar. */
         .detail-info-section {
-            padding: 2rem;
+            padding: 1.5rem 1.2rem;
         }
 
+        /* Meta data (klien, tanggal, kategori) */
         .detail-meta {
             flex-direction: column;
-            align-items: center;
-            gap: 1rem;
+            align-items: flex-start; /* Ubah dari center ke flex-start agar sejajar rapi rata kiri (mudah di-scan mata) */
+            gap: 0.8rem;
         }
 
+        /* Bagian ini sudah sempurna! Kita tinggal pastikan jarak antar tombol nyaman */
         .cta-buttons {
             flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .btn-cta {
             width: 100%;
             justify-content: center;
+            padding: 1rem; /* Memastikan area sentuh tombol cukup tebal untuk jempol */
         }
     }
 </style>

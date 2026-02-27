@@ -270,16 +270,36 @@
     }
 
     @media (max-width: 768px) {
+        .services-hero {
+            padding: 4rem 1.2rem 2rem;
+        }
+
         .services-hero h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .services-section {
+            padding: 2rem 1.2rem; 
         }
 
         .services-grid {
             grid-template-columns: 1fr;
+            gap: 1.5rem; 
+        }
+
+        .process-grid {
+            grid-template-columns: 1fr; 
+            gap: 2rem;
+        }
+
+        .process-step {
+            padding: 1.5rem; 
+            text-align: center;
         }
 
         .process-step::after {
-            display: none;
+            display: none; 
         }
     }
 </style>
