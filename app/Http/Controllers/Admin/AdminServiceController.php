@@ -33,8 +33,8 @@ class AdminServiceController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = $file->hashName();
-            // Pindah langsung ke public/services
-            $file->move(public_path('services'), $filename);
+            $destinationPath = base_path('../public_html/services');
+            $file->move($destinationPath, $filename);
             $validated['image_path'] = 'services/' . $filename;
         }
 
@@ -70,6 +70,7 @@ class AdminServiceController extends Controller
             
             $file = $request->file('image');
             $filename = $file->hashName();
+            $destinationPath = base_path('../public_html/services');
             $file->move(public_path('services'), $filename);
             $validated['image_path'] = 'services/' . $filename;
         }
@@ -84,7 +85,6 @@ class AdminServiceController extends Controller
     {
         $service = Service::findOrFail($id);
         
-        // Hapus file fisik dari public_html/services
         if ($service->image_path && file_exists(public_path($service->image_path))) {
             unlink(public_path($service->image_path));
         }

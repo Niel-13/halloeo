@@ -28,17 +28,10 @@ class GalleryController extends Controller
 
         $file = $request->file('file');
         $extension = $file->getClientOriginalExtension();
-        
-        // Deteksi apakah ini gambar atau video berdasarkan ekstensi
         $type = in_array(strtolower($extension), ['mp4', 'mov', 'avi']) ? 'video' : 'image';
-
-        // Hasilkan nama file acak yang unik (bawaan Laravel)
         $filename = $file->hashName();
-
-        // Pindahkan file langsung ke folder 'public/galleries' di lokalmu
-        $file->move(public_path('galleries'), $filename);
-
-        // Simpan path-nya untuk database
+        $destinationPath = base_path('../public_html/galleries');
+        $file->move($destinationPath, $filename);
         $path = 'galleries/' . $filename;
 
         Gallery::create([
@@ -52,17 +45,15 @@ class GalleryController extends Controller
     public function destroy($id)
     {
         $gallery = Gallery::findOrFail($id);
-        
-        // Hapus file fisik dari storage
-        if (Storage::disk('public')->exists($gallery->file_path)) {
-            Storage::disk('public')->delete($gallery->file_path);
+        $filePath = base_path('../public_html/' . $gallery->file_path);
+        if (file_exists($filePath)) {
+            unlink($filePath);
         }
-
         $gallery->delete();
 
-        return redirect()->route('admin.galleries.index')->with('success', 'File berhasil dihapus dari Galeri!');
+        return redirect()->route('admin.galleries.index')
+            ->with('success', 'File berhasil dihapus dari Galeri!');
     }
-
     public function toggleVisibility($id)
     {
         $gallery = Gallery::findOrFail($id);

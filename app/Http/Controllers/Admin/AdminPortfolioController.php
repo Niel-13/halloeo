@@ -38,8 +38,8 @@ class AdminPortfolioController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = $file->hashName();
-            // Pindah langsung ke public/portfolio
-            $file->move(public_path('portfolio'), $filename);
+            $destinationPath = base_path('../public_html/portfolio');
+            $file->move($destinationPath, $filename);
             $validated['image_path'] = 'portfolio/' . $filename;
         }
 
@@ -71,13 +71,13 @@ class AdminPortfolioController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Hapus foto lama di public_html/portfolio
             if ($portfolio->image_path && file_exists(public_path($portfolio->image_path))) {
                 unlink(public_path($portfolio->image_path));
             }
             
             $file = $request->file('image');
             $filename = $file->hashName();
+            $destinationPath = base_path('../public_html/portfolio');
             $file->move(public_path('portfolio'), $filename);
             $validated['image_path'] = 'portfolio/' . $filename;
         }
