@@ -445,91 +445,178 @@
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* Testimonials Section */
+
     .testimonials {
-        padding: 6rem 2rem;
-        background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-green) 100%);
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        padding: 5rem 0 6rem 0; 
         position: relative;
+        overflow: hidden; 
     }
 
-    .testimonials-grid {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    .testimonials .section-title {
+        padding: 0 2rem; 
+    }
+
+    .testimonials .section-title h2,
+    .testimonials .section-title p {
+        color: var(--dark); 
+    }
+
+    .testimonials-scroll-wrapper {
+        display: flex;
         gap: 2rem;
+        padding: 1rem 2rem 3rem 2rem; 
+        overflow-x: auto;
+        overflow-y: hidden; 
+        scroll-snap-type: x mandatory; 
+        scroll-behavior: smooth;
+        -ms-overflow-style: none; 
+        scrollbar-width: none;
+        animation: slideInCards 1.5s ease-out;
+    }
+
+
+    .testimonials-scroll-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    @keyframes slideInCards {
+        from { transform: translateX(50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
     }
 
     .testimonial-card {
+        flex: 0 0 auto; 
+        width: 350px;
+        scroll-snap-align: center; 
         background: var(--white);
         padding: 2.5rem;
-        border-radius: 25px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        transition: all 0.4s ease;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         position: relative;
-    }
-
-    .testimonial-card::before {
-        content: '"';
-        position: absolute;
-        top: -20px;
-        left: 30px;
-        font-size: 8rem;
-        font-family: 'Playfair Display', sans-serif;
-        color: var(--pastel-blue);
-        opacity: 0.2;
-        line-height: 1;
+        display: flex;
+        flex-direction: column; 
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        margin-top: 15px; 
     }
 
     .testimonial-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .testimonial-card::before {
+        content: '\201C'; 
+        position: absolute;
+        top: -20px;
+        right: 25px;
+        font-size: 6rem;
+        line-height: 1;
+        font-family: var(--font-heading);
+        color: var(--primary);
+        opacity: 0.2;
     }
 
     .testimonial-header {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        gap: 1.2rem;
         margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 2;
     }
 
     .testimonial-avatar {
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0; 
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
+        background: var(--pastel-blue);
+        color: var(--white);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 2rem;
-        color: var(--white);
-        font-weight: 600;
+        font-weight: 700;
+        font-size: 1.5rem;
     }
 
     .testimonial-info h4 {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 1.3rem;
+        font-family: var(--font-heading);
+        font-size: 1.2rem;
+        margin-bottom: 0.2rem;
         color: var(--dark);
-        margin-bottom: 0.3rem;
     }
 
     .testimonial-info p {
-        color: var(--dark);
-        opacity: 0.6;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        color: rgba(44, 62, 80, 0.6);
+        margin: 0;
     }
 
     .stars {
-        color: #FFD700;
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
+        color: #FFB800;
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
     }
 
     .testimonial-message {
         color: var(--dark);
-        line-height: 1.8;
-        font-size: 1.05rem;
+        line-height: 1.6;
+        font-size: 1rem;
         opacity: 0.8;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; 
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 1rem; 
+        flex-grow: 1;
+    }
+
+
+    .read-more-toggle {
+        display: none; 
+    }
+
+    .read-more-label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--pastel-blue);
+        cursor: pointer;
+        display: inline-block;
+        transition: color 0.3s ease;
+        align-self: flex-start; 
+    }
+
+    .read-more-label:hover {
+        color: var(--accent);
+    }
+
+
+    .read-more-toggle:checked ~ .testimonial-message {
+        -webkit-line-clamp: unset;
+    }
+
+
+    .read-more-toggle:checked ~ .read-more-label::after {
+        content: 'Tutup';
+    }
+    .read-more-label::after {
+        content: 'Baca selengkapnya';
+    }
+
+    /* Media Query Khusus Testimonial Tablet/Mobile */
+    @media (max-width: 768px) {
+        .testimonials-scroll-wrapper {
+            padding: 1rem 1rem 3rem 1rem;
+            gap: 1.5rem;
+            scroll-snap-type: x mandatory;
+        }
+        .testimonial-card {
+            width: 85vw; /* Lebar card mengambil 85% layar di HP, jadi kartu sebelahnya 'ngintip' sedikit */
+            max-width: 320px; /* Tapi tidak lebih dari 320px */
+            padding: 2rem;
+            scroll-snap-align: center;
+        }
     }
 
     /* Testimonial Form Section */
@@ -850,48 +937,39 @@
 
 <section class="testimonials">
     <div class="section-title">
-        <h2 style="color: white;">Kata Mereka Tentang Kami</h2>
-        <p style="color: white;">Testimoni dari klien yang puas dengan layanan kami</p>
+        <h2 style="color: black;">Kata Mereka Tentang Kami</h2>
+        <p style="color: black;">Testimoni dari klien yang puas dengan layanan kami</p>
     </div>
-    <div class="testimonials-grid">
-        @forelse($testimonials as $testimonial)
-        <div class="testimonial-card">
-            <div class="testimonial-header">
-                <div class="testimonial-avatar">
-                    {{ strtoupper(substr($testimonial->name, 0, 1)) }}
-                </div>
-                <div class="testimonial-info">
-                    <h4>{{ $testimonial->name }}</h4>
-                    <p>{{ $testimonial->company ?? 'Klien HalloEO' }}</p>
-                </div>
+    <div class="testimonials-scroll-wrapper">
+    @forelse($testimonials as $index => $testimonial)
+    <div class="testimonial-card">
+        <div class="testimonial-header">
+            <div class="testimonial-avatar">
+                {{ strtoupper(substr($testimonial->name, 0, 1)) }}
             </div>
-            <div class="stars">
-                @for($i = 0; $i < $testimonial->rating; $i++)
-                    <i class="fas fa-star"></i>
-                @endfor
+            <div class="testimonial-info">
+                <h4>{{ $testimonial->name }}</h4>
+                <p>{{ $testimonial->company ?? 'Klien HalloEO' }}</p>
             </div>
-            <p class="testimonial-message">{{ $testimonial->message }}</p>
         </div>
-        @empty
-        <div class="testimonial-card">
-            <div class="testimonial-header">
-                <div class="testimonial-avatar">S</div>
-                <div class="testimonial-info">
-                    <h4>Sarah Wijaya</h4>
-                    <p>Event Organizer</p>
-                </div>
-            </div>
-            <div class="stars">
+        
+        <div class="stars">
+            @for($i = 0; $i < $testimonial->rating; $i++)
                 <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <p class="testimonial-message">Sangat puas dengan hasil dekorasi dari HalloEO! Tim yang profesional dan hasil yang memuaskan. Highly recommended!</p>
+            @endfor
         </div>
-        @endforelse
+
+        <input type="checkbox" class="read-more-toggle" id="read-more-{{ $index }}">
+        
+        <p class="testimonial-message">{{ $testimonial->message }}</p>
+        
+        @if(strlen($testimonial->message) > 120) {{-- Opsional: Hanya muncul jika pesan panjang --}}
+            <label for="read-more-{{ $index }}" class="read-more-label"></label>
+        @endif
     </div>
+    @empty
+    @endforelse
+</div>
 </section>
 
 <section class="testimonial-form-section">
