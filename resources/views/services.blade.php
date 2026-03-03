@@ -122,7 +122,7 @@
     }
 
     .service-content {
-        padding: 2.5rem;
+        padding: 2rem;
         display: flex;
         flex-direction: column;
         flex: 1;

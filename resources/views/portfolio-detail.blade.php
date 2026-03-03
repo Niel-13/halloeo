@@ -523,10 +523,7 @@
         <div class="related-grid">
             @foreach($relatedPortfolios as $related)
             <a href="{{ route('portfolio.show', $related->id) }}" class="related-card">
-                <img src="{{ asset('storage/' . $related->image_path) }}" 
-                     alt="{{ $related->title }}" 
-                     class="related-image"
-                     onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($related->title) }}'">
+                <img src="{{ asset($portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="portfolio-image" onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($portfolio->title) }}'">
                 <div class="related-info">
                     <span class="related-category">
                         <i class="fas fa-tag"></i> {{ ucfirst($related->category) }}
