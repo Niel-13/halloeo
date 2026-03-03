@@ -379,8 +379,8 @@
 
                 @foreach($footerServices as $service)
                     <p>
-                        <a href="{{ route('services.show', $service->slug) }}">
-                            {{ $service->name }}
+                        <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}">
+                            {{ $service->title }}
                         </a>
                     </p>
                 @endforeach
