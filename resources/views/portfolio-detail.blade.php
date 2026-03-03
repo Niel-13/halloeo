@@ -248,11 +248,16 @@
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
     }
 
+    .related-image-wrapper {
+        aspect-ratio: 4 / 3;
+        width: 100%;
+        overflow: hidden;
+    }
+
     .related-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s ease;
     }
 
     .related-card:hover .related-image {
@@ -517,7 +522,10 @@
         <div class="related-grid">
             @foreach($relatedPortfolios as $related)
             <a href="{{ route('portfolio.show', $related->id) }}" class="related-card">
-                <img src="{{ asset($portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="portfolio-image" onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($portfolio->title) }}'">
+                <img src="{{ asset($related->image_path) }}"
+                alt="{{ $related->title }}"
+                class="related-image"
+                onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($related->title) }}'">
                 <div class="related-info">
                     <span class="related-category">
                         <i class="fas fa-tag"></i> {{ ucfirst($related->category) }}
