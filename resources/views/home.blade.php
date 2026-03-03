@@ -168,21 +168,37 @@
     }
 
     .features-grid {
-        max-width: 1400px;
+        max-width: 1200px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(4, 1fr);
         gap: 2.5rem;
+    }
+
+    @media (max-width: 1024px) {
+        .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
     .feature-card {
         background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
+        aspect-ratio: 1 / 1;
+        display: flex;
+        flex-direction: column;
         padding: 2.5rem;
         border-radius: 30px;
         text-align: center;
         transition: all 0.4s ease;
         position: relative;
         overflow: hidden;
+        width: 100%;
     }
 
     .feature-card::before {
@@ -212,7 +228,7 @@
 
     .feature-card h3 {
         font-family: 'Playfair Display', sans-serif;
-        font-size: 1.8rem;
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
         color: var(--white);
         margin-bottom: 1rem;
     }
@@ -221,7 +237,7 @@
         color: var(--white);
         opacity: 0.95;
         line-height: 1.8;
-        font-size: 1.05rem;
+        font-size: clamp(0.9rem, 1.8vw, 1.05rem);
     }
 
     /* Portfolio Section */
@@ -836,23 +852,18 @@
         <div class="feature-card">
             <i class="fas fa-lightbulb feature-icon"></i>
             <h3>Desain Kreatif</h3>
-            <p>Tim desainer berpengalaman siap mewujudkan ide kreatif Anda menjadi karya nyata yang memukau</p>
         </div>
         <div class="feature-card">
             <i class="fas fa-star feature-icon"></i>
             <h3>Kualitas Premium</h3>
-            <p>Menggunakan bahan styrofoam berkualitas tinggi dengan finishing yang rapi dan detail sempurna</p>
         </div>
         <div class="feature-card">
             <i class="fas fa-clock feature-icon"></i>
             <h3>Pengerjaan Cepat</h3>
-            <p>Proses produksi yang efisien tanpa mengorbankan kualitas, tepat waktu untuk event Anda</p>
         </div>
         <div class="feature-card">
             <i class="fas fa-hand-holding-usd feature-icon"></i>
             <h3>Harga Kompetitif</h3>
-            <p>Harga terjangkau dengan kualitas terbaik, tersedia berbagai paket sesuai budget Anda</p>
-        </div>
     </div>
 </section>
 
