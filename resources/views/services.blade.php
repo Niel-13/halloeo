@@ -29,13 +29,16 @@
     .services-container {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 6rem 2rem;
+        padding: 2rem 2rem;
     }
 
     .services-grid {
+        max-width: 1400px;
+        margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 3rem;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+        justify-content: center;
+        gap: 2rem;
     }
 
     .service-card {
