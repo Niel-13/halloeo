@@ -48,6 +48,8 @@
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         transition: all 0.5s ease;
         position: relative;
+        display: flex;
+        flex-direction: column;
     }
 
     .service-card::before {
@@ -121,6 +123,9 @@
 
     .service-content {
         padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
     }
 
     .service-title {
@@ -172,6 +177,8 @@
         border-radius: 50px;
         font-weight: 600;
         transition: all 0.3s ease;
+        margin-top: auto;   
+        align-self: flex-start; 
     }
 
     .service-btn:hover {
