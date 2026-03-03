@@ -250,7 +250,7 @@
 
     .related-image-wrapper {
         width: 100%;
-        aspect-ratio: 4 / 3;  
+        height: 300px; 
         overflow: hidden;
     }
 
