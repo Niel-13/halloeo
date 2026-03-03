@@ -20,7 +20,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang-kami', [HomeController::class, 'about'])->name('about');
 Route::get('/layanan-kami', [ServiceController::class, 'index'])->name('services');
 Route::get('/kontak', [HomeController::class, 'contact'])->name('contact');
-
+Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
 // Portfolio
 Route::get('/portofolio', [PortfolioController::class, 'index'])->name('portfolio.index');
 Route::get('/portofolio/{id}', [PortfolioController::class, 'show'])->name('portfolio.show');

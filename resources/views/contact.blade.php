@@ -132,8 +132,8 @@
         background: #25D366;
     }
 
-    .social-btn.email {
-        background: #EA4335;
+    .social-btn.tiktok {
+        background: #000000;
     }
 
     .social-btn.instagram {
@@ -364,8 +364,7 @@
                 </div>
                 <div class="info-content">
                     <h3>Telepon</h3>
-                    <p><a href="tel:+6281234567890">+62 812-3456-7890</a></p>
-                    <p><a href="tel:+6281234567891">+62 812-3456-7891</a></p>
+                    <p><a href="tel:+6285731112023">+62 857-3111-2023 </a></p>
                 </div>
             </div>
 
@@ -386,7 +385,7 @@
                 </div>
                 <div class="info-content">
                     <h3>Alamat</h3>
-                    <p>Jl. Kreatif No. 123<br>Jakarta Selatan, DKI Jakarta<br>Indonesia 12345</p>
+                    <p>Ruko Grand Galaxy City<br>Jl Cordova 2 Blok RGC2 No 2 Bekasi<br>Indonesia</p>
                 </div>
             </div>
 
@@ -403,17 +402,17 @@
             </div>
 
             <div class="social-buttons">
-                <a href="https://wa.me/6281234567890" class="social-btn whatsapp" target="_blank">
+                <a href="https://wa.me/6285731112023" class="social-btn whatsapp" target="_blank">
                     <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
-                <a href="mailto:info@halloeo.com" class="social-btn email">
-                    <i class="fas fa-envelope"></i> Email
+                <a href="https://tiktok.com/@halloeo" class="social-btn tiktok" target="_blank">
+                    <i class="fab fa-tiktok"></i> TikTok
                 </a>
                 <a href="https://instagram.com/halloeo" class="social-btn instagram" target="_blank">
                     <i class="fab fa-instagram"></i> Instagram
                 </a>
                 <a href="https://facebook.com/halloeo" class="social-btn facebook" target="_blank">
-                    <i class="fab fa-facebook-f"></i> Facebook
+                    <i class="fa-brands fa-facebook"></i> Facebook
                 </a>
             </div>
         </div>
@@ -473,7 +472,7 @@
 
     <!-- Map Section -->
     <div class="map-section">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613!3d-6.1751171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sJakarta!5e0!3m2!1sen!2sid!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.86819005232752!2d106.97461806805339!3d-6.278053500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f548e76cbda1%3A0x408e01708eaeca8d!2sMAXIMUS%20Pictures!5e0!3m2!1sid!2sid!4v1772553458773!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </div>
 

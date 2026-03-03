@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'HalloEO - Dekorasi & Maskot Styrofoam Profesional')</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --pastel-blue: #A8D8EA;
@@ -371,15 +371,20 @@
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="footer-section">
                 <h3>Layanan</h3>
-                <p><a href="{{ route('services') }}">Dekorasi Event</a></p>
-                <p><a href="{{ route('services') }}">Maskot Custom</a></p>
-                <p><a href="{{ route('services') }}">Huruf Timbul</a></p>
-                <p><a href="{{ route('services') }}">Display Product</a></p>
+
+                @foreach($footerServices as $service)
+                    <p>
+                        <a href="{{ route('services.show', $service->slug) }}">
+                            {{ $service->name }}
+                        </a>
+                    </p>
+                @endforeach
+
             </div>
             <div class="footer-section">
                 <h3>Link Cepat</h3>
@@ -389,13 +394,13 @@
             </div>
             <div class="footer-section">
                 <h3>Kontak</h3>
-                <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
+                <p><i class="fas fa-phone"></i> +62 85731112023</p>
                 <p><i class="fas fa-envelope"></i> info@halloeo.com</p>
-                <p><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bekasi, Indonesia</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 HalloEO. All Rights Reserved. Made with <i class="fas fa-heart" style="color: var(--dark-pastel-red);"></i></p>
+            <p>&copy; 2026 HalloEO. All Rights Reserved</p>
         </div>
     </footer>
 

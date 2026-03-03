@@ -273,10 +273,9 @@
     <div class="about-section">
         <div class="about-text">
             <h2>Perjalanan Kami</h2>
-            <p>HalloEO didirikan dengan visi untuk memberikan solusi dekorasi dan maskot styrofoam yang berkualitas, kreatif, dan terjangkau untuk berbagai kebutuhan event dan promosi.</p>
-            <p>Dengan pengalaman lebih dari 5 tahun di industri ini, kami telah melayani ratusan klien dari berbagai kalangan, mulai dari perusahaan besar, institusi pendidikan, hingga acara pribadi.</p>
-            <p>Tim profesional kami yang berdedikasi selalu berusaha memberikan hasil terbaik dan kepuasan maksimal untuk setiap proyek yang kami kerjakan.</p>
-        </div>
+            <p>HalloEO didirikan pada tahun 2008 dengan visi menghadirkan solusi dekorasi dan maskot styrofoam yang berkualitas, kreatif, dan terjangkau untuk berbagai kebutuhan event dan promosi.</p>
+            <p>Dengan pengalaman lebih dari 15 tahun di industri ini, kami telah melayani ratusan klien dari berbagai kalangan, mulai dari perusahaan besar, institusi pendidikan, hingga acara pribadi.</p>
+            <p>Didukung oleh tim profesional yang berpengalaman dan berdedikasi, kami selalu berkomitmen memberikan hasil terbaik serta kepuasan maksimal dalam setiap proyek yang kami tangani.</p>        </div>
         <div class="about-image">
             <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800" alt="Our Team">
         </div>
