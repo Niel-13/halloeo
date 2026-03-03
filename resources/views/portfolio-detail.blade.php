@@ -249,8 +249,8 @@
     }
 
     .related-image-wrapper {
-        aspect-ratio: 4 / 3;
         width: 100%;
+        aspect-ratio: 4 / 3;  
         overflow: hidden;
     }
 
@@ -522,17 +522,22 @@
         <div class="related-grid">
             @foreach($relatedPortfolios as $related)
             <a href="{{ route('portfolio.show', $related->id) }}" class="related-card">
-                <img src="{{ asset($related->image_path) }}"
-                alt="{{ $related->title }}"
-                class="related-image"
-                onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($related->title) }}'">
+                <div class="related-image-wrapper">
+                    <img src="{{ asset($related->image_path) }}"
+                        alt="{{ $related->title }}"
+                        class="related-image"
+                        onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($related->title) }}'">
+                </div>
                 <div class="related-info">
                     <span class="related-category">
                         <i class="fas fa-tag"></i> {{ ucfirst($related->category) }}
                     </span>
                     <h3 class="related-title">{{ $related->title }}</h3>
-                    <p style="color: var(--dark); opacity: 0.7;">{{ Str::limit($related->description, 80) }}</p>
+                    <p style="color: var(--dark); opacity: 0.7;">
+                        {{ Str::limit($related->description, 80) }}
+                    </p>
                 </div>
+
             </a>
             @endforeach
         </div>
