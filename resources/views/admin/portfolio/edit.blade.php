@@ -14,21 +14,23 @@
     </a>
 </div>
 
-<div class="card" style="max-width: 800px; margin: 0 auto;">
+<div class="card" style="max-width: 800px; margin: 0 auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); background: white;">
     <form action="{{ route('admin.portfolio.update', $portfolio->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT') <div class="form-group">
-            <label for="title">Judul Portfolio <span style="color: red;">*</span></label>
-            <input type="text" id="title" name="title" value="{{ old('title', $portfolio->title) }}" required placeholder="Contoh: Maskot Beruang Madu">
+        @method('PUT') 
+        
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="title" style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Judul Portfolio <span style="color: red;">*</span></label>
+            <input type="text" id="title" name="title" value="{{ old('title', $portfolio->title) }}" required placeholder="Contoh: Maskot Beruang Madu" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
             @error('title')
                 <span style="color: red; font-size: 0.85rem; margin-top: 0.5rem; display: block;">{{ $message }}</span>
             @enderror
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
             <div class="form-group">
-                <label for="category">Kategori *</label>
-                <select name="category" required>
+                <label for="category" style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Kategori *</label>
+                <select name="category" required style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
                     <option value="">Pilih Kategori</option>
                     @foreach($services as $service)
                         <option value="{{ $service->title }}" 
@@ -38,60 +40,102 @@
                     @endforeach
                 </select>
                 @error('category')
-                    <small style="color: #D88A8A;">{{ $message }}</small>
+                    <small style="color: red; display: block; margin-top: 0.5rem;">{{ $message }}</small>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label for="is_featured">Tampilkan di Halaman Depan? (Featured)</label>
-                <select id="is_featured" name="is_featured">
+                <label for="is_featured" style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Tampilkan di Halaman Depan? (Featured)</label>
+                <select id="is_featured" name="is_featured" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
                     <option value="0" {{ old('is_featured', $portfolio->is_featured) == false ? 'selected' : '' }}>Tidak</option>
                     <option value="1" {{ old('is_featured', $portfolio->is_featured) == true ? 'selected' : '' }}>Ya, Tampilkan</option>
                 </select>
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
             <div class="form-group">
-                <label for="client_name">Nama Klien (Opsional)</label>
-                <input type="text" id="client_name" name="client_name" value="{{ old('client_name', $portfolio->client_name) }}" placeholder="Contoh: PT. Maju Bersama">
+                <label for="client_name" style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Nama Klien (Opsional)</label>
+                <input type="text" id="client_name" name="client_name" value="{{ old('client_name', $portfolio->client_name) }}" placeholder="Contoh: PT. Maju Bersama" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
             </div>
 
             <div class="form-group">
-                <label for="project_date">Tanggal Proyek (Opsional)</label>
-                <input type="date" id="project_date" name="project_date" value="{{ old('project_date', $portfolio->project_date ? $portfolio->project_date->format('Y-m-d') : '') }}">
+                <label for="project_date" style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Tanggal Proyek (Opsional)</label>
+                <input type="date" id="project_date" name="project_date" value="{{ old('project_date', $portfolio->project_date ? \Carbon\Carbon::parse($portfolio->project_date)->format('Y-m-d') : '') }}" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px;">
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="description">Deskripsi Proyek <span style="color: red;">*</span></label>
-            <textarea id="description" name="description" required placeholder="Ceritakan detail pengerjaan proyek ini...">{{ old('description', $portfolio->description) }}</textarea>
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="description" style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Deskripsi Proyek <span style="color: red;">*</span></label>
+            <textarea id="description" name="description" required placeholder="Ceritakan detail pengerjaan proyek ini..." style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; min-height: 120px;">{{ old('description', $portfolio->description) }}</textarea>
             @error('description')
-                <span style="color: red; font-size: 0.85rem; display: block;">{{ $message }}</span>
+                <span style="color: red; font-size: 0.85rem; display: block; margin-top: 0.5rem;">{{ $message }}</span>
             @enderror
         </div>
 
-        <div class="form-group" style="background: var(--light); padding: 1.5rem; border-radius: 8px;">
-            <label for="image">Gambar Portfolio</label>
+        <!-- Bagian Edit Gambar Utama -->
+        <div class="form-group" style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px dashed #ced4da; margin-bottom: 1.5rem;">
+            <label for="image" style="font-weight: 600; display: block; margin-bottom: 1rem;">Gambar Utama Portfolio</label>
             
             @if($portfolio->image_path)
-                <div style="margin-bottom: 1rem;">
-                    <p style="font-size: 0.85rem; color: #7f8c8d; margin-bottom: 0.5rem;">Gambar Saat Ini:</p>
-                    <img src="{{ asset('storage/' . $portfolio->image_path) }}" alt="Preview" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div style="margin-bottom: 1rem; background: white; padding: 1rem; border-radius: 8px; display: inline-block; border: 1px solid #e9ecef;">
+                    <p style="font-size: 0.85rem; color: #7f8c8d; margin-bottom: 0.5rem;"><i class="fas fa-image"></i> Gambar Saat Ini:</p>
+                    <img src="{{ asset($portfolio->image_path) }}" alt="Preview" style="max-width: 200px; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                 </div>
             @endif
 
-            <input type="file" id="image" name="image" accept="image/jpeg,image/png,image/jpg,image/gif" style="background: white;">
+            <input type="file" id="image" name="image" accept="image/jpeg,image/png,image/jpg,image/gif" style="width: 100%; padding: 0.5rem; background: white; border: 1px solid #ddd; border-radius: 6px;">
             <p style="font-size: 0.85rem; color: #7f8c8d; margin-top: 0.5rem;">
-                <i class="fas fa-info-circle"></i> Biarkan kosong jika tidak ingin mengubah gambar. Format: JPG, PNG, GIF (Maks 5MB).
+                <i class="fas fa-info-circle"></i> Biarkan kosong jika tidak ingin mengubah gambar utama. Format: JPG, PNG, GIF (Maks 5MB).
             </p>
             @error('image')
                 <span style="color: red; font-size: 0.85rem; display: block;">{{ $message }}</span>
             @enderror
         </div>
 
-        <div style="text-align: right; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--light);">
-            <button type="submit" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1.1rem;">
+        <!-- Bagian Edit Galeri Foto/Video -->
+        <div class="form-group" style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; border: 1px dashed #ced4da; margin-bottom: 1.5rem;">
+            <label style="font-weight: 600; display: block; margin-bottom: 1rem;">Galeri Portfolio (Foto & Video Tambahan)</label>
+
+            <!-- Menampilkan Galeri yang sudah ada -->
+            @if(isset($portfolio->galleries) && $portfolio->galleries->count() > 0)
+                <div style="margin-bottom: 1.5rem;">
+                    <p style="font-size: 0.85rem; color: #7f8c8d; margin-bottom: 0.5rem;"><i class="fas fa-images"></i> Item Galeri Saat Ini:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem;">
+                        @foreach($portfolio->galleries as $gallery)
+                            <div style="position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 2px solid white;">
+                                @if($gallery->type == 'video')
+                                    <video style="width: 100%; height: 100%; object-fit: cover;" muted>
+                                        <source src="{{ asset($gallery->file_path) }}" type="video/mp4">
+                                    </video>
+                                    <div style="position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.6); color: white; border-radius: 4px; padding: 2px 6px; font-size: 0.7rem;">
+                                        <i class="fas fa-video"></i>
+                                    </div>
+                                @else
+                                    <img src="{{ asset($gallery->file_path) }}" alt="Galeri" style="width: 100%; height: 100%; object-fit: cover;">
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
+            <!-- Input Tambah Galeri -->
+            <label for="galleries" style="font-size: 0.9rem; margin-bottom: 0.5rem; display: block; color: #495057;">Tambah File ke Galeri Baru</label>
+            <input type="file" id="galleries" name="galleries[]" multiple accept="image/*,video/*" style="width: 100%; padding: 0.5rem; background: white; border: 1px solid #ddd; border-radius: 6px;">
+            <p style="font-size: 0.85rem; color: #7f8c8d; margin-top: 0.5rem;">
+                <i class="fas fa-plus-circle"></i> Anda bisa memilih beberapa file sekaligus. File baru akan <strong>ditambahkan</strong> ke galeri yang sudah ada. Format: Gambar & Video (Maks 20MB per file).
+            </p>
+            @error('galleries')
+                <span style="color: red; font-size: 0.85rem; display: block;">{{ $message }}</span>
+            @enderror
+            @error('galleries.*')
+                <span style="color: red; font-size: 0.85rem; display: block;">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div style="text-align: right; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e9ecef;">
+            <button type="submit" class="btn btn-primary" style="padding: 0.8rem 2.5rem; font-size: 1.1rem; border-radius: 50px; background: linear-gradient(135deg, #007bff, #0056b3); border: none; color: white; cursor: pointer; transition: transform 0.2s ease;">
                 <i class="fas fa-save"></i> Simpan Perubahan
             </button>
         </div>

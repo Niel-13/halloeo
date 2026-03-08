@@ -81,9 +81,9 @@ class AdminPortfolioController extends Controller
         return view('admin.portfolio.edit', compact('portfolio', 'services'));
     }
 
-    public function update(Request $request, $id)
+     public function update(Request $request, $id)
     {
-        $portfolio = Portfolio::findOrFail($id);
+        $portfolio = \App\Models\Portfolio::with('galleries')->findOrFail($id);
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -93,38 +93,102 @@ class AdminPortfolioController extends Controller
             'client_name' => 'nullable|string|max:255',
             'project_date' => 'nullable|date',
             'is_featured' => 'boolean',
+            'galleries' => 'nullable|array',
+            'galleries.*' => 'file|mimes:jpeg,png,jpg,gif,mp4,mov,avi|max:20480',
         ]);
 
-        if ($request->hasFile('image')) {
-            if ($portfolio->image_path && file_exists(public_path($portfolio->image_path))) {
-                unlink(public_path($portfolio->image_path));
+        try {
+            \Illuminate\Support\Facades\DB::beginTransaction();
+
+            $dataToUpdate = [
+                'title' => $validated['title'],
+                'description' => $validated['description'],
+                'category' => $validated['category'],
+                'client_name' => $validated['client_name'] ?? null,
+                'project_date' => $validated['project_date'] ?? null,
+                'is_featured' => $validated['is_featured'] ?? 0,
+            ];
+
+            if ($request->hasFile('image')) {
+                if ($portfolio->image_path && file_exists(base_path('../public_html/' . $portfolio->image_path))) {
+                    unlink(base_path('../public_html/' . $portfolio->image_path));
+                }
+
+                $file = $request->file('image');
+                $filename = time() . '_' . $file->hashName();
+                $file->move(base_path('../public_html/portfolio'), $filename);
+                $dataToUpdate['image_path'] = 'portfolio/' . $filename;
             }
-            
-            $file = $request->file('image');
-            $filename = $file->hashName();
-            $destinationPath = base_path('../public_html/portfolio');
-            $file->move(public_path('portfolio'), $filename);
-            $validated['image_path'] = 'portfolio/' . $filename;
+
+            $portfolio->update($dataToUpdate);
+
+            if ($request->hasFile('galleries')) {
+                $galleryPath = base_path('../public_html/portfolio/galleries');
+                
+                if (!file_exists($galleryPath)) {
+                    mkdir($galleryPath, 0755, true);
+                }
+
+                foreach ($request->file('galleries') as $gFile) {
+                    $mime = $gFile->getMimeType();
+                    $type = str_contains($mime, 'video') ? 'video' : 'image';
+                    
+                    $gFilename = time() . '_' . $gFile->hashName();
+                    $gFile->move($galleryPath, $gFilename);
+                    
+                    \App\Models\PortfolioGallery::create([
+                        'portfolio_id' => $portfolio->id,
+                        'type' => $type,
+                        'file_path' => 'portfolio/galleries/' . $gFilename
+                    ]);
+                }
+            }
+
+            \Illuminate\Support\Facades\DB::commit();
+
+            return redirect()->route('admin.portfolio.index')
+                ->with('success', 'Portfolio berhasil diperbarui!');
+
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\DB::rollBack();
+            \Illuminate\Support\Facades\Log::error('Error Update Portfolio: ' . $e->getMessage());
+
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan pada server saat update: ' . $e->getMessage());
         }
-
-        $portfolio->update($validated);
-
-        return redirect()->route('admin.portfolio.index')
-            ->with('success', 'Portfolio berhasil diupdate!');
     }
 
     public function destroy($id)
     {
-        $portfolio = Portfolio::findOrFail($id);
-        
-        if ($portfolio->image_path && file_exists(public_path($portfolio->image_path))) {
-            unlink(public_path($portfolio->image_path));
+        try {
+            \Illuminate\Support\Facades\DB::beginTransaction();
+            $portfolio = \App\Models\Portfolio::with('galleries')->findOrFail($id);
+
+            if ($portfolio->image_path && file_exists(base_path('../public_html/' . $portfolio->image_path))) {
+                unlink(base_path('../public_html/' . $portfolio->image_path));
+            }
+
+            if ($portfolio->galleries) {
+                foreach ($portfolio->galleries as $gallery) {
+                    if ($gallery->file_path && file_exists(base_path('../public_html/' . $gallery->file_path))) {
+                        unlink(base_path('../public_html/' . $gallery->file_path));
+                    }
+                }
+            }            $portfolio->delete();
+
+            \Illuminate\Support\Facades\DB::commit();
+
+            return redirect()->route('admin.portfolio.index')
+                ->with('success', 'Portfolio beserta semua galerinya berhasil dihapus!');
+
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\DB::rollBack();
+            \Illuminate\Support\Facades\Log::error('Error Delete Portfolio: ' . $e->getMessage());
+
+            return redirect()->back()
+                ->with('error', 'Terjadi kesalahan saat menghapus portfolio: ' . $e->getMessage());
         }
-
-        $portfolio->delete();
-
-        return redirect()->route('admin.portfolio.index')
-            ->with('success', 'Portfolio berhasil dihapus!');
     }
 
     public function toggleFeatured($id)
