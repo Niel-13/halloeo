@@ -466,7 +466,7 @@
     .testimonials {
         background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
         padding: 5rem 0 6rem 0; 
-        position: relative;
+        position: center;
         overflow: hidden; 
     }
 
