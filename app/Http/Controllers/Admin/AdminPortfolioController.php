@@ -83,23 +83,28 @@ class AdminPortfolioController extends Controller
 
      public function update(Request $request, $id)
     {
+        // 1. Cari data portfolio beserta relasi galerinya
         $portfolio = \App\Models\Portfolio::with('galleries')->findOrFail($id);
 
+        // 2. Validasi input
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'category' => 'required|exists:services,title',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120', // Opsional saat edit
             'client_name' => 'nullable|string|max:255',
             'project_date' => 'nullable|date',
             'is_featured' => 'boolean',
             'galleries' => 'nullable|array',
             'galleries.*' => 'file|mimes:jpeg,png,jpg,gif,mp4,mov,avi|max:20480',
+            'deleted_galleries' => 'nullable|array', // Tambahan: ID galeri yang ingin dihapus
+            'deleted_galleries.*' => 'exists:portfolio_galleries,id'
         ]);
 
         try {
             \Illuminate\Support\Facades\DB::beginTransaction();
 
+            // 3. Persiapkan data yang akan diupdate
             $dataToUpdate = [
                 'title' => $validated['title'],
                 'description' => $validated['description'],
@@ -109,7 +114,9 @@ class AdminPortfolioController extends Controller
                 'is_featured' => $validated['is_featured'] ?? 0,
             ];
 
+            // 4. Proses Gambar Utama Baru (Jika Ada)
             if ($request->hasFile('image')) {
+                // Hapus fisik gambar lama dari server (public_html)
                 if ($portfolio->image_path && file_exists(base_path('../public_html/' . $portfolio->image_path))) {
                     unlink(base_path('../public_html/' . $portfolio->image_path));
                 }
@@ -120,8 +127,27 @@ class AdminPortfolioController extends Controller
                 $dataToUpdate['image_path'] = 'portfolio/' . $filename;
             }
 
+            // 5. Simpan Update Portfolio
             $portfolio->update($dataToUpdate);
 
+            // 6. Proses Hapus Item Galeri (Jika ada yang di-request untuk dihapus)
+            if ($request->has('deleted_galleries')) {
+                foreach ($request->deleted_galleries as $galleryId) {
+                    $gallery = \App\Models\PortfolioGallery::find($galleryId);
+                    
+                    // Pastikan galeri ada dan benar-benar milik portfolio ini
+                    if ($gallery && $gallery->portfolio_id == $portfolio->id) {
+                        // Hapus file fisik dari public_html
+                        if ($gallery->file_path && file_exists(base_path('../public_html/' . $gallery->file_path))) {
+                            unlink(base_path('../public_html/' . $gallery->file_path));
+                        }
+                        // Hapus data dari database
+                        $gallery->delete();
+                    }
+                }
+            }
+
+            // 7. Proses Tambahan Galeri (Jika Ada Upload Baru)
             if ($request->hasFile('galleries')) {
                 $galleryPath = base_path('../public_html/portfolio/galleries');
                 
@@ -163,19 +189,26 @@ class AdminPortfolioController extends Controller
     {
         try {
             \Illuminate\Support\Facades\DB::beginTransaction();
+            
+            // Ambil portfolio beserta galerinya
             $portfolio = \App\Models\Portfolio::with('galleries')->findOrFail($id);
 
+            // 1. Hapus file fisik gambar utama dari public_html
             if ($portfolio->image_path && file_exists(base_path('../public_html/' . $portfolio->image_path))) {
                 unlink(base_path('../public_html/' . $portfolio->image_path));
             }
 
+            // 2. Hapus file fisik semua galeri terkait dari public_html
             if ($portfolio->galleries) {
                 foreach ($portfolio->galleries as $gallery) {
                     if ($gallery->file_path && file_exists(base_path('../public_html/' . $gallery->file_path))) {
                         unlink(base_path('../public_html/' . $gallery->file_path));
                     }
                 }
-            }            $portfolio->delete();
+            }
+
+            // 3. Hapus data dari database (otomatis hapus child di database jika cascade, atau hapus manual parentnya)
+            $portfolio->delete();
 
             \Illuminate\Support\Facades\DB::commit();
 

@@ -15,7 +15,7 @@
 </div>
 
 <div class="card" style="max-width: 800px; margin: 0 auto; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); background: white;">
-    <form action="{{ route('admin.portfolio.update', $portfolio->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.portfolio.update', $portfolio->id) }}" method="POST" enctype="multipart/form-data" id="edit-portfolio-form">
         @csrf
         @method('PUT') 
         
@@ -101,30 +101,38 @@
             @if(isset($portfolio->galleries) && $portfolio->galleries->count() > 0)
                 <div style="margin-bottom: 1.5rem;">
                     <p style="font-size: 0.85rem; color: #7f8c8d; margin-bottom: 0.5rem;"><i class="fas fa-images"></i> Item Galeri Saat Ini:</p>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem;" id="existing-galleries">
                         @foreach($portfolio->galleries as $gallery)
-                            <div style="position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 2px solid white;">
+                            <div id="gallery-item-{{ $gallery->id }}" style="position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 1/1; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 2px solid white; background: #000;">
                                 @if($gallery->type == 'video')
                                     <video style="width: 100%; height: 100%; object-fit: cover;" muted>
                                         <source src="{{ asset($gallery->file_path) }}" type="video/mp4">
                                     </video>
-                                    <div style="position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.6); color: white; border-radius: 4px; padding: 2px 6px; font-size: 0.7rem;">
+                                    <div style="position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.6); color: white; border-radius: 4px; padding: 2px 6px; font-size: 0.7rem;">
                                         <i class="fas fa-video"></i>
                                     </div>
                                 @else
                                     <img src="{{ asset($gallery->file_path) }}" alt="Galeri" style="width: 100%; height: 100%; object-fit: cover;">
                                 @endif
+                                
+                                <!-- Tombol Hapus Galeri (Triggers JS) -->
+                                <button type="button" onclick="removeGalleryItem({{ $gallery->id }})" title="Hapus Item" style="position: absolute; top: 5px; right: 5px; background: #dc3545; color: white; border: none; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: background 0.2s ease;">
+                                    <i class="fas fa-trash-alt" style="font-size: 0.75rem;"></i>
+                                </button>
                             </div>
                         @endforeach
                     </div>
+                    
+                    <!-- Container input hidden untuk item yang dihapus -->
+                    <div id="deleted-galleries-container"></div>
                 </div>
             @endif
 
-            <!-- Input Tambah Galeri -->
+            <!-- Input Tambah Galeri Baru -->
             <label for="galleries" style="font-size: 0.9rem; margin-bottom: 0.5rem; display: block; color: #495057;">Tambah File ke Galeri Baru</label>
             <input type="file" id="galleries" name="galleries[]" multiple accept="image/*,video/*" style="width: 100%; padding: 0.5rem; background: white; border: 1px solid #ddd; border-radius: 6px;">
             <p style="font-size: 0.85rem; color: #7f8c8d; margin-top: 0.5rem;">
-                <i class="fas fa-plus-circle"></i> Anda bisa memilih beberapa file sekaligus. File baru akan <strong>ditambahkan</strong> ke galeri yang sudah ada. Format: Gambar & Video (Maks 20MB per file).
+                <i class="fas fa-plus-circle"></i> Anda bisa memilih beberapa file sekaligus. File baru akan <strong>ditambahkan</strong> ke galeri. Format: Gambar & Video (Maks 20MB per file).
             </p>
             @error('galleries')
                 <span style="color: red; font-size: 0.85rem; display: block;">{{ $message }}</span>
@@ -141,4 +149,22 @@
         </div>
     </form>
 </div>
+
+<!-- Script untuk handling hapus galeri secara dinamis di form -->
+<script>
+    function removeGalleryItem(id) {
+        if (confirm('Apakah Anda yakin ingin menghapus item ini dari galeri? Item akan terhapus permanen setelah Anda menekan tombol "Simpan Perubahan".')) {
+            let itemDiv = document.getElementById('gallery-item-' + id);
+            if (itemDiv) {
+                itemDiv.style.display = 'none';
+            }
+            let container = document.getElementById('deleted-galleries-container');
+            let input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'deleted_galleries[]';
+            input.value = id;
+            container.appendChild(input);
+        }
+    }
+</script>
 @endsection
