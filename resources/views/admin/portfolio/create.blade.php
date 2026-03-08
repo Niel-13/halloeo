@@ -114,6 +114,11 @@
                 </label>
             </div>
 
+            <div class="form-group">
+                <label>Galeri (Foto/Video) *Bisa pilih beberapa</label>
+                <input type="file" name="galleries[]" class="form-control" multiple accept="image/*,video/*">
+            </div>
+
             <div style="display: flex; gap: 1rem; margin-top: 2rem;">
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i> {{ isset($portfolio) ? 'Update Portfolio' : 'Simpan Portfolio' }}

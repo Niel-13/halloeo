@@ -33,6 +33,8 @@ class AdminPortfolioController extends Controller
             'client_name' => 'nullable|string|max:255',
             'project_date' => 'nullable|date',
             'is_featured' => 'boolean',
+            'galleries' => 'nullable|array', 
+            'galleries.*' => 'file|mimes:jpeg,png,jpg,gif,mp4,mov,avi|max:50480', 
         ]);
 
         if ($request->hasFile('image')) {
@@ -43,10 +45,33 @@ class AdminPortfolioController extends Controller
             $validated['image_path'] = 'portfolio/' . $filename;
         }
 
-        Portfolio::create($validated);
+        $portfolio = Portfolio::create($validated);
+
+        if ($request->hasFile('galleries')) {
+            $galleryDestinationPath = base_path('../public_html/portfolio/galleries');
+
+            if (!file_exists($galleryDestinationPath)) {
+                mkdir($galleryDestinationPath, 0755, true);
+            }
+
+            foreach ($request->file('galleries') as $galleryFile) {
+                $mimeType = $galleryFile->getMimeType();
+                $type = str_contains($mimeType, 'video') ? 'video' : 'image';
+
+                $galleryFilename = time() . '_' . $galleryFile->hashName();
+                
+                $galleryFile->move($galleryDestinationPath, $galleryFilename);
+                
+                \App\Models\PortfolioGallery::create([
+                    'portfolio_id' => $portfolio->id,
+                    'type'         => $type,
+                    'file_path'    => 'portfolio/galleries/' . $galleryFilename,
+                ]);
+            }
+        }
 
         return redirect()->route('admin.portfolio.index')
-            ->with('success', 'Portfolio berhasil ditambahkan!');
+            ->with('success', 'Portfolio dan galeri berhasil ditambahkan!');
     }
 
     public function edit($id)
@@ -92,7 +117,6 @@ class AdminPortfolioController extends Controller
     {
         $portfolio = Portfolio::findOrFail($id);
         
-        // Hapus file fisik dari public_html/portfolio
         if ($portfolio->image_path && file_exists(public_path($portfolio->image_path))) {
             unlink(public_path($portfolio->image_path));
         }

@@ -33,4 +33,9 @@ class Portfolio extends Model
     {
         return $query->where('category', $category);
     }
+
+    public function galleries()
+    {
+        return $this->hasMany(PortfolioGallery::class);
+    }
 }

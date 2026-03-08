@@ -107,7 +107,6 @@
         border-bottom: 3px solid var(--pastel-blue);
     }
 
-
     .detail-description {
         color: var(--dark);
         line-height: 2;
@@ -155,6 +154,101 @@
         font-size: 1.2rem;
         color: var(--dark);
         font-weight: 600;
+    }
+
+    /* --- TAMBAHAN STYLE UNTUK GALERI --- */
+    .gallery-section {
+        background: var(--white);
+        padding: 3rem;
+        border-radius: 30px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        margin-top: 3rem;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .gallery-item {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        aspect-ratio: 1 / 1;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        background: var(--light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery-media {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .gallery-video-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .gallery-video-wrapper video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    /* --- AKHIR TAMBAHAN STYLE GALERI --- */
+
+    .share-section {
+        background: var(--light);
+        padding: 2rem;
+        border-radius: 20px;
+        margin-top: 2rem;
+    }
+
+    .share-section h4 {
+        font-family: 'Playfair Display', sans-serif;
+        font-size: 1.3rem;
+        color: var(--dark);
+        margin-bottom: 1rem;
+    }
+
+    .share-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .share-btn {
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--white);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .share-btn.facebook { background: #1877F2; }
+    .share-btn.twitter { background: #1DA1F2; }
+    .share-btn.whatsapp { background: #25D366; }
+    .share-btn.linkedin { background: #0A66C2; }
+
+    .share-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .cta-box {
@@ -213,9 +307,7 @@
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
 
-    .related-section {
-        margin-top: 6rem;
-    }
+    .related-section { margin-top: 6rem; }
 
     .related-section h2 {
         font-family: 'Playfair Display', sans-serif;
@@ -258,15 +350,12 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.5s ease;
     }
 
-    .related-card:hover .related-image {
-        transform: scale(1.1);
-    }
+    .related-card:hover .related-image { transform: scale(1.1); }
 
-    .related-info {
-        padding: 1.5rem;
-    }
+    .related-info { padding: 1.5rem; }
 
     .related-category {
         display: inline-block;
@@ -286,59 +375,6 @@
         margin-bottom: 0.5rem;
     }
 
-    .share-section {
-        background: var(--light);
-        padding: 2rem;
-        border-radius: 20px;
-        margin-top: 2rem;
-    }
-
-    .share-section h4 {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 1.3rem;
-        color: var(--dark);
-        margin-bottom: 1rem;
-    }
-
-    .share-buttons {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .share-btn {
-        padding: 0.8rem 1.5rem;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        color: var(--white);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .share-btn.facebook {
-        background: #1877F2;
-    }
-
-    .share-btn.twitter {
-        background: #1DA1F2;
-    }
-
-    .share-btn.whatsapp {
-        background: #25D366;
-    }
-
-    .share-btn.linkedin {
-        background: #0A66C2;
-    }
-
-    .share-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
     @media (max-width: 768px) {
         .detail-title {
             font-size: 2rem;
@@ -350,7 +386,7 @@
             border-radius: 12px; 
         }
 
-        .detail-info-section {
+        .detail-info-section, .gallery-section {
             padding: 1.5rem 1.2rem;
         }
 
@@ -360,7 +396,6 @@
             gap: 0.8rem;
         }
 
-       
         .cta-buttons {
             flex-direction: column;
             gap: 1rem;
@@ -477,28 +512,59 @@
                 <h4><i class="fas fa-share-alt"></i> Bagikan Portfolio Ini</h4>
                 <div class="share-buttons">
                     <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" 
-                       target="_blank" 
-                       class="share-btn facebook">
+                        target="_blank" 
+                        class="share-btn facebook">
                         <i class="fab fa-facebook-f"></i> Facebook
                     </a>
                     <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($portfolio->title) }}" 
-                       target="_blank" 
-                       class="share-btn twitter">
+                        target="_blank" 
+                        class="share-btn twitter">
                         <i class="fab fa-twitter"></i> Twitter
                     </a>
                     <a href="https://wa.me/?text={{ urlencode($portfolio->title . ' - ' . url()->current()) }}" 
-                       target="_blank" 
-                       class="share-btn whatsapp">
+                        target="_blank" 
+                        class="share-btn whatsapp">
                         <i class="fab fa-whatsapp"></i> WhatsApp
                     </a>
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}" 
-                       target="_blank" 
-                       class="share-btn linkedin">
+                        target="_blank" 
+                        class="share-btn linkedin">
                         <i class="fab fa-linkedin-in"></i> LinkedIn
                     </a>
                 </div>
             </div>
         </div>
+
+        <!-- --- TAMBAHAN BAGIAN GALERI --- -->
+        @if(isset($portfolio->galleries) && $portfolio->galleries->count() > 0)
+        <div class="gallery-section">
+            <h2 class="section-heading">
+                <i class="fas fa-images"></i> Galeri Proyek
+            </h2>
+            <div class="gallery-grid">
+                @foreach($portfolio->galleries as $gallery)
+                    <div class="gallery-item">
+                        @if($gallery->type == 'video')
+                            <!-- Render Video -->
+                            <div class="gallery-video-wrapper">
+                                <video controls class="gallery-media">
+                                    <source src="{{ asset($gallery->file_path) }}" type="video/mp4">
+                                    Browser Anda tidak mendukung tag video.
+                                </video>
+                            </div>
+                        @else
+                            <!-- Render Image -->
+                            <img src="{{ asset($gallery->file_path) }}" 
+                                 alt="Galeri {{ $portfolio->title }}" 
+                                 class="gallery-media">
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
+        <!-- --- AKHIR BAGIAN GALERI --- -->
+
     </div>
 
     <!-- CTA Box -->
@@ -516,7 +582,7 @@
     </div>
 
     <!-- Related Projects -->
-    @if($relatedPortfolios->count() > 0)
+    @if(isset($relatedPortfolios) && $relatedPortfolios->count() > 0)
     <div class="related-section">
         <h2><i class="fas fa-images"></i> Proyek Terkait</h2>
         <div class="related-grid">
