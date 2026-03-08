@@ -482,7 +482,7 @@
     .testimonials-scroll-wrapper {
         display: flex;
         gap: 2rem;
-        padding: 1rem 2rem 3rem 2rem; 
+        padding: 1rem calc(50% - 175px) 3rem calc(50% - 175px); 
         overflow-x: auto;
         overflow-y: hidden; 
         scroll-snap-type: x mandatory; 
@@ -1053,7 +1053,47 @@
 
 @section('scripts')
 <script>
-    // Rating stars interaction
+    document.addEventListener('DOMContentLoaded', function() {
+        const wrapper = document.querySelector('.testimonials-scroll-wrapper');
+        let autoScrollTimer;
+
+        function startAutoScroll() {
+            // Menggeser otomatis setiap 3 detik (3000 ms)
+            autoScrollTimer = setInterval(function() {
+                if (!wrapper) return;
+                
+                // Hitung jarak geser: Lebar card (350px) + Gap 2rem (32px)
+                const scrollAmount = 350 + 32; 
+
+                // Cek apakah sudah sampai mentok di ujung kanan
+                if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 10) {
+                    // Jika mentok, kembalikan ke paling kiri secara mulus
+                    wrapper.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    // Jika belum, geser ke kanan satu per satu
+                    wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 3000); 
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScrollTimer);
+        }
+
+        if (wrapper) {
+            // Mulai auto scroll
+            startAutoScroll();
+
+            // Pause auto-scroll ketika user sedang hover (di laptop/PC) atau menyentuh layar (di HP)
+            wrapper.addEventListener('mouseenter', stopAutoScroll);
+            wrapper.addEventListener('touchstart', stopAutoScroll);
+            
+            // Lanjutkan auto-scroll ketika mouse keluar atau jari dilepas dari layar
+            wrapper.addEventListener('mouseleave', startAutoScroll);
+            wrapper.addEventListener('touchend', startAutoScroll);
+        }
+    });
+
     const ratingInputs = document.querySelectorAll('.rating-input input[type="radio"]');
     const ratingLabels = document.querySelectorAll('.rating-input label');
 
