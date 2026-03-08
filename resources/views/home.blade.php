@@ -486,7 +486,6 @@
         overflow-x: auto;
         overflow-y: hidden; 
         scroll-snap-type: x mandatory; 
-        scroll-behavior: smooth;
         -ms-overflow-style: none; 
         scrollbar-width: none;
         animation: slideInCards 1.5s ease-out;
@@ -1055,44 +1054,62 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const wrapper = document.querySelector('.testimonials-scroll-wrapper');
+        if (!wrapper) return;
+
+        // 1. CLONING ELEMEN: Duplikasi semua card agar terlihat tidak pernah habis
+        const originalCards = Array.from(wrapper.children);
+        originalCards.forEach(card => {
+            let clone = card.cloneNode(true);
+            wrapper.appendChild(clone);
+        });
+
         let autoScrollTimer;
+        // Hitung jarak sekali geser: Lebar 1 card (350px) + Gap (32px/2rem)
+        const scrollAmount = 350 + 32; 
 
         function startAutoScroll() {
-            // Menggeser otomatis setiap 3 detik (3000 ms)
             autoScrollTimer = setInterval(function() {
-                if (!wrapper) return;
-                
-                // Hitung jarak geser: Lebar card (350px) + Gap 2rem (32px)
-                const scrollAmount = 350 + 32; 
+                // Karena elemen sudah diduplikasi 2x lipat, kita cari tahu titik tengahnya
+                // (yaitu batas akhir elemen asli)
+                const maxOriginalScroll = wrapper.scrollWidth / 2;
 
-                // Cek apakah sudah sampai mentok di ujung kanan
-                if (wrapper.scrollLeft + wrapper.clientWidth >= wrapper.scrollWidth - 10) {
-                    // Jika mentok, kembalikan ke paling kiri secara mulus
-                    wrapper.scrollTo({ left: 0, behavior: 'smooth' });
+                // Jika posisi scroll sudah melewati atau mencapai setengah perjalanan
+                if (wrapper.scrollLeft >= maxOriginalScroll - scrollAmount) {
+                    // Matikan animasi smooth sementara
+                    wrapper.style.scrollBehavior = 'auto'; 
+                    
+                    // Kembalikan posisi ke awal secara instan (pengunjung tidak akan sadar karena elemennya sama)
+                    wrapper.scrollLeft = 0;
+                    
+                    // Beri jeda sangat kecil untuk meregister reset, lalu geser lagi dengan mulus
+                    setTimeout(() => {
+                        wrapper.style.scrollBehavior = 'smooth';
+                        wrapper.scrollBy({ left: scrollAmount });
+                    }, 50);
                 } else {
-                    // Jika belum, geser ke kanan satu per satu
-                    wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    // Normal auto scroll
+                    wrapper.style.scrollBehavior = 'smooth';
+                    wrapper.scrollBy({ left: scrollAmount });
                 }
-            }, 3000); 
+            }, 3000); // Waktu geser (3000ms = 3 detik)
         }
 
         function stopAutoScroll() {
             clearInterval(autoScrollTimer);
         }
 
-        if (wrapper) {
-            // Mulai auto scroll
-            startAutoScroll();
+        // Mulai animasi
+        startAutoScroll();
 
-            // Pause auto-scroll ketika user sedang hover (di laptop/PC) atau menyentuh layar (di HP)
-            wrapper.addEventListener('mouseenter', stopAutoScroll);
-            wrapper.addEventListener('touchstart', stopAutoScroll);
-            
-            // Lanjutkan auto-scroll ketika mouse keluar atau jari dilepas dari layar
-            wrapper.addEventListener('mouseleave', startAutoScroll);
-            wrapper.addEventListener('touchend', startAutoScroll);
-        }
+        // Hentikan auto-scroll jika disentuh/dihover (agar user bisa scroll manual)
+        wrapper.addEventListener('mouseenter', stopAutoScroll);
+        wrapper.addEventListener('touchstart', stopAutoScroll);
+        
+        // Lanjutkan auto-scroll saat tidak disentuh
+        wrapper.addEventListener('mouseleave', startAutoScroll);
+        wrapper.addEventListener('touchend', startAutoScroll);
     });
+
 
     const ratingInputs = document.querySelectorAll('.rating-input input[type="radio"]');
     const ratingLabels = document.querySelectorAll('.rating-input label');
