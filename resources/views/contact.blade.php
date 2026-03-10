@@ -374,8 +374,7 @@
                 </div>
                 <div class="info-content">
                     <h3>Email</h3>
-                    <p><a href="mailto:info@halloeo.com">info@halloeo.com</a></p>
-                    <p><a href="mailto:order@halloeo.com">order@halloeo.com</a></p>
+                    <p><a href="mailto:infohalloeo@gmail.com">infohalloeo@gmail.com</a></p>
                 </div>
             </div>
 
