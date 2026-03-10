@@ -368,10 +368,10 @@
                 <h3>HalloEO</h3>
                 <p>Spesialis pembuatan dekorasi dan maskot dari styrofoam untuk berbagai acara dan kebutuhan promosi Anda.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="facebook.com/share/1AoDq8dKsG/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="instagram.com/halloeo_official/"><i class="fab fa-instagram"></i></a>
+                    <a href="wa.me/6285731112023"><i class="fab fa-whatsapp"></i></a>
+                    <a href="tiktok.com/@halloeo_official"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="footer-section">
@@ -395,7 +395,7 @@
             <div class="footer-section">
                 <h3>Kontak</h3>
                 <p><i class="fas fa-phone"></i> +62 85731112023</p>
-                <p><i class="fas fa-envelope"></i> info@halloeo.com</p>
+                <p><i class="fas fa-envelope"></i> infohalloeo@gmail.com</p>
                 <p><i class="fas fa-map-marker-alt"></i> Bekasi, Indonesia</p>
             </div>
         </div>
