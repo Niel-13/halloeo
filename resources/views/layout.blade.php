@@ -368,10 +368,21 @@
                 <h3>HalloEO</h3>
                 <p>Spesialis pembuatan dekorasi dan maskot dari styrofoam untuk berbagai acara dan kebutuhan promosi Anda.</p>
                 <div class="social-links">
-                    <a href="facebook.com/share/1AoDq8dKsG/"><i class="fab fa-facebook-f"></i></a>
-                    <a href="instagram.com/halloeo_official/"><i class="fab fa-instagram"></i></a>
-                    <a href="wa.me/6285731112023"><i class="fab fa-whatsapp"></i></a>
-                    <a href="tiktok.com/@halloeo_official"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://facebook.com/share/1AoDq8dKsG/" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a href="https://instagram.com/halloeo_official/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a href="https://wa.me/6285731112023" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+
+                    <a href="https://tiktok.com/@halloeo_official" target="_blank">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
                 </div>
             </div>
             <div class="footer-section">
