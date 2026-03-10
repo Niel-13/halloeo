@@ -405,13 +405,13 @@
                 <a href="https://wa.me/6285731112023" class="social-btn whatsapp" target="_blank">
                     <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
-                <a href="https://tiktok.com/@halloeo" class="social-btn tiktok" target="_blank">
+                <a href="https://tiktok.com/@halloeo_official" class="social-btn tiktok" target="_blank">
                     <i class="fab fa-tiktok"></i> TikTok
                 </a>
-                <a href="https://instagram.com/halloeo" class="social-btn instagram" target="_blank">
+                <a href="https://instagram.com/halloeo_official/" class="social-btn instagram" target="_blank">
                     <i class="fab fa-instagram"></i> Instagram
                 </a>
-                <a href="https://facebook.com/halloeo" class="social-btn facebook" target="_blank">
+                <a href="https://facebook.com/share/1AoDq8dKsG/" class="social-btn facebook" target="_blank">
                     <i class="fa-brands fa-facebook"></i> Facebook
                 </a>
             </div>
