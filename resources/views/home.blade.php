@@ -940,7 +940,7 @@
 ══════════════════════════════════════════ */
 .cta-section {
     padding: 7rem 2rem;
-    background: var(--dark);
+    background: var(--blue-deep);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -968,7 +968,7 @@
 
 .cta-section > p {
     font-size: 1.1rem;
-    color: rgba(255,255,255,.6);
+    color: rgba(255,255,255,.85);
     margin-bottom: 2.5rem;
     max-width: 500px;
     margin-left: auto;
@@ -988,7 +988,7 @@
 .btn-cta-primary {
     padding: 0.95rem 2.5rem;
     background: var(--grad-cool);
-    color: var(--white);
+    color: var(--dark);
     border-radius: var(--r-full);
     font-family: var(--font-body);
     font-weight: 700;
@@ -1004,7 +1004,7 @@
 .btn-cta-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 16px 40px rgba(74,143,171,.45);
-    color: var(--white);
+    color: var(--blue-muted);
     text-decoration: none;
 }
 
