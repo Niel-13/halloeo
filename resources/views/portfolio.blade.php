@@ -55,10 +55,14 @@
     font-size: clamp(10rem, 22vw, 20rem);
     font-weight: 900;
     line-height: 1;
-    color: rgba(255,255,255,.03);
+    color: rgba(var(--greenn), 0.2);
     pointer-events: none;
     user-select: none;
     letter-spacing: -0.04em;
+}
+
+:root {
+  --greenn: 34, 197, 94;
 }
 
 .portfolio-hero-inner {
