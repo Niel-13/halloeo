@@ -552,78 +552,78 @@
     </main>
 
     <!-- Footer -->
-<footer class="footer">
-    <div class="footer-content">
+    <footer class="footer">
+        <div class="footer-content">
 
-        {{-- Brand --}}
-        <div class="footer-section footer-brand">
-            <a href="{{ route('home') }}" class="footer-logo">HalloEO</a>
-            <p>Spesialis pembuatan dekorasi dan maskot dari styrofoam untuk berbagai acara dan kebutuhan promosi Anda.</p>
-            <div class="social-links">
-                <a href="https://facebook.com/share/1AoDq8dKsG/" target="_blank" rel="noopener" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="https://instagram.com/halloeo_official/" target="_blank" rel="noopener" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://wa.me/6285731112023" target="_blank" rel="noopener" aria-label="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="https://tiktok.com/@halloeo_official" target="_blank" rel="noopener" aria-label="TikTok">
-                    <i class="fa-brands fa-tiktok"></i>
-                </a>
+            {{-- Brand --}}
+            <div class="footer-section footer-brand">
+                <a href="{{ route('home') }}" class="footer-logo">HalloEO</a>
+                <p>Spesialis pembuatan dekorasi dan maskot dari styrofoam untuk berbagai acara dan kebutuhan promosi Anda.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com/share/1AoDq8dKsG/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://instagram.com/halloeo_official/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/6285731112023" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://tiktok.com/@halloeo_official" target="_blank" rel="noopener" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                </div>
             </div>
+
+            {{-- Layanan --}}
+            <div class="footer-section">
+                <h4>Layanan</h4>
+                <ul>
+                    @foreach($footerServices as $service)
+                        <li>
+                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}">
+                                {{ $service->title }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+
+            {{-- Link Cepat --}}
+            <div class="footer-section">
+                <h4>Link Cepat</h4>
+                <ul>
+                    <li><a href="{{ route('about') }}">Tentang Kami</a></li>
+                    <li><a href="{{ route('portfolio.index') }}">Portofolio</a></li>
+                    <li><a href="{{ route('contact') }}">Kontak</a></li>
+                </ul>
+            </div>
+
+            {{-- Kontak --}}
+            <div class="footer-section">
+                <h4>Kontak</h4>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+62 857-3111-2023</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>infohalloeo@gmail.com</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bekasi, Indonesia</span>
+                </div>
+            </div>
+
         </div>
 
-        {{-- Layanan --}}
-        <div class="footer-section">
-            <h4>Layanan</h4>
-            <ul>
-                @foreach($footerServices as $service)
-                    <li>
-                        <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}">
-                            {{ $service->title }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
+        <hr class="footer-divider">
+
+        <div class="footer-bottom">
+            <span>&copy; {{ date('Y') }} HalloEO. All Rights Reserved.</span>
         </div>
-
-        {{-- Link Cepat --}}
-        <div class="footer-section">
-            <h4>Link Cepat</h4>
-            <ul>
-                <li><a href="{{ route('about') }}">Tentang Kami</a></li>
-                <li><a href="{{ route('portfolio.index') }}">Portofolio</a></li>
-                <li><a href="{{ route('contact') }}">Kontak</a></li>
-            </ul>
-        </div>
-
-        {{-- Kontak --}}
-        <div class="footer-section">
-            <h4>Kontak</h4>
-            <div class="footer-contact-item">
-                <i class="fas fa-phone"></i>
-                <span>+62 857-3111-2023</span>
-            </div>
-            <div class="footer-contact-item">
-                <i class="fas fa-envelope"></i>
-                <span>infohalloeo@gmail.com</span>
-            </div>
-            <div class="footer-contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Bekasi, Indonesia</span>
-            </div>
-        </div>
-
-    </div>
-
-    <hr class="footer-divider">
-
-    <div class="footer-bottom">
-        <span>&copy; {{ date('Y') }} HalloEO. All Rights Reserved.</span>
-    </div>
-</footer>
+    </footer>
 
     <script>
         // Mobile Menu Toggle
