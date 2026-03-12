@@ -225,6 +225,101 @@
         min-height: calc(100vh - var(--nav-h));
     }
 
+    .wa-float {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 999;
+        width: 56px;
+        height: 56px;
+        background: #25D366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 1.6rem;
+        box-shadow: 0 8px 24px rgba(37,211,102,.4);
+        text-decoration: none;
+        transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s ease;
+        animation: wa-pop-in 0.5s cubic-bezier(.4,0,.2,1) 1s both;
+    }
+
+    .wa-float:hover {
+        transform: scale(1.12) translateY(-3px);
+        box-shadow: 0 14px 36px rgba(37,211,102,.5);
+        color: #fff;
+    }
+
+    /* Pulse ring */
+    .wa-float::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: #25D366;
+        animation: wa-pulse 2.5s ease-out infinite;
+        z-index: -1;
+    }
+
+    @keyframes wa-pulse {
+        0%   { transform: scale(1);   opacity: 0.6; }
+        70%  { transform: scale(1.6); opacity: 0; }
+        100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    @keyframes wa-pop-in {
+        from { opacity: 0; transform: scale(0.5) translateY(20px); }
+        to   { opacity: 1; transform: scale(1)   translateY(0); }
+    }
+
+    /* Tooltip */
+    .wa-tooltip {
+        position: absolute;
+        right: calc(100% + 12px);
+        top: 50%;
+        transform: translateY(-50%) translateX(6px);
+        background: var(--dark, #1E2B38);
+        color: #fff;
+        font-family: var(--font-body, 'Outfit', sans-serif);
+        font-size: 0.78rem;
+        font-weight: 600;
+        white-space: nowrap;
+        padding: 0.45rem 0.9rem;
+        border-radius: 8px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    /* Tooltip arrow */
+    .wa-tooltip::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        transform: translateY(-50%);
+        border: 5px solid transparent;
+        border-left-color: var(--dark, #1E2B38);
+    }
+
+    .wa-float:hover .wa-tooltip {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+
+    @media (max-width: 768px) {
+        .wa-float {
+            bottom: 1.25rem;
+            right: 1.25rem;
+            width: 50px;
+            height: 50px;
+            font-size: 1.4rem;
+        }
+
+        .wa-tooltip { display: none; }
+    }
+
     /* ══════════════════════════════
         FOOTER
     ══════════════════════════════ */
@@ -624,6 +719,15 @@
             <span>&copy; {{ date('Y') }} HalloEO. All Rights Reserved.</span>
         </div>
     </footer>
+
+    <a href="https://wa.me/6285731112023" 
+    class="wa-float" 
+    target="_blank" 
+    rel="noopener"
+    aria-label="Chat WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="wa-tooltip">Chat via WhatsApp</span>
+    </a>
 
     <script>
         // Mobile Menu Toggle
