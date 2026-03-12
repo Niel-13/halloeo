@@ -1100,24 +1100,6 @@
             </span>
             <h1>Wujudkan Dekorasi <em>Impian</em> Anda!</h1>
             <p>HalloEO adalah spesialis pembuatan dekorasi dan maskot dari styrofoam yang profesional, kreatif, dan berkualitas tinggi untuk berbagai kebutuhan event Anda.</p>
-
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <strong>500+</strong>
-                    <span>Proyek Selesai</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
-                    <strong>300+</strong>
-                    <span>Klien Puas</span>
-                </div>
-                <div class="hero-stat-divider"></div>
-                <div class="hero-stat">
-                    <strong>5★</strong>
-                    <span>Rating Rata-rata</span>
-                </div>
-            </div>
-
             <div class="hero-buttons">
                 <a href="{{ route('portfolio.index') }}" class="btn btn-primary">
                     <i class="fas fa-images"></i> Lihat Portofolio
