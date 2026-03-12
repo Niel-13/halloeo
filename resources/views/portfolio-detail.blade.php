@@ -4,617 +4,768 @@
 
 @section('styles')
 <style>
-    .detail-hero {
-        padding: 8rem 2rem 4rem;
-        background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
-        text-align: center;
-        color: var(--white);
-    }
+/* ═══════════════════════════════════════════════
+   PORTFOLIO DETAIL — HalloEO
+   Mengikuti design system home & portfolio index
+═══════════════════════════════════════════════ */
 
-    .breadcrumb {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        font-size: 1rem;
-        opacity: 0.9;
-    }
+/* ── Hero ── */
+.detail-hero {
+    padding: 8rem 2rem 5rem;
+    background: var(--dark);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 
-    .breadcrumb a {
-        color: var(--white);
-        text-decoration: none;
-        transition: opacity 0.3s ease;
-    }
+.detail-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 65% 70% at 15% 50%, rgba(168,216,234,.08) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 65% at 85% 50%, rgba(184,224,210,.07) 0%, transparent 60%);
+    pointer-events: none;
+}
 
-    .breadcrumb a:hover {
-        opacity: 0.7;
-    }
+.detail-hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue-deep), var(--green-deep), var(--gold));
+}
 
-    .detail-category {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.3);
-        padding: 0.6rem 1.5rem;
-        border-radius: 25px;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
+.detail-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+}
 
-    .detail-title {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 3.5rem;
-        margin-bottom: 1rem;
-        animation: fadeInUp 0.8s ease-out;
-    }
+/* Breadcrumb */
+.breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: var(--r-full);
+    padding: 0.45rem 1.1rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,.55);
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-    .detail-meta {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        opacity: 0.95;
-        animation: fadeInUp 0.8s ease-out 0.2s backwards;
-    }
+.breadcrumb a {
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    transition: color var(--t-base);
+}
 
-    .detail-meta span {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
+.breadcrumb a:hover { color: var(--blue); }
 
-    .detail-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 4rem 2rem;
-    }
+.breadcrumb .sep { opacity: .35; }
 
-    .detail-content {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
+/* Detail category badge */
+.detail-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--blue-light);
+    color: var(--blue-deep);
+    padding: 0.32rem 0.9rem;
+    border-radius: var(--r-full);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    animation: fade-up .7s cubic-bezier(0,0,.2,1) both;
+}
 
-    .detail-image-section {
-        width: 100%;
-    }
+.detail-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    animation: fade-up .7s cubic-bezier(0,0,.2,1) .1s both;
+}
 
-    .main-image {
-        width: 100%;
-        height: 600px;
-        object-fit: cover;
-        border-radius: 30px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        animation: fadeIn 1s ease-out;
-    }
+.detail-title em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--green) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
+.detail-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fade-up .7s cubic-bezier(0,0,.2,1) .2s both;
+}
 
-    .detail-info-section {
-        background: var(--white);
-        padding: 3rem;
-        border-radius: 30px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    }
+.detail-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: var(--r-full);
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,.75);
+}
 
-    .section-heading {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 2rem;
-        color: var(--dark);
-        margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
-        border-bottom: 3px solid var(--pastel-blue);
-    }
+.detail-meta-item i { color: var(--blue); font-size: 0.8rem; }
 
-    .detail-description {
-        color: var(--dark);
-        line-height: 2;
-        font-size: 1.15rem;
-        margin-bottom: 2rem;
-    }
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
 
-    .detail-specs {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
+/* ── Container ── */
+.detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+}
 
-    .spec-item {
-        background: var(--light);
-        padding: 1.5rem;
-        border-radius: 15px;
-        text-align: center;
-        transition: all 0.3s ease;
-    }
+/* ── Main image ── */
+.detail-image-section { margin-bottom: 2.5rem; }
 
-    .spec-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
+.main-image {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-xl);
+    display: block;
+    animation: fade-up .8s cubic-bezier(0,0,.2,1) both;
+}
 
-    .spec-icon {
-        font-size: 2.5rem;
-        background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 0.5rem;
-    }
+/* ── Card base ── */
+.detail-card {
+    background: var(--white);
+    border: 1.5px solid var(--surface-alt);
+    border-radius: var(--r-xl);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+}
 
-    .spec-label {
-        font-size: 0.9rem;
-        color: var(--dark);
-        opacity: 0.6;
-        margin-bottom: 0.3rem;
-    }
+/* ── Section heading ── */
+.section-heading {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--surface-alt);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
 
-    .spec-value {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 1.2rem;
-        color: var(--dark);
-        font-weight: 600;
-    }
+.section-heading i {
+    color: var(--blue-deep);
+    font-size: 1.1rem;
+}
 
-    /* --- TAMBAHAN STYLE UNTUK GALERI --- */
-    .gallery-section {
-        background: var(--white);
-        padding: 3rem;
-        border-radius: 30px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        margin-top: 3rem;
-    }
+/* ── Description ── */
+.detail-description {
+    color: var(--dark-mid);
+    line-height: 1.9;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+    opacity: .9;
+}
 
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-    }
+/* ── Specs grid ── */
+.detail-specs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.1rem;
+}
 
-    .gallery-item {
-        position: relative;
-        border-radius: 15px;
-        overflow: hidden;
-        aspect-ratio: 1 / 1;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-        transition: all 0.3s ease;
-        background: var(--light);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.spec-item {
+    background: var(--surface);
+    border: 1.5px solid var(--surface-alt);
+    padding: 1.4rem 1.2rem;
+    border-radius: var(--r-lg);
+    text-align: center;
+    transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
 
-    .gallery-item:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    }
+.spec-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--blue-light);
+}
 
-    .gallery-media {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.spec-icon {
+    font-size: 1.6rem;
+    color: var(--blue-deep);
+    margin-bottom: 0.6rem;
+    display: block;
+}
 
-    .gallery-video-wrapper {
-        width: 100%;
-        height: 100%;
-        position: relative;
-    }
+.spec-label {
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+}
 
-    .gallery-video-wrapper video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    /* --- AKHIR TAMBAHAN STYLE GALERI --- */
+.spec-value {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--dark);
+}
 
-    .share-section {
-        background: var(--light);
-        padding: 2rem;
-        border-radius: 20px;
-        margin-top: 2rem;
-    }
+/* ── Share section ── */
+.share-section {
+    background: var(--surface);
+    border: 1.5px solid var(--surface-alt);
+    border-radius: var(--r-lg);
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
 
-    .share-section h4 {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 1.3rem;
-        color: var(--dark);
-        margin-bottom: 1rem;
-    }
+.share-section h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 
-    .share-buttons {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
+.share-section h4 i { color: var(--blue-deep); }
 
-    .share-btn {
-        padding: 0.8rem 1.5rem;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        color: var(--white);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: all 0.3s ease;
-    }
+.share-buttons {
+    display: flex;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
 
-    .share-btn.facebook { background: #1877F2; }
-    .share-btn.twitter { background: #1DA1F2; }
-    .share-btn.whatsapp { background: #25D366; }
-    .share-btn.linkedin { background: #0A66C2; }
+.share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--r-full);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--white);
+    transition: transform var(--t-base), box-shadow var(--t-base), opacity var(--t-base);
+}
 
-    .share-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    opacity: .9;
+    color: var(--white);
+    text-decoration: none;
+}
 
-    .cta-box {
-        background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
-        padding: 2.5rem;
-        border-radius: 25px;
-        text-align: center;
-        margin-top: 3rem;
-        color: var(--white);
-    }
+.share-btn.facebook  { background: #1877F2; }
+.share-btn.twitter   { background: #1DA1F2; }
+.share-btn.whatsapp  { background: #25D366; }
+.share-btn.linkedin  { background: #0A66C2; }
 
-    .cta-box h3 {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
+/* ── Gallery section ── */
+.gallery-section { margin-top: 2.5rem; }
 
-    .cta-box p {
-        margin-bottom: 2rem;
-        opacity: 0.95;
-        font-size: 1.1rem;
-    }
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.1rem;
+    margin-top: 1.5rem;
+}
 
-    .cta-buttons {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+.gallery-item {
+    position: relative;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    border: 1.5px solid var(--surface-alt);
+    background: var(--surface);
+    transition: transform var(--t-base), box-shadow var(--t-base);
+    cursor: pointer;
+}
 
-    .btn-cta {
-        padding: 1rem 2.5rem;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.8rem;
-    }
+.gallery-item:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
 
-    .btn-cta-primary {
-        background: var(--white);
-        color: var(--deep-blue);
-    }
+.gallery-media {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--t-slow);
+}
 
-    .btn-cta-secondary {
-        background: transparent;
-        color: var(--white);
-        border: 2px solid var(--white);
-    }
+.gallery-item:hover .gallery-media { transform: scale(1.06); }
 
-    .btn-cta:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
+.gallery-video-wrapper {
+    width: 100%; height: 100%;
+    position: relative;
+}
 
-    .related-section { margin-top: 6rem; }
+.gallery-video-wrapper video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
 
-    .related-section h2 {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 2.5rem;
-        color: var(--dark);
-        text-align: center;
-        margin-bottom: 3rem;
-    }
+/* ── CTA box ── */
+.cta-box {
+    background: var(--dark);
+    border-radius: var(--r-xl);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+}
 
-    .related-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
+.cta-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 70% 80% at 20% 50%, rgba(168,216,234,.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 70% at 80% 50%, rgba(184,224,210,.07) 0%, transparent 60%);
+    pointer-events: none;
+}
 
-    .related-card {
-        background: var(--white);
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transition: all 0.4s ease;
-        cursor: pointer;
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
+.cta-box::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-deep), var(--green-deep));
+}
 
-    .related-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-    }
+.cta-box h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 0.85rem;
+    position: relative;
+}
 
-    .related-image-wrapper {
-        width: 100%;
-        height: 300px; 
-        overflow: hidden;
-    }
+.cta-box p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 2rem;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.75;
+    position: relative;
+}
 
-    .related-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-    }
+.cta-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+}
 
-    .related-card:hover .related-image { transform: scale(1.1); }
+.btn-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2.2rem;
+    background: var(--grad-cool);
+    color: var(--white);
+    border-radius: var(--r-full);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: var(--glow-blue);
+    transition: transform var(--t-base), box-shadow var(--t-base);
+}
 
-    .related-info { padding: 1.5rem; }
+.btn-cta-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px rgba(74,143,171,.42);
+    color: var(--white);
+    text-decoration: none;
+}
 
-    .related-category {
-        display: inline-block;
-        background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green));
-        color: var(--white);
-        padding: 0.4rem 1rem;
-        border-radius: 15px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-bottom: 0.8rem;
-    }
+.btn-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2.2rem;
+    background: rgba(255,255,255,.07);
+    color: rgba(255,255,255,.8);
+    border: 1.5px solid rgba(255,255,255,.2);
+    border-radius: var(--r-full);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all var(--t-base);
+}
 
-    .related-title {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 1.4rem;
-        color: var(--dark);
-        margin-bottom: 0.5rem;
-    }
+.btn-cta-secondary:hover {
+    border-color: rgba(255,255,255,.5);
+    color: var(--white);
+    background: rgba(255,255,255,.12);
+    transform: translateY(-3px);
+    text-decoration: none;
+}
 
-    @media (max-width: 768px) {
-        .detail-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
+/* ── Related projects ── */
+.related-section { margin-top: 5rem; }
 
-        .main-image {
-            height: 280px;
-            border-radius: 12px; 
-        }
+.related-section .section-title {
+    margin-bottom: 2.5rem;
+}
 
-        .detail-info-section, .gallery-section {
-            padding: 1.5rem 1.2rem;
-        }
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
 
-        .detail-meta {
-            flex-direction: column;
-            align-items: flex-start; 
-            gap: 0.8rem;
-        }
+.related-card {
+    background: var(--white);
+    border: 1.5px solid var(--surface-alt);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--t-slow), box-shadow var(--t-slow), border-color var(--t-base);
+}
 
-        .cta-buttons {
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
+.related-card:hover {
+    transform: translateY(-7px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--blue-light);
+    text-decoration: none;
+    color: inherit;
+}
 
-        .btn-cta {
-            width: 100%;
-            justify-content: center;
-            padding: 1rem; 
-        }
-    }
+.related-image-wrapper {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.related-image {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--t-slow);
+}
+
+.related-card:hover .related-image { transform: scale(1.07); }
+
+.related-info { padding: 1.4rem; flex: 1; }
+
+.related-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--blue-light);
+    color: var(--blue-deep);
+    padding: 0.25rem 0.8rem;
+    border-radius: var(--r-full);
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+}
+
+.related-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+}
+
+.related-desc {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ── Back button ── */
+.back-wrap {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--white);
+    border: 1.5px solid var(--surface-alt);
+    border-radius: var(--r-full);
+    color: var(--dark-mid);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.97rem;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--t-base);
+}
+
+.btn-back:hover {
+    border-color: var(--blue-mid);
+    color: var(--blue-deep);
+    background: var(--blue-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .detail-hero { padding: 6rem 1.25rem 3.5rem; }
+    .detail-meta { gap: 0.6rem; }
+    .detail-container { padding: 2.5rem 1.25rem 4rem; }
+    .main-image { aspect-ratio: 4 / 3; border-radius: var(--r-lg); }
+    .detail-card { padding: 1.5rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .related-grid { grid-template-columns: 1fr; }
+    .cta-btns { flex-direction: column; align-items: center; }
+    .btn-cta-primary, .btn-cta-secondary { width: 100%; max-width: 300px; justify-content: center; }
+}
 </style>
 @endsection
 
 @section('content')
-<!-- Hero Section -->
+
+{{-- ── Hero ── --}}
 <section class="detail-hero">
-    <div class="breadcrumb">
-        <a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a>
-        <span>/</span>
-        <a href="{{ route('portfolio.index') }}">Portofolio</a>
-        <span>/</span>
-        <span>{{ $portfolio->title }}</span>
-    </div>
-    
-    <span class="detail-category">
-        <i class="fas fa-tag"></i> {{ ucfirst($portfolio->category) }}
-    </span>
-    <h1 class="detail-title">{{ $portfolio->title }}</h1>
-    
-    <div class="detail-meta">
-        @if($portfolio->client_name)
-        <span>
-            <i class="fas fa-user"></i>
-            <strong>Client:</strong> {{ $portfolio->client_name }}
+    <div class="detail-hero-inner">
+
+        {{-- Breadcrumb --}}
+        <div class="breadcrumb">
+            <a href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a>
+            <span class="sep">/</span>
+            <a href="{{ route('portfolio.index') }}">Portofolio</a>
+            <span class="sep">/</span>
+            <span>{{ Str::limit($portfolio->title, 30) }}</span>
+        </div>
+
+        <span class="detail-category">
+            <i class="fas fa-tag"></i> {{ ucfirst($portfolio->category) }}
         </span>
-        @endif
-        @if($portfolio->project_date)
-        <span>
-            <i class="fas fa-calendar"></i>
-            <strong>Date:</strong> {{ $portfolio->project_date->format('F Y') }}
-        </span>
-        @endif
-        <span>
-            <i class="fas fa-eye"></i>
-            <strong>Category:</strong> {{ ucfirst($portfolio->category) }}
-        </span>
+
+        <h1 class="detail-title">{{ $portfolio->title }}</h1>
+
+        <div class="detail-meta">
+            @if($portfolio->client_name)
+            <span class="detail-meta-item">
+                <i class="fas fa-user"></i> {{ $portfolio->client_name }}
+            </span>
+            @endif
+            @if($portfolio->project_date)
+            <span class="detail-meta-item">
+                <i class="fas fa-calendar-alt"></i> {{ $portfolio->project_date->format('F Y') }}
+            </span>
+            @endif
+            <span class="detail-meta-item">
+                <i class="fas fa-check-circle"></i> Selesai
+            </span>
+        </div>
+
     </div>
 </section>
 
-<!-- Detail Content -->
+{{-- ── Content ── --}}
 <div class="detail-container">
-    <div class="detail-content">
-        <!-- Main Image -->
-        <div class="detail-image-section">
-            <img src="{{ asset($portfolio->image_path) }}" 
-                alt="{{ $portfolio->title }}" 
-                class="main-image"
-                onerror="this.src='https://via.placeholder.com/1200x600/A8D8EA/FFFFFF?text={{ urlencode($portfolio->title) }}'">
-        </div>
 
-        <!-- Detail Info -->
-        <div class="detail-info-section">
-            <h2 class="section-heading">
-                <i class="fas fa-info-circle"></i> Detail Proyek
-            </h2>
-            
-            <div class="detail-description">
-                {!! nl2br(e($portfolio->description)) !!}
-            </div>
-
-            <!-- Specifications -->
-            <div class="detail-specs">
-                <div class="spec-item">
-                    <div class="spec-icon">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <div class="spec-label">Kategori</div>
-                    <div class="spec-value">{{ ucfirst($portfolio->category) }}</div>
-                </div>
-
-                @if($portfolio->project_date)
-                <div class="spec-item">
-                    <div class="spec-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <div class="spec-label">Tanggal</div>
-                    <div class="spec-value">{{ $portfolio->project_date->format('M Y') }}</div>
-                </div>
-                @endif
-
-                @if($portfolio->client_name)
-                <div class="spec-item">
-                    <div class="spec-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <div class="spec-label">Klien</div>
-                    <div class="spec-value">{{ $portfolio->client_name }}</div>
-                </div>
-                @endif
-
-                <div class="spec-item">
-                    <div class="spec-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <div class="spec-label">Status</div>
-                    <div class="spec-value">Completed</div>
-                </div>
-            </div>
-
-            <!-- Share Section -->
-            <div class="share-section">
-                <h4><i class="fas fa-share-alt"></i> Bagikan Portfolio Ini</h4>
-                <div class="share-buttons">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}" 
-                        target="_blank" 
-                        class="share-btn facebook">
-                        <i class="fab fa-facebook-f"></i> Facebook
-                    </a>
-                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($portfolio->title) }}" 
-                        target="_blank" 
-                        class="share-btn twitter">
-                        <i class="fab fa-twitter"></i> Twitter
-                    </a>
-                    <a href="https://wa.me/?text={{ urlencode($portfolio->title . ' - ' . url()->current()) }}" 
-                        target="_blank" 
-                        class="share-btn whatsapp">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}" 
-                        target="_blank" 
-                        class="share-btn linkedin">
-                        <i class="fab fa-linkedin-in"></i> LinkedIn
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- --- TAMBAHAN BAGIAN GALERI --- -->
-        @if(isset($portfolio->galleries) && $portfolio->galleries->count() > 0)
-        <div class="gallery-section">
-            <h2 class="section-heading">
-                <i class="fas fa-images"></i> Galeri Proyek
-            </h2>
-            <div class="gallery-grid">
-                @foreach($portfolio->galleries as $gallery)
-                    <div class="gallery-item">
-                        @if($gallery->type == 'video')
-                            <!-- Render Video -->
-                            <div class="gallery-video-wrapper">
-                                <video controls class="gallery-media">
-                                    <source src="{{ asset($gallery->file_path) }}" type="video/mp4">
-                                    Browser Anda tidak mendukung tag video.
-                                </video>
-                            </div>
-                        @else
-                            <!-- Render Image -->
-                            <img src="{{ asset($gallery->file_path) }}" 
-                                 alt="Galeri {{ $portfolio->title }}" 
-                                 class="gallery-media">
-                        @endif
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        @endif
-        <!-- --- AKHIR BAGIAN GALERI --- -->
-
+    {{-- Main Image --}}
+    <div class="detail-image-section">
+        <img
+            src="{{ asset($portfolio->image_path) }}"
+            alt="{{ $portfolio->title }}"
+            class="main-image"
+            width="1200" height="525"
+            onerror="this.src='https://via.placeholder.com/1200x525/A8D8EA/FFFFFF?text={{ urlencode($portfolio->title) }}'"
+        >
     </div>
 
-    <!-- CTA Box -->
+    {{-- Detail Info --}}
+    <div class="detail-card">
+        <h2 class="section-heading">
+            <i class="fas fa-info-circle"></i> Detail Proyek
+        </h2>
+
+        <div class="detail-description">
+            {!! nl2br(e($portfolio->description)) !!}
+        </div>
+
+        {{-- Specs --}}
+        <div class="detail-specs">
+            <div class="spec-item">
+                <i class="fas fa-layer-group spec-icon"></i>
+                <div class="spec-label">Kategori</div>
+                <div class="spec-value">{{ ucfirst($portfolio->category) }}</div>
+            </div>
+
+            @if($portfolio->project_date)
+            <div class="spec-item">
+                <i class="fas fa-calendar-alt spec-icon"></i>
+                <div class="spec-label">Tanggal</div>
+                <div class="spec-value">{{ $portfolio->project_date->format('M Y') }}</div>
+            </div>
+            @endif
+
+            @if($portfolio->client_name)
+            <div class="spec-item">
+                <i class="fas fa-building spec-icon"></i>
+                <div class="spec-label">Klien</div>
+                <div class="spec-value">{{ $portfolio->client_name }}</div>
+            </div>
+            @endif
+
+            <div class="spec-item">
+                <i class="fas fa-check-circle spec-icon"></i>
+                <div class="spec-label">Status</div>
+                <div class="spec-value">Selesai</div>
+            </div>
+        </div>
+
+        {{-- Share --}}
+        <div class="share-section">
+            <h4><i class="fas fa-share-alt"></i> Bagikan Portofolio Ini</h4>
+            <div class="share-buttons">
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
+                   target="_blank" rel="noopener" class="share-btn facebook">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ urlencode($portfolio->title) }}"
+                   target="_blank" rel="noopener" class="share-btn twitter">
+                    <i class="fab fa-twitter"></i> Twitter
+                </a>
+                <a href="https://wa.me/?text={{ urlencode($portfolio->title . ' - ' . url()->current()) }}"
+                   target="_blank" rel="noopener" class="share-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(url()->current()) }}"
+                   target="_blank" rel="noopener" class="share-btn linkedin">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {{-- Gallery --}}
+    @if(isset($portfolio->galleries) && $portfolio->galleries->count() > 0)
+    <div class="detail-card gallery-section">
+        <h2 class="section-heading">
+            <i class="fas fa-images"></i> Galeri Proyek
+        </h2>
+        <div class="gallery-grid">
+            @foreach($portfolio->galleries as $gallery)
+            <div class="gallery-item">
+                @if($gallery->type == 'video')
+                    <div class="gallery-video-wrapper">
+                        <video controls class="gallery-media">
+                            <source src="{{ asset($gallery->file_path) }}" type="video/mp4">
+                        </video>
+                    </div>
+                @else
+                    <img
+                        src="{{ asset($gallery->file_path) }}"
+                        alt="Galeri {{ $portfolio->title }}"
+                        class="gallery-media"
+                        loading="lazy"
+                    >
+                @endif
+            </div>
+            @endforeach
+        </div>
+    </div>
+    @endif
+
+    {{-- CTA Box --}}
     <div class="cta-box">
-        <h3><i class="fas fa-rocket"></i> Tertarik dengan Proyek Serupa?</h3>
+        <h3>Tertarik dengan Proyek Serupa?</h3>
         <p>Hubungi kami sekarang untuk konsultasi gratis dan wujudkan proyek dekorasi impian Anda!</p>
-        <div class="cta-buttons">
-            <a href="{{ route('contact') }}" class="btn-cta btn-cta-primary">
+        <div class="cta-btns">
+            <a href="{{ route('contact') }}" class="btn-cta-primary">
                 <i class="fas fa-phone"></i> Hubungi Kami
             </a>
-            <a href="{{ route('services') }}" class="btn-cta btn-cta-secondary">
+            <a href="{{ route('services') }}" class="btn-cta-secondary">
                 <i class="fas fa-list"></i> Lihat Layanan
             </a>
         </div>
     </div>
 
-    <!-- Related Projects -->
+    {{-- Related Projects --}}
     @if(isset($relatedPortfolios) && $relatedPortfolios->count() > 0)
     <div class="related-section">
-        <h2><i class="fas fa-images"></i> Proyek Terkait</h2>
+        <div class="section-title">
+            <span class="section-eyebrow">Lihat Juga</span>
+            <h2>Proyek Terkait</h2>
+            <p>Karya lainnya dalam kategori yang sama</p>
+        </div>
         <div class="related-grid">
             @foreach($relatedPortfolios as $related)
             <a href="{{ route('portfolio.show', $related->id) }}" class="related-card">
                 <div class="related-image-wrapper">
-                    <img src="{{ asset($related->image_path) }}"
+                    <img
+                        src="{{ asset($related->image_path) }}"
                         alt="{{ $related->title }}"
                         class="related-image"
-                        onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($related->title) }}'">
+                        loading="lazy"
+                        onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($related->title) }}'"
+                    >
                 </div>
                 <div class="related-info">
                     <span class="related-category">
                         <i class="fas fa-tag"></i> {{ ucfirst($related->category) }}
                     </span>
                     <h3 class="related-title">{{ $related->title }}</h3>
-                    <p style="color: var(--dark); opacity: 0.7;">
-                        {{ Str::limit($related->description, 80) }}
-                    </p>
+                    <p class="related-desc">{{ Str::limit($related->description, 80) }}</p>
                 </div>
-
             </a>
             @endforeach
         </div>
     </div>
     @endif
 
-    <!-- Back to Portfolio Button -->
-    <div style="text-align: center; margin-top: 4rem;">
-        <a href="{{ route('portfolio.index') }}" class="btn btn-primary" style="background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-green)); color: white; padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.8rem; font-weight: 600; transition: all 0.3s ease;">
+    {{-- Back button --}}
+    <div class="back-wrap">
+        <a href="{{ route('portfolio.index') }}" class="btn-back">
             <i class="fas fa-arrow-left"></i> Kembali ke Portofolio
         </a>
     </div>
+
 </div>
 @endsection
