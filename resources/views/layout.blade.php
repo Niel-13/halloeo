@@ -8,12 +8,12 @@
     <meta property="og:title" content="Dekorasi & Maskot Kustom untuk Acara Perusahaan Anda" />
     <meta property="og:description" content="Hidupkan merek Anda dengan dekorasi acara menawan dan maskot kustom interaktif. Solusi kreatif untuk katering, dekorasi, dan hiburan." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.nama-tim-anda.com/dekorasi-maskot" />
-    <meta property="og:image" content="https://www.nama-tim-anda.com/images/dekorasi-maskot-portfolio.jpg" />
+    <meta property="og:url" content="https://www.halloeo.com/dekorasi-maskot" />
+    <meta property="og:image" content="https://www.halloeo.com/images/dekorasi-maskot-portfolio.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Hias Acara Anda dengan Dekorasi Kustom & Maskot Lucu" />
     <meta name="twitter:description" content="Hadirkan pengalaman visual unik dengan dekorasi acara korporat & maskot merek kustom. Coba konsultasi desain!" />
-    <meta name="twitter:image" content="https://www.nama-tim-anda.com/images/dekorasi-maskot-portfolio.jpg" />
+    <meta name="twitter:image" content="https://www.halloeo.com/images/dekorasi-maskot-portfolio.jpg" />
     <link rel="icon" type="image/png" href="{{ asset('images/logohalloeo.png') }}?v={{ time() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
