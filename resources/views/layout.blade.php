@@ -2,7 +2,19 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-     <link rel="icon" type="image/png" href="{{ asset('images/logohalloeo.png') }}?v={{ time() }}">
+    <title>Wujudkan Acara Impian: Dekorasi Memukau & Maskot Kustom | [Nama Tim Kreatif Anda]</title>
+    <meta name="description" content="Jadikan setiap acara tak terlupakan dengan dekorasi kustom dan maskot yang menghidupkan merek Anda. Dari pesta perusahaan hingga peluncuran produk, kami menciptakan pengalaman visual yang unik.">
+    <meta name="keywords" content="dekorasi acara korporat, dekorasi pesta kantor, pembuatan maskot kustom, desain maskot ramah, katering dekoratif acara, hiburan acara unik, identitas maskot merek, instalasi dekorasi kustom, layanan kreatif acara">
+    <meta property="og:title" content="Dekorasi & Maskot Kustom untuk Acara Perusahaan Anda" />
+    <meta property="og:description" content="Hidupkan merek Anda dengan dekorasi acara menawan dan maskot kustom interaktif. Solusi kreatif untuk katering, dekorasi, dan hiburan." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.nama-tim-anda.com/dekorasi-maskot" />
+    <meta property="og:image" content="https://www.nama-tim-anda.com/images/dekorasi-maskot-portfolio.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hias Acara Anda dengan Dekorasi Kustom & Maskot Lucu" />
+    <meta name="twitter:description" content="Hadirkan pengalaman visual unik dengan dekorasi acara korporat & maskot merek kustom. Coba konsultasi desain!" />
+    <meta name="twitter:image" content="https://www.nama-tim-anda.com/images/dekorasi-maskot-portfolio.jpg" />
+    <link rel="icon" type="image/png" href="{{ asset('images/logohalloeo.png') }}?v={{ time() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
