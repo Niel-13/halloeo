@@ -120,6 +120,11 @@
     background: radial-gradient(circle, rgba(168,216,234,.13) 0%, transparent 70%);
     top: -260px; right: -200px;
     animation: hero-pulse 10s ease-in-out infinite;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--grad-hero);
+    z-index: 0;
 }
 
 .hero::after {
