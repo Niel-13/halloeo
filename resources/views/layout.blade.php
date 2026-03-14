@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <title>Wujudkan Acara Impian: Dekorasi Memukau & Maskot Kustom | HalloEo </title>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
     <script>
@@ -9,9 +11,7 @@
       gtag('js', new Date());
       gtag('config', 'G-XXXX');
     </script>
-    <meta charset="UTF-8">
     <meta name="google-site-verification" content="2Uy8_eapgL0UYUGKRiItcTqqhiMPenaw_ttiZUVJ0_0" />
-    <title>Wujudkan Acara Impian: Dekorasi Memukau & Maskot Kustom | HalloEo </title>
     <meta name="description" content="Jadikan setiap acara tak terlupakan dengan dekorasi kustom dan maskot yang menghidupkan merek Anda. Dari pesta perusahaan hingga peluncuran produk, kami menciptakan pengalaman visual yang unik.">
     <meta name="keywords" content="dekorasi acara korporat, dekorasi pesta kantor, pembuatan maskot kustom, desain maskot ramah, katering dekoratif acara, hiburan acara unik, identitas maskot merek, instalasi dekorasi kustom, layanan kreatif acara">
     <meta property="og:title" content="Dekorasi & Maskot Kustom untuk Acara Perusahaan Anda" />
