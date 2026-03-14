@@ -599,7 +599,7 @@
                     alt="{{ $portfolio->title }}"
                     class="portfolio-image"
                     width="800" height="533"
-                    loading="lazy"
+                    loading="eager"
                     onerror="this.src='https://via.placeholder.com/800x533/A8D8EA/FFFFFF?text={{ urlencode($portfolio->title) }}'"
                 >
                 <div class="portfolio-overlay">

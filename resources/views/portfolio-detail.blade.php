@@ -735,7 +735,7 @@
                             src="{{ asset($gallery->file_path) }}"
                             alt="Galeri {{ $portfolio->title }}"
                             class="gallery-media"
-                            loading="lazy"
+                            loading="eager"
                         >
                         <div class="gallery-item-overlay">
                             <i class="fas fa-expand-alt"></i>
@@ -856,7 +856,7 @@
                     src="{{ asset($related->image_path) }}"
                     alt="{{ $related->title }}"
                     class="related-img"
-                    loading="lazy"
+                    loading="eager"
                     onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($related->title) }}'"
                 >
             </div>

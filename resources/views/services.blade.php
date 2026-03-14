@@ -860,7 +860,7 @@
                     src="{{ asset($service->image_path) }}"
                     alt="{{ $service->title }}"
                     class="service-image"
-                    loading="lazy"
+                    loading="eager"
                     onerror="this.src='https://via.placeholder.com/800x533/A8D8EA/FFFFFF?text={{ urlencode($service->title) }}'"
                 >
                 <div class="service-overlay">

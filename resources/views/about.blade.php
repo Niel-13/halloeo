@@ -870,7 +870,7 @@
                 <img
                     src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80"
                     alt="Perjalanan HalloEO"
-                    loading="lazy"
+                    loading="eager"
                 >
             </div>
             <div class="float-badge bottom-left">
@@ -887,7 +887,7 @@
                 <img
                     src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80"
                     alt="Visi Misi HalloEO"
-                    loading="lazy"
+                    loading="eager"
                 >
             </div>
             <div class="float-badge bottom-right">

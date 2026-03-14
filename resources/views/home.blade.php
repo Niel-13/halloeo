@@ -1235,7 +1235,7 @@
                             <i class="fas fa-play-circle play-icon"></i>
                         </div>
                     @else
-                        <img src="{{ asset($gallery->file_path) }}" alt="Galeri HalloEO" loading="lazy">
+                        <img src="{{ asset($gallery->file_path) }}" alt="Galeri HalloEO" loading="eager">
                         <div class="gallery-overlay">
                             <i class="fas fa-expand play-icon" style="font-size:2.2rem;"></i>
                         </div>
