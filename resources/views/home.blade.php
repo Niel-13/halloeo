@@ -90,15 +90,21 @@
    HERO
 ══════════════════════════════════════════ */
 .hero {
+    position: relative;
     min-height: 92vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background:
-        var(--grad-hero),
-        url('{{ asset("images/bg-home.jpeg") }}') center / cover no-repeat;
-    position: relative;
     overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
 
 .hero::before,
@@ -1093,6 +1099,15 @@
 
 {{-- ══ HERO ══ --}}
 <section class="hero">
+    <img 
+        src="{{ asset('images/bg-home.jpeg') }}"
+        alt="Dekorasi Event Halloeo"
+        class="hero-bg"
+        fetchpriority="high"
+        loading="eager"
+        width="1920"
+        height="1080"
+    >
     <div class="hero-content">
         <div class="hero-text">
             <span class="hero-eyebrow">
