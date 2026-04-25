@@ -18,13 +18,14 @@
     <meta property="og:title" content="HalloEO - Spesialis Dekorasi Styrofoam & Maskot Custom" />
     <meta property="og:description" content="Wujudkan dekorasi event yang memukau dengan material styrofoam berkualitas. Ahlinya pembuatan maskot dan instalasi kreatif untuk segala acara." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://halloeo.com/portofolio" />
+    <meta property="og:url" content="https://halloeo.com" />
     <meta property="og:image" content="https://halloeo.com/images/logohalloeo.png"> <meta property="twitter:card" content="summary_large_image">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Hias Acara Anda dengan Dekorasi Kustom & Maskot Lucu" />
     <meta name="twitter:description" content="Hadirkan pengalaman visual unik dengan dekorasi acara korporat & maskot merek kustom. Coba konsultasi desain!" />
     <meta name="twitter:image" content="https://halloeo.com/images/logohalloeo.png" />
     <link rel="icon" type="image/png" href="{{ asset('images/logohalloeo.png') }}?v={{ time() }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logohalloeo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
