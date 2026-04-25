@@ -1106,7 +1106,7 @@
 <section class="hero">
     <img 
         src="{{ asset('images/bg-home.jpeg') }}"
-        alt="Dekorasi Event Halloeo"
+        alt="Dekorasi Styrofoam Event Halloeo"
         class="hero-bg"
         fetchpriority="high"
         loading="eager"
@@ -1122,10 +1122,10 @@
             <p>HalloEO adalah spesialis pembuatan dekorasi dan maskot dari styrofoam yang profesional, kreatif, dan berkualitas tinggi untuk berbagai kebutuhan event Anda.</p>
             <div class="hero-buttons">
                 <a href="{{ route('portfolio.index') }}" class="btn btn-primary">
-                    <i class="fas fa-images"></i> Lihat Portofolio
+                    </i> Lihat Portofolio
                 </a>
                 <a href="{{ route('contact') }}" class="btn btn-outline">
-                    <i class="fas fa-phone"></i> Hubungi Kami
+                    </i> Hubungi Kami
                 </a>
             </div>
         </div>

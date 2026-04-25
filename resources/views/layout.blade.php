@@ -13,24 +13,24 @@
     gtag('config', 'G-21Z8CXY4X7');
     </script>
     <meta name="google-site-verification" content="2Uy8_eapgL0UYUGKRiItcTqqhiMPenaw_ttiZUVJ0_0" />
-    <meta name="description" content="Jadikan setiap acara tak terlupakan dengan dekorasi kustom dan maskot yang menghidupkan merek Anda. Dari pesta perusahaan hingga peluncuran produk, kami menciptakan pengalaman visual yang unik.">
-    <meta name="keywords" content="dekorasi acara korporat, dekorasi pesta kantor, pembuatan maskot kustom, desain maskot ramah, katering dekoratif acara, hiburan acara unik, identitas maskot merek, instalasi dekorasi kustom, layanan kreatif acara">
-    <meta property="og:title" content="Dekorasi & Maskot Kustom untuk Acara Perusahaan Anda" />
-    <meta property="og:description" content="Hidupkan merek Anda dengan dekorasi acara menawan dan maskot kustom interaktif. Solusi kreatif untuk katering, dekorasi, dan hiburan." />
+    <meta name="description" content="Wujudkan dekorasi impian dengan spesialis styrofoam & maskot kustom profesional. Dari event korporat hingga dekorasi ulang tahun, HalloEO menghadirkan karya seni visual berkualitas tinggi di Indonesia. Konsultasi Gratis!">
+    <meta name="keywords" content="dekorasi styrofoam, jasa pembuatan maskot, patung styrofoam custom, dekorasi balon jakarta, dekorasi event bekasi, spesialis styrofoam indonesia, halloeo, dekorasi ulang tahun styrofoam, dekorasi acara perusahaan, maskot kustom, dekorasi pesta anak, dekorasi pernikahan unik, dekorasi promosi produk, dekorasi event kreatif, dekorasi styrofoam berkualitas">
+    <meta property="og:title" content="HalloEO - Spesialis Dekorasi Styrofoam & Maskot Custom" />
+    <meta property="og:description" content="Wujudkan dekorasi event yang memukau dengan material styrofoam berkualitas. Ahlinya pembuatan maskot dan instalasi kreatif untuk segala acara." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://halloeo.com/portofolio" />
-    <meta property="og:image" content="https://halloeo.com/images/dekorasi-maskot-portofolio.jpg" />
+    <meta property="og:image" content="https://halloeo.com/images/logohalloeo.png"> <meta property="twitter:card" content="summary_large_image">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Hias Acara Anda dengan Dekorasi Kustom & Maskot Lucu" />
     <meta name="twitter:description" content="Hadirkan pengalaman visual unik dengan dekorasi acara korporat & maskot merek kustom. Coba konsultasi desain!" />
-    <meta name="twitter:image" content="https://halloeo.com/images/dekorasi-maskot-portofolio.jpg" />
+    <meta name="twitter:image" content="https://halloeo.com/images/logohalloeo.png" />
     <link rel="icon" type="image/png" href="{{ asset('images/logohalloeo.png') }}?v={{ time() }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'HalloEO - Dekorasi & Maskot Styrofoam Profesional')</title>
+    <title>@yield('title', 'HalloEO | Spesialis Dekorasi Styrofoam & Pembuatan Maskot Kustom')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
     /* ── Font Fallback (CLS fix) ── */
