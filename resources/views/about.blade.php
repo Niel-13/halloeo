@@ -976,7 +976,7 @@
     </div>
 </section>
 
-{{-- ════════════════ TEAM ════════════════ --}}
+<!-- {{-- ════════════════ TEAM ════════════════ --}}
 <section class="team-section">
 
     <div class="team-header">
@@ -1029,7 +1029,7 @@
         </div>
     </div>
 
-</section>
+</section> -->
 
 {{-- ════════════════ CTA ════════════════ --}}
 <div class="about-cta">
