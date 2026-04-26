@@ -1193,7 +1193,7 @@
     <div class="section-title">
         <span class="section-eyebrow">Karya Terbaik</span>
         <h2>Portofolio Kami</h2>
-        <p>Lihat hasil karya terbaik yang telah kami kerjakan untuk berbagai klien</p>
+        <p>Lihat hasil karya terbaik yang telah kami kerjakan untuk berbagai klien di Jakarta, Bekasi dan juga sekitarnya.</p>
     </div>
     <div class="portfolio-grid">
         @forelse($featuredPortfolios ?? [] as $portfolio)
