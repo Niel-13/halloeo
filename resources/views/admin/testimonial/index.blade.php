@@ -12,7 +12,7 @@
     </div>
     <a href="{{ route('admin.testimonials.pending') }}" class="btn btn-primary">
         <i class="fas fa-clock"></i> Pending Review ({{ $pendingCount }})
-    </a>
+    </a>  
 </div>
 
 <div class="card">
