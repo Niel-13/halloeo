@@ -1105,6 +1105,8 @@
 <link rel="preload" as="image" href="{{ asset('images/bg-home.jpeg') }}" fetchpriority="high">
 @endpush
 
+
+@section('content')
 {{-- ══ HERO ══ --}}
 <section class="hero">
     <img 
