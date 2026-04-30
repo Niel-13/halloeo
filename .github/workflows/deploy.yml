@@ -26,6 +26,10 @@ jobs:
             public/**
             node_modules/**
             .git/**
+            .env
+            vendor/**
+            storage/logs/**
+            storage/framework/views/**
 
       - name: Sync Public Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
