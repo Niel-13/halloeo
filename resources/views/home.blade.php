@@ -1100,7 +1100,10 @@
 </style>
 @endsection
 
-@section('content')
+@push('preload')
+{{-- FIX: Preload hero image → LCP lebih cepat --}}
+<link rel="preload" as="image" href="{{ asset('images/bg-home.jpeg') }}" fetchpriority="high">
+@endpush
 
 {{-- ══ HERO ══ --}}
 <section class="hero">
@@ -1204,6 +1207,7 @@
                     alt="{{ $portfolio->title }}"
                     class="portfolio-img"
                     width="400" height="300"
+                    loading="lazy"
                     onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text=HalloEO'"
                 >
             </div>
@@ -1247,7 +1251,7 @@
         </button>
 
         <div class="gallery-grid" id="galleryGrid">
-            @forelse($galleries ?? [] as $gallery)
+            @forelse($galleries ?? [] as $index => $gallery)
                 <div class="gallery-item" onclick="openLightbox('{{ asset($gallery->file_path) }}', '{{ $gallery->type }}')">
                     @if($gallery->type == 'video')
                         <video src="{{ asset($gallery->file_path) }}" muted loop playsinline></video>
@@ -1255,7 +1259,11 @@
                             <i class="fas fa-play-circle play-icon"></i>
                         </div>
                     @else
-                        <img src="{{ asset($gallery->file_path) }}" alt="Galeri HalloEO" loading="eager">
+                        {{-- FIX: hanya 2 gambar pertama eager, sisanya lazy --}}
+                        <img src="{{ asset($gallery->file_path) }}"
+                             alt="Galeri HalloEO"
+                             loading="{{ $index < 2 ? 'eager' : 'lazy' }}"
+                             width="400" height="300">
                         <div class="gallery-overlay">
                             <i class="fas fa-expand play-icon" style="font-size:2.2rem;"></i>
                         </div>
