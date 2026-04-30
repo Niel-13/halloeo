@@ -3,7 +3,7 @@ name: Deploy to cPanel via FTP
 on:
   push:
     branches:
-      - main
+      - main 
 
 jobs:
   deploy:
@@ -18,16 +18,12 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          security: loose
-          local-dir: ./
-          server-dir: laravel_app/
+          local-dir: ./  
+          server-dir: laravel_app/ 
           exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
             public/**
+            node_modules/**
+            .git/**
 
       - name: Sync Public Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -35,8 +31,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          port: 21
-          security: loose
-          local-dir: public/ 
+          local-dir: public/
           server-dir: public_html/
+          exclude: |
+            index.php
+            .htaccess
