@@ -39,4 +39,4 @@ jobs:
           port: 21
           security: loose
           local-dir: public/
-          server-dir: public_html/
+          server-dir: public_html/ 
