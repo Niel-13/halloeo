@@ -3,7 +3,7 @@ name: Deploy to cPanel via FTP
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   deploy:
@@ -12,7 +12,25 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Sync Files to Core Folder
+      # Build CSS & JS (public/build ada di .gitignore jadi harus di-build dulu)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install & Build Assets
+        run: |
+          npm ci
+          npm run build
+
+      # Disable IPv6 agar koneksi FTP hanya pakai IPv4
+      - name: Disable IPv6
+        run: |
+          sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+          sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+
+      # Deploy folder Laravel inti (tanpa public & vendor karena sudah ada di server)
+      - name: Sync Laravel App Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -20,17 +38,18 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
+          security: loose
           local-dir: ./
           server-dir: laravel_app/
+          state-name: .ftp-deploy-sync-state-app.json
           exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/vendor/**
             public/**
-            node_modules/**
-            .git/**
-            .env
-            vendor/**
-            storage/logs/**
-            storage/framework/views/**
 
+      # Deploy public (tanpa index.php & .htaccess karena sudah dikelola manual)
       - name: Sync Public Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -39,8 +58,11 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
+          security: loose
           local-dir: public/
           server-dir: public_html/
+          state-name: .ftp-deploy-sync-state-public.json
           exclude: |
+            **/.git*
             index.php
             .htaccess
