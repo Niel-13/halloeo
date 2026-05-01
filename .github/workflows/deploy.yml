@@ -20,7 +20,7 @@ jobs:
 
       - name: Install & Build Assets
         run: |
-          npm ci
+          npm install
           npm run build
 
       # Disable IPv6 agar koneksi FTP hanya pakai IPv4
