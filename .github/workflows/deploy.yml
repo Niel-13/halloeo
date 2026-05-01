@@ -12,25 +12,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      # Build CSS & JS (public/build ada di .gitignore jadi harus di-build dulu)
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install & Build Assets
-        run: |
-          npm install
-          npm run build
-
-      # Disable IPv6 agar koneksi FTP hanya pakai IPv4
       - name: Disable IPv6
         run: |
           sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
           sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
 
-      # Deploy folder Laravel inti (tanpa public & vendor karena sudah ada di server)
-      - name: Sync Laravel App Files
+      - name: Sync Files to Core Folder
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -45,11 +32,10 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
-            **/node_modules/**
-            **/vendor/**
             public/**
+            node_modules/**
+            vendor/**
 
-      # Deploy public (tanpa index.php & .htaccess karena sudah dikelola manual)
       - name: Sync Public Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
