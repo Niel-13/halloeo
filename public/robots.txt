@@ -1,2 +1,15 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Halaman yang boleh diindeks
+Allow: /tentang-kami
+Allow: /layanan-kami
+Allow: /portofolio
+Allow: /kontak
+
+# Halaman yang tidak boleh diindeks
+Disallow: /admin
+Disallow: /admin/*
+
+# Sitemap
+Sitemap: https://halloeo.com/sitemap.xml

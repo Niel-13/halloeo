@@ -2,37 +2,50 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Wujudkan Acara Impian: Dekorasi Memukau & Maskot Kustom | HalloEo </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <!-- Dinamic Title with Fallback -->
+    <title>@yield('title', 'Wujudkan Acara Impian: Dekorasi Memukau & Maskot Kustom | HalloEo')</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-21Z8CXY4X7"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-21Z8CXY4X7');
     </script>
+    
+    <!-- Meta SEO & Open Graph -->
     <meta name="google-site-verification" content="2Uy8_eapgL0UYUGKRiItcTqqhiMPenaw_ttiZUVJ0_0" />
     <meta name="description" content="Wujudkan dekorasi impian dengan spesialis styrofoam & maskot kustom profesional. Dari event korporat hingga dekorasi ulang tahun, HalloEO menghadirkan karya seni visual berkualitas tinggi di Indonesia. Konsultasi Gratis!">
     <meta name="keywords" content="dekorasi styrofoam, jasa pembuatan maskot, patung styrofoam custom, dekorasi balon jakarta, dekorasi event bekasi, spesialis styrofoam indonesia, halloeo, dekorasi ulang tahun styrofoam, dekorasi acara perusahaan, maskot kustom, dekorasi pesta anak, dekorasi pernikahan unik, dekorasi promosi produk, dekorasi event kreatif, dekorasi styrofoam berkualitas">
+    
     <meta property="og:title" content="HalloEO - Spesialis Dekorasi Styrofoam & Maskot Custom" />
     <meta property="og:description" content="Wujudkan dekorasi event yang memukau dengan material styrofoam berkualitas. Ahlinya pembuatan maskot dan instalasi kreatif untuk segala acara." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://halloeo.com" />
-    <meta property="og:image" content="https://halloeo.com/images/logohalloeo.png"> <meta property="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:image" content="{{ asset('images/logohalloeo.png') }}"> 
+    
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Hias Acara Anda dengan Dekorasi Kustom & Maskot Lucu" />
     <meta name="twitter:description" content="Hadirkan pengalaman visual unik dengan dekorasi acara korporat & maskot merek kustom. Coba konsultasi desain!" />
-    <meta name="twitter:image" content="https://halloeo.com/images/logohalloeo.png" />
+    <meta name="twitter:image" content="{{ asset('images/logohalloeo.png') }}" />
+    
+    <!-- Favicon & Fonts -->
     <link rel="icon" type="image/png" href="{{ asset('images/logohalloeo.png') }}?v={{ time() }}">
     <link rel="apple-touch-icon" href="{{ asset('images/logohalloeo.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'HalloEO | Spesialis Dekorasi Styrofoam & Pembuatan Maskot Kustom')</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <style>
     /* ── Font Fallback (CLS fix) ── */
     @font-face {
@@ -104,7 +117,6 @@
         transition: background var(--transition), box-shadow var(--transition);
     }
 
-    /* Thin top accent line */
     .navbar::before {
         content: '';
         position: absolute;
@@ -134,7 +146,6 @@
         justify-content: space-between;
     }
 
-    /* Logo */
     .logo {
         display: flex;
         align-items: center;
@@ -152,7 +163,6 @@
         border-radius: 10px;
     }
 
-    /* Nav links */
     .nav-links {
         display: flex;
         align-items: center;
@@ -198,7 +208,6 @@
         font-weight: 600;
     }
 
-    /* CTA Button */
     .nav-cta {
         display: inline-flex;
         align-items: center;
@@ -222,7 +231,6 @@
 
     .nav-cta::after { display: none !important; }
 
-    /* Mobile toggle */
     .mobile-menu-btn {
         display: none;
         background: none;
@@ -248,6 +256,9 @@
         min-height: calc(100vh - var(--nav-h));
     }
 
+    /* ══════════════════════════════
+        WHATSAPP FLOAT
+    ══════════════════════════════ */
     .wa-float {
         position: fixed;
         bottom: 2rem;
@@ -274,7 +285,6 @@
         color: #fff;
     }
 
-    /* Pulse ring */
     .wa-float::before {
         content: '';
         position: absolute;
@@ -296,13 +306,12 @@
         to   { opacity: 1; transform: scale(1)   translateY(0); }
     }
 
-    /* Tooltip */
     .wa-tooltip {
         position: absolute;
         right: calc(100% + 12px);
         top: 50%;
         transform: translateY(-50%) translateX(6px);
-        background: var(--dark, #1E2B38);
+        background: var(--dark);
         color: #fff;
         font-family: var(--font-body, 'Outfit', sans-serif);
         font-size: 0.78rem;
@@ -315,7 +324,6 @@
         transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    /* Tooltip arrow */
     .wa-tooltip::after {
         content: '';
         position: absolute;
@@ -323,7 +331,7 @@
         left: 100%;
         transform: translateY(-50%);
         border: 5px solid transparent;
-        border-left-color: var(--dark, #1E2B38);
+        border-left-color: var(--dark);
     }
 
     .wa-float:hover .wa-tooltip {
@@ -339,16 +347,15 @@
             height: 50px;
             font-size: 1.4rem;
         }
-
         .wa-tooltip { display: none; }
     }
 
     /* ══════════════════════════════
-        FOOTER
+        FOOTER (Updated Design)
     ══════════════════════════════ */
     .footer {
-        background: #1E2B38;
-        color: rgba(255,255,255,.75);
+        background: var(--white); /* Updated to White */
+        color: var(--blue-deep); /* Updated Content Base Color */
         padding: 5rem 2.5rem 2.5rem;
         margin-top: 6rem;
         position: relative;
@@ -360,7 +367,7 @@
         position: absolute;
         top: 0; left: 0; right: 0;
         height: 4px;
-        background: linear-gradient(90deg, var(--deep-blue), var(--deep-green), #C9A96E);
+        background: linear-gradient(90deg, var(--blue-deep), var(--green-deep), var(--gold));
     }
 
     .footer-content {
@@ -371,12 +378,11 @@
         gap: 3rem;
     }
 
-    /* Brand column */
     .footer-logo {
         font-family: 'Playfair Display', serif;
         font-size: 1.6rem;
         font-weight: 700;
-        color: #fff;                  
+        color: var(--blue-deep); /* Updated to Blue Deep */
         text-decoration: none;
         display: inline-block;
         margin-bottom: 1rem;
@@ -385,21 +391,20 @@
     .footer-brand p {
         font-size: 0.9rem;
         line-height: 1.8;
-        color: rgba(255,255,255,.5);
+        color: var(--blue-deep); /* Updated to Blue Deep */
         max-width: 280px;
+        opacity: 0.8;
     }
 
-    /* Section headings */
     .footer-section h4 {
         font-family: 'Playfair Display', serif;
         font-size: 1rem;
         font-weight: 600;
-        color: #fff;
+        color: var(--blue-deep); /* Updated to Blue Deep */
         margin-bottom: 1.25rem;
         letter-spacing: 0.01em;
     }
 
-    /* Link lists */
     .footer-section ul {
         list-style: none;
         display: flex;
@@ -409,43 +414,45 @@
 
     .footer-section ul a {
         text-decoration: none;
-        color: rgba(255,255,255,.5);
+        color: var(--blue-deep); /* Updated to Blue Deep */
+        opacity: 0.8;
         font-size: 0.9rem;
         display: inline-flex;
         align-items: center;
         gap: 0;
-        transition: color 0.3s ease, padding-left 0.3s ease;
+        transition: all 0.3s ease;
     }
 
     .footer-section ul a::before {
         content: '';
         width: 0;
         height: 1.5px;
-        background: var(--pastel-blue);
+        background: var(--blue-deep); /* Updated to Blue Deep */
         transition: width 0.3s ease;
         display: inline-block;
         margin-right: 0;
     }
 
     .footer-section ul a:hover {
-        color: var(--pastel-blue);
+        color: var(--blue-deep);
+        opacity: 1;
         padding-left: 6px;
     }
 
     .footer-section ul a:hover::before { width: 12px; margin-right: 6px; }
 
-    /* Contact items */
     .footer-contact-item {
         display: flex;
         align-items: flex-start;
         gap: 0.75rem;
         margin-bottom: 0.85rem;
         font-size: 0.9rem;
-        color: rgba(255,255,255,.5);
+        color: var(--blue-deep); /* Updated to Blue Deep */
+        opacity: 0.8;
     }
 
     .footer-contact-item i {
-        color: var(--pastel-blue);
+        color: var(--blue-deep); /* Updated to Blue Deep */
         margin-top: 3px;
         flex-shrink: 0;
         font-size: 0.85rem;
@@ -453,7 +460,6 @@
         text-align: center;
     }
 
-    /* Social icons */
     .social-links {
         display: flex;
         gap: 0.65rem;
@@ -462,31 +468,30 @@
 
     .social-links a {
         width: 38px; height: 38px;
-        border: 1px solid rgba(255,255,255,.12);
+        border: 1px solid rgba(90,157,184,.3); /* Border color based on blue-deep */
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: rgba(255,255,255,.5);
+        color: var(--blue-deep); /* Updated to Blue Deep */
         font-size: 1rem;
         text-decoration: none;
         transition: all 0.3s ease;
     }
 
     .social-links a:hover {
-        background: var(--deep-blue);
-        border-color: var(--deep-blue);
-        color: #fff;
+        background: var(--blue-deep);
+        border-color: var(--blue-deep);
+        color: var(--white);
         transform: translateY(-3px);
-        box-shadow: 0 6px 16px rgba(90,157,184,.35);
+        box-shadow: 0 6px 16px rgba(90,157,184,.25);
     }
 
-    /* Divider & bottom bar */
     .footer-divider {
         max-width: 1360px;
         margin: 3rem auto 0;
         border: none;
-        border-top: 1px solid rgba(255,255,255,.08);
+        border-top: 1px solid rgba(90,157,184,.2); /* Updated color for divider */
     }
 
     .footer-bottom {
@@ -497,7 +502,8 @@
         align-items: center;
         justify-content: space-between;
         font-size: 0.85rem;
-        color: rgba(255,255,255,.3);
+        color: var(--blue-deep); /* Updated */
+        opacity: 0.8;
     }
 
     .footer-bottom-links {
@@ -506,23 +512,12 @@
     }
 
     .footer-bottom-links a {
-        color: rgba(255,255,255,.3);
+        color: var(--blue-deep);
         text-decoration: none;
-        transition: color 0.3s ease;
+        transition: opacity 0.3s ease;
     }
 
-    .footer-bottom-links a:hover { color: var(--pastel-blue); }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-        .footer-content { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 768px) {
-        .footer { padding: 3.5rem 1.5rem 2rem; }
-        .footer-content { grid-template-columns: 1fr; gap: 2.5rem; }
-        .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
-    }
+    .footer-bottom-links a:hover { opacity: 1; }
 
     /* ══════════════════════════════
         FLOATING SHAPES (bg deco)
@@ -576,9 +571,7 @@
         RESPONSIVE
     ══════════════════════════════ */
     @media (max-width: 1024px) {
-        .footer-content {
-            grid-template-columns: 1fr 1fr;
-        }
+        .footer-content { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 768px) {
@@ -630,8 +623,8 @@
             text-align: center;
         }
     }
-</style>
-@yield('styles')
+    </style>
+    @yield('styles')
 </head>
 <body>
     <div class="floating-shapes">

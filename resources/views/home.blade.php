@@ -120,7 +120,7 @@
     background: radial-gradient(circle, rgba(168,216,234,.13) 0%, transparent 70%);
     top: -260px; right: -200px;
     animation: hero-pulse 10s ease-in-out infinite;
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background: var(--grad-hero);
@@ -128,10 +128,14 @@
 }
 
 .hero::after {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(184,224,210,.10) 0%, transparent 70%);
-    bottom: -180px; left: -150px;
-    animation: hero-pulse 14s ease-in-out infinite reverse;
+    content: '';
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(168,216,234,.13) 0%, transparent 70%);
+    top: -260px;
+    right: -200px;
+    border-radius: 50%;
+    animation: hero-pulse 10s ease-in-out infinite reverse;
 }
 
 @keyframes hero-pulse {
@@ -1127,10 +1131,10 @@
             <p>HalloEO adalah spesialis pembuatan dekorasi dan maskot dari styrofoam yang profesional, kreatif, dan berkualitas tinggi untuk berbagai kebutuhan event Anda.</p>
             <div class="hero-buttons">
                 <a href="{{ route('portfolio.index') }}" class="btn btn-primary">
-                    </i> Lihat Portofolio
+                    Lihat Portofolio
                 </a>
                 <a href="{{ route('contact') }}" class="btn btn-outline">
-                    </i> Hubungi Kami
+                    Hubungi Kami
                 </a>
             </div>
         </div>

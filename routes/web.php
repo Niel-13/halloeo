@@ -11,7 +11,9 @@ use App\Http\Controllers\Admin\AdminPortfolioController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
+
 
 
 // Web Routes - Public
@@ -33,6 +35,8 @@ Route::post('/testimonial', [TestimonialController::class, 'store'])->name('test
 Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact');
 
+// Sitemap
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Admin Login (No Auth Required)
 Route::get('/admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
