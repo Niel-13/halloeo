@@ -23,3 +23,71 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# ── Gzip / Brotli Compression ──────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/ld+json
+    AddOutputFilterByType DEFLATE image/svg+xml font/ttf font/otf font/woff font/woff2
+    # Jangan compress gambar yang sudah terkompresi
+    SetEnvIfNoCase Request_URI \.(gif|jpe?g|png|webp|avif)$ no-gzip dont-vary
+</IfModule>
+
+# ── Browser Caching ────────────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Gambar — cache 1 tahun
+    ExpiresByType image/jpeg          "access plus 1 year"
+    ExpiresByType image/png           "access plus 1 year"
+    ExpiresByType image/webp          "access plus 1 year"
+    ExpiresByType image/avif          "access plus 1 year"
+    ExpiresByType image/gif           "access plus 1 year"
+    ExpiresByType image/svg+xml       "access plus 1 year"
+    ExpiresByType image/x-icon        "access plus 1 year"
+    ExpiresByType image/vnd.microsoft.icon "access plus 1 year"
+
+    # Font — cache 1 tahun
+    ExpiresByType font/ttf            "access plus 1 year"
+    ExpiresByType font/otf            "access plus 1 year"
+    ExpiresByType font/woff           "access plus 1 year"
+    ExpiresByType font/woff2          "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+
+    # CSS & JS — cache 1 bulan (gunakan versioning di URL)
+    ExpiresByType text/css            "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript     "access plus 1 month"
+
+    # HTML — revalidate tiap kunjungan
+    ExpiresByType text/html           "access plus 0 seconds"
+
+    # Sitemap & feed — 1 hari
+    ExpiresByType application/xml     "access plus 1 day"
+    ExpiresByType application/rss+xml "access plus 1 day"
+</IfModule>
+
+# ── Cache-Control Headers ──────────────────────────────────
+<IfModule mod_headers.c>
+    # Immutable assets (gambar, font)
+    <FilesMatch "\.(ico|jpg|jpeg|png|webp|avif|gif|svg|woff|woff2|ttf|otf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+        Header unset ETag
+    </FilesMatch>
+
+    # CSS & JS
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
+    </FilesMatch>
+
+    # Security headers
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# ── Disable ETag (avoid redundant validation) ──────────────
+FileETag None

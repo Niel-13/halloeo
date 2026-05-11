@@ -9,64 +9,57 @@ class SitemapController extends Controller
 {
     public function index()
     {
-        $portfolios = Portfolio::latest()->get();
+        $portfolios = Portfolio::latest('updated_at')->get();
+        $lastmod    = now()->toAtomString();
 
-        $xml = '<?xml version="1.0" encoding="UTF-8"?>';
-        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        $pages = [
+            ['loc' => route('home'),            'priority' => '1.0', 'changefreq' => 'daily',   'lastmod' => $lastmod],
+            ['loc' => route('about'),           'priority' => '0.8', 'changefreq' => 'monthly',  'lastmod' => $lastmod],
+            ['loc' => route('services'),        'priority' => '0.9', 'changefreq' => 'monthly',  'lastmod' => $lastmod],
+            ['loc' => route('portfolio.index'), 'priority' => '0.9', 'changefreq' => 'weekly',   'lastmod' => $lastmod],
+            ['loc' => route('contact'),         'priority' => '0.8', 'changefreq' => 'monthly',  'lastmod' => $lastmod],
+        ];
 
-        // Homepage
-        $xml .= '<url>';
-        $xml .= '<loc>' . route('home') . '</loc>';
-        $xml .= '<lastmod>' . now()->toAtomString() . '</lastmod>';
-        $xml .= '<changefreq>daily</changefreq>';
-        $xml .= '<priority>1.0</priority>';
-        $xml .= '</url>';
+        $xml  = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"' . "\n";
+        $xml .= '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">' . "\n";
 
-        // About Page
-        $xml .= '<url>';
-        $xml .= '<loc>' . route('about') . '</loc>';
-        $xml .= '<lastmod>' . now()->toAtomString() . '</lastmod>';
-        $xml .= '<changefreq>monthly</changefreq>';
-        $xml .= '<priority>0.8</priority>';
-        $xml .= '</url>';
-
-        // Services Page
-        $xml .= '<url>';
-        $xml .= '<loc>' . route('services') . '</loc>';
-        $xml .= '<lastmod>' . now()->toAtomString() . '</lastmod>';
-        $xml .= '<changefreq>monthly</changefreq>';
-        $xml .= '<priority>0.9</priority>';
-        $xml .= '</url>';
-
-        // Portfolio Index
-        $xml .= '<url>';
-        $xml .= '<loc>' . route('portfolio.index') . '</loc>';
-        $xml .= '<lastmod>' . now()->toAtomString() . '</lastmod>';
-        $xml .= '<changefreq>weekly</changefreq>';
-        $xml .= '<priority>0.9</priority>';
-        $xml .= '</url>';
-
-        // Portfolio Detail Pages
-        foreach ($portfolios as $portfolio) {
-            $xml .= '<url>';
-            $xml .= '<loc>' . route('portfolio.show', $portfolio->id) . '</loc>';
-            $xml .= '<lastmod>' . $portfolio->updated_at->toAtomString() . '</lastmod>';
-            $xml .= '<changefreq>monthly</changefreq>';
-            $xml .= '<priority>0.7</priority>';
-            $xml .= '</url>';
+        foreach ($pages as $page) {
+            $xml .= "  <url>\n";
+            $xml .= "    <loc>{$page['loc']}</loc>\n";
+            $xml .= "    <lastmod>{$page['lastmod']}</lastmod>\n";
+            $xml .= "    <changefreq>{$page['changefreq']}</changefreq>\n";
+            $xml .= "    <priority>{$page['priority']}</priority>\n";
+            $xml .= "  </url>\n";
         }
 
-        // Contact Page
-        $xml .= '<url>';
-        $xml .= '<loc>' . route('contact') . '</loc>';
-        $xml .= '<lastmod>' . now()->toAtomString() . '</lastmod>';
-        $xml .= '<changefreq>monthly</changefreq>';
-        $xml .= '<priority>0.8</priority>';
-        $xml .= '</url>';
+        foreach ($portfolios as $portfolio) {
+            $loc     = route('portfolio.show', $portfolio->id);
+            $lastmod = $portfolio->updated_at->toAtomString();
+
+            $xml .= "  <url>\n";
+            $xml .= "    <loc>{$loc}</loc>\n";
+            $xml .= "    <lastmod>{$lastmod}</lastmod>\n";
+            $xml .= "    <changefreq>monthly</changefreq>\n";
+            $xml .= "    <priority>0.7</priority>\n";
+
+            // Include portfolio image in sitemap if available
+            if (!empty($portfolio->image_path)) {
+                $imageUrl = asset($portfolio->image_path);
+                $title    = e($portfolio->title);
+                $xml .= "    <image:image>\n";
+                $xml .= "      <image:loc>{$imageUrl}</image:loc>\n";
+                $xml .= "      <image:title>{$title}</image:title>\n";
+                $xml .= "    </image:image>\n";
+            }
+
+            $xml .= "  </url>\n";
+        }
 
         $xml .= '</urlset>';
 
         return response($xml, 200)
-            ->header('Content-Type', 'application/xml');
+            ->header('Content-Type', 'application/xml; charset=UTF-8')
+            ->header('Cache-Control', 'public, max-age=3600');
     }
 }
