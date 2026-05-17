@@ -1,6 +1,7 @@
 @extends('layout')
 
-@section('title', 'Kontak Kami - HalloEO')
+@section('title', 'Kontak HalloEO - Konsultasi Dekorasi Event')
+@section('description', 'Hubungi HalloEO untuk konsultasi dekorasi styrofoam, maskot custom, properti event, dan kebutuhan promosi. Tim kami siap membantu dari konsep hingga produksi.')
 
 @section('styles')
 <style>
@@ -11,11 +12,11 @@
 
 /* ── Hero ── */
 .contact-hero {
-    min-height: 46vh;
+    min-height: clamp(350px, 44vh, 450px);
     display: flex;
     align-items: flex-end;
-    padding: 0 2.5rem 4.5rem;
-    background: var(--dark);
+    padding: 0 2.5rem 4rem;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--green-deep) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -71,7 +72,7 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 2rem;
-    padding-top: 7rem;
+    padding-top: clamp(5.5rem, 8vw, 7rem);
 }
 
 .hero-left { flex: 1; }
@@ -168,7 +169,7 @@
 .contact-container {
     max-width: 1360px;
     margin: 0 auto;
-    padding: 4rem 2.5rem 6rem;
+    padding: clamp(4.75rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
 }
 
 /* ── Section intro ── */
@@ -488,7 +489,7 @@
 .form-group select:focus {
     border-color: var(--blue-mid);
     background: var(--white);
-    box-shadow: 0 0 0 3px rgba(90,157,184,.12);
+    box-shadow: 0 0 0 3px rgba(49,154,154,.12);
 }
 
 .form-group textarea {
@@ -527,7 +528,7 @@
     font-weight: 700;
     letter-spacing: 0.03em;
     cursor: pointer;
-    box-shadow: 0 8px 24px rgba(90,157,184,.35);
+    box-shadow: 0 8px 24px rgba(49,154,154,.35);
     transition: transform var(--t-base), box-shadow var(--t-base);
     white-space: nowrap;
     flex-shrink: 0;
@@ -535,7 +536,7 @@
 
 .submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(90,157,184,.45);
+    box-shadow: 0 12px 32px rgba(49,154,154,.45);
 }
 
 /* ── Map Section ── */
@@ -558,10 +559,10 @@
    FAQ SECTION
 ═══════════════════════════════════════════════ */
 .faq-section {
-    background: var(--dark);
+    background: linear-gradient(135deg, var(--dark) 0%, #2f5149 100%);
     position: relative;
     overflow: hidden;
-    padding: 6rem 2.5rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
     margin-top: 0;
 }
 
@@ -677,7 +678,7 @@
 .faq-item.active {
     border-color: var(--blue-deep);
     background: rgba(168,216,234,.06);
-    box-shadow: 0 8px 28px rgba(90,157,184,.15);
+    box-shadow: 0 8px 28px rgba(49,154,154,.15);
 }
 
 .faq-question {
@@ -748,13 +749,13 @@
     .hero-stats { justify-content: flex-start; }
     .hero-deco-word { display: none; }
 
-    .contact-container { padding: 2.5rem 1.25rem 4rem; }
+    .contact-container { padding: 4.5rem 1.25rem; }
 
     .form-row { grid-template-columns: 1fr; gap: 0; }
     .form-footer { flex-direction: column; align-items: flex-start; }
     .submit-btn { width: 100%; justify-content: center; }
 
-    .faq-section { padding: 4rem 1.25rem; }
+    .faq-section { padding: 4.5rem 1.25rem; }
     .faq-head { flex-direction: column; align-items: flex-start; }
     .faq-head-right { max-width: 100%; text-align: left; }
     .faq-list { grid-template-columns: 1fr; }

@@ -1,6 +1,7 @@
 @extends('layout')
 
-@section('title', 'Layanan Kami - HalloEO')
+@section('title', 'Layanan Dekorasi Styrofoam & Maskot Custom - HalloEO')
+@section('description', 'Lihat layanan HalloEO untuk dekorasi styrofoam, pembuatan maskot custom, properti event, instalasi promosi, dan kebutuhan dekorasi acara yang rapi dan profesional.')
 
 @section('styles')
 <style>
@@ -11,11 +12,11 @@
 
 /* ── Hero ── */
 .services-hero {
-    min-height: 52vh;
+    min-height: clamp(360px, 46vh, 460px);
     display: flex;
     align-items: flex-end;
-    padding: 0 2.5rem 5rem;
-    background: var(--green-deep);
+    padding: 0 2.5rem 4rem;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--green-deep) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -73,7 +74,7 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 2rem;
-    padding-top: 7rem;
+    padding-top: clamp(5.5rem, 8vw, 7rem);
 }
 
 .hero-left { flex: 1; }
@@ -170,11 +171,11 @@
 .services-container {
     max-width: 1360px;
     margin: 0 auto;
-    padding: 4rem 2.5rem 6rem;
+    padding: clamp(4.75rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
 }
 
 .section-intro {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 .section-intro-eyebrow {
@@ -273,7 +274,7 @@
 .service-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(170deg, transparent 35%, rgba(26,37,48,.7) 100%);
+    background: linear-gradient(170deg, transparent 35%, rgba(36,59,54,.7) 100%);
     opacity: 0;
     transition: opacity var(--t-base);
     display: flex;
@@ -415,7 +416,7 @@
     flex-shrink: 0;
 }
 
-.service-card:nth-child(3n+1) .service-cta { background: linear-gradient(135deg, var(--blue-deep), var(--blue));  box-shadow: 0 4px 12px rgba(90,157,184,.3); }
+.service-card:nth-child(3n+1) .service-cta { background: linear-gradient(135deg, var(--blue-deep), var(--blue));  box-shadow: 0 4px 12px rgba(49,154,154,.3); }
 .service-card:nth-child(3n+2) .service-cta { background: linear-gradient(135deg, var(--green-deep), var(--green)); box-shadow: 0 4px 12px rgba(95,163,142,.3); }
 .service-card:nth-child(3n)   .service-cta { background: linear-gradient(135deg, var(--red-deep), var(--red-pastel)); box-shadow: 0 4px 12px rgba(184,92,92,.3); }
 
@@ -426,7 +427,7 @@
 .sv-empty-state {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 6rem 2rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.5rem, 4vw, 2rem);
 }
 
 .sv-empty-icon {
@@ -457,7 +458,7 @@
     background: var(--green-deep);
     position: relative;
     overflow: hidden;
-    padding: 6rem 2.5rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
 }
 
 .process-section::before {
@@ -491,7 +492,7 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: clamp(2rem, 4vw, 2.75rem);
 }
 
 .process-head-left { flex: 1; }
@@ -597,7 +598,7 @@
 }
 
 .process-step:nth-child(1):hover .step-num,
-.process-step:nth-child(3):hover .step-num { background: var(--blue-deep);  border-color: var(--blue-deep);  color: var(--white); box-shadow: 0 8px 24px rgba(90,157,184,.4); }
+.process-step:nth-child(3):hover .step-num { background: var(--blue-deep);  border-color: var(--blue-deep);  color: var(--white); box-shadow: 0 8px 24px rgba(49,154,154,.4); }
 .process-step:nth-child(2):hover .step-num,
 .process-step:nth-child(4):hover .step-num { background: var(--green); border-color: var(--green); color: var(--white); box-shadow: 0 8px 24px rgba(95,163,142,.4); }
 .process-step:nth-child(5):hover .step-num { background: var(--red-deep);   border-color: var(--red-deep);  color: var(--white); box-shadow: 0 8px 24px rgba(184,92,92,.4); }
@@ -620,7 +621,7 @@
    CTA SECTION
 ═══════════════════════════════════════════════ */
 .sv-cta-section {
-    padding: 6rem 2.5rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
     background: var(--light);
 }
 
@@ -630,15 +631,15 @@
 }
 
 .sv-cta-card {
-    background: var(--dark);
+    background: linear-gradient(135deg, var(--dark) 0%, #2f5149 100%);
     border-radius: 28px;
-    padding: 5rem 4rem;
+    padding: clamp(4rem, 6vw, 5rem) clamp(1.75rem, 4vw, 3rem);
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 3rem;
+    gap: clamp(1.75rem, 4vw, 2.5rem);
     box-shadow: var(--shadow-xl);
 }
 
@@ -729,14 +730,14 @@
     font-weight: 700;
     font-size: 0.92rem;
     letter-spacing: 0.02em;
-    box-shadow: 0 8px 28px rgba(90,157,184,.4);
+    box-shadow: 0 8px 28px rgba(49,154,154,.4);
     transition: transform var(--t-base), box-shadow var(--t-base);
     white-space: nowrap;
 }
 
 .cta-btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 36px rgba(90,157,184,.5);
+    box-shadow: 0 14px 36px rgba(49,154,154,.5);
 }
 
 .cta-btn-ghost {
@@ -780,7 +781,7 @@
     .hero-stats { justify-content: flex-start; }
     .hero-deco-word { display: none; }
 
-    .services-container { padding: 2.5rem 1.25rem 4rem; }
+    .services-container { padding: 4.5rem 1.25rem; }
 
     .services-grid { grid-template-columns: 1fr; }
     .service-card,
@@ -789,13 +790,13 @@
     .service-card:first-child .service-image-wrap,
     .service-card:nth-child(5) .service-image-wrap { aspect-ratio: 3 / 2; }
 
-    .process-section { padding: 4rem 1.25rem; }
+    .process-section { padding: 4.5rem 1.25rem; }
     .process-head { flex-direction: column; align-items: flex-start; }
     .process-head-right { max-width: 100%; text-align: left; }
     .process-steps { grid-template-columns: 1fr 1fr; row-gap: 2.5rem; }
 
-    .sv-cta-section { padding: 4rem 1.25rem; }
-    .sv-cta-card { flex-direction: column; padding: 3rem 1.75rem; }
+    .sv-cta-section { padding: 4.5rem 1.25rem; }
+    .sv-cta-card { flex-direction: column; padding: 3.75rem 1.75rem; }
     .cta-actions { width: 100%; }
     .cta-btn-primary, .cta-btn-ghost { justify-content: center; }
 }
@@ -853,15 +854,19 @@
 
     <div class="services-grid">
         @forelse($services as $index => $service)
-        <div class="service-card">
+        <div class="service-card" id="layanan-{{ $service->slug ?: Str::slug($service->title) }}">
 
             <div class="service-image-wrap">
                 <img
                     src="{{ asset($service->image_path) }}"
                     alt="{{ $service->title }}"
                     class="service-image"
-                    loading="eager"
-                    onerror="this.src='https://via.placeholder.com/800x533/A8D8EA/FFFFFF?text={{ urlencode($service->title) }}'"
+                    width="800"
+                    height="533"
+                    loading="{{ $index < 2 ? 'eager' : 'lazy' }}"
+                    decoding="async"
+                    fetchpriority="{{ $index === 0 ? 'high' : 'auto' }}"
+                    onerror="this.onerror=null;this.src='{{ asset('images/placeholder-portfolio.svg') }}'"
                 >
                 <div class="service-overlay">
                     <div class="overlay-icon">

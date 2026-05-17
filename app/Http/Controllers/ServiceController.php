@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
-use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
     public function index()
     {
-        // Mengambil data dari database agar variabel $services terdefinisi
-        $services = Service::latest()->get(); 
-        
-        // Mengirim ke view 'services.blade.php'
+        $services = Service::query()
+            ->latest()
+            ->get(['id', 'title', 'slug', 'description', 'features', 'icon', 'image_path', 'created_at', 'updated_at']);
+
         return view('services', compact('services'));
+    }
+
+    public function show(string $slug)
+    {
+        return redirect()->route('services', [], 301);
     }
 }

@@ -1,6 +1,11 @@
 @extends('layout')
 
-@section('title', $portfolio->title . ' - HalloEO')
+@section('title', $portfolio->title . ' - Portofolio HalloEO')
+@section('description', Str::limit(strip_tags($portfolio->description), 155))
+
+@push('preload')
+<link rel="preload" as="image" href="{{ asset($portfolio->image_path) }}" fetchpriority="high">
+@endpush
 
 @section('styles')
 <style>
@@ -8,7 +13,7 @@
 /* ── Full-bleed Hero Image ── */
 .detail-cover {
     width: 100%;
-    height: 88vh;
+    height: min(760px, calc(100vh - var(--nav-h)));
     position: relative;
     overflow: hidden;
 }
@@ -32,10 +37,10 @@
     inset: 0;
     background: linear-gradient(
         to bottom,
-        rgba(26,37,48,.15) 0%,
-        rgba(26,37,48,.10) 40%,
-        rgba(26,37,48,.75) 80%,
-        rgba(26,37,48,.92) 100%
+        rgba(36,59,54,.15) 0%,
+        rgba(36,59,54,.10) 40%,
+        rgba(36,59,54,.75) 80%,
+        rgba(36,59,54,.92) 100%
     );
 }
 
@@ -150,10 +155,10 @@
 .detail-layout {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 4rem 2.5rem 6rem;
+    padding: clamp(4.75rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
     display: grid;
     grid-template-columns: 1fr 320px;
-    gap: 3rem;
+    gap: clamp(1.75rem, 4vw, 2.5rem);
     align-items: start;
 }
 
@@ -162,7 +167,7 @@
 
 /* Description */
 .detail-description-block {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .block-label {
@@ -193,7 +198,7 @@
 }
 
 /* Gallery */
-.gallery-block { margin-bottom: 3rem; }
+.gallery-block { margin-bottom: 2rem; }
 
 .gallery-masonry {
     display: grid;
@@ -236,7 +241,7 @@
 .gallery-item-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(26,37,48,.4);
+    background: rgba(36,59,54,.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -263,7 +268,7 @@
 }
 
 /* Share */
-.share-block { margin-bottom: 3rem; }
+.share-block { margin-bottom: 2rem; }
 
 .share-pills {
     display: flex;
@@ -312,7 +317,7 @@
 }
 
 .sidebar-card-head {
-    background: var(--dark);
+    background: linear-gradient(135deg, var(--dark) 0%, #2f5149 100%);
     padding: 1.1rem 1.5rem;
     position: relative;
     overflow: hidden;
@@ -398,7 +403,7 @@
 
 /* CTA sidebar card */
 .sidebar-cta {
-    background: var(--dark);
+    background: linear-gradient(135deg, var(--dark) 0%, #2f5149 100%);
     border-radius: var(--r-xl);
     padding: 2rem 1.5rem;
     text-align: center;
@@ -498,7 +503,7 @@
 .related-section {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2.5rem 6rem;
+    padding: clamp(4.75rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
 }
 
 .related-header {
@@ -602,7 +607,7 @@
 .back-row {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2.5rem 4rem;
+    padding: 0 2.5rem 3.5rem;
 }
 
 .btn-back {
@@ -644,13 +649,13 @@
 @media (max-width: 768px) {
     .detail-cover { height: 70vh; }
     .detail-cover-content { padding: 0 1.25rem 2.5rem; }
-    .detail-layout { padding: 2.5rem 1.25rem 3rem; }
+    .detail-layout { padding: 4.5rem 1.25rem; }
     .detail-sidebar { grid-template-columns: 1fr; }
     .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
     .gallery-masonry .gallery-item:first-child { grid-column: span 2; }
-    .related-section { padding: 0 1.25rem 4rem; }
+    .related-section { padding: 4.5rem 1.25rem; }
     .related-grid { grid-template-columns: 1fr; }
-    .back-row { padding: 0 1.25rem 3rem; }
+    .back-row { padding: 0 1.25rem 4.5rem; }
 }
 </style>
 @endsection
@@ -664,7 +669,10 @@
         alt="{{ $portfolio->title }}"
         class="detail-cover-img"
         width="1400" height="900"
-        onerror="this.src='https://via.placeholder.com/1400x900/1A2530/A8D8EA?text={{ urlencode($portfolio->title) }}'"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+        onerror="this.onerror=null;this.src='{{ asset('images/placeholder-portfolio.svg') }}'"
     >
     <div class="detail-cover-overlay"></div>
 
@@ -735,7 +743,8 @@
                             src="{{ asset($gallery->file_path) }}"
                             alt="Galeri {{ $portfolio->title }}"
                             class="gallery-media"
-                            loading="eager"
+                            loading="{{ $loop->first ? 'eager' : 'lazy' }}"
+                            decoding="async"
                         >
                         <div class="gallery-item-overlay">
                             <i class="fas fa-expand-alt"></i>
@@ -856,8 +865,11 @@
                     src="{{ asset($related->image_path) }}"
                     alt="{{ $related->title }}"
                     class="related-img"
-                    loading="eager"
-                    onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text={{ urlencode($related->title) }}'"
+                    width="400"
+                    height="300"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.onerror=null;this.src='{{ asset('images/placeholder-portfolio.svg') }}'"
                 >
             </div>
             <div class="related-info">

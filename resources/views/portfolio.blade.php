@@ -1,6 +1,7 @@
 @extends('layout')
 
-@section('title', 'Portofolio - HalloEO')
+@section('title', 'Portofolio Dekorasi Event & Maskot Custom - HalloEO')
+@section('description', 'Lihat portofolio HalloEO berisi karya dekorasi styrofoam, maskot custom, properti event, dan instalasi kreatif untuk berbagai acara dan kebutuhan promosi.')
 
 @section('styles')
 <style>
@@ -11,11 +12,11 @@
 
 /* ── Hero ── */
 .portfolio-hero {
-    min-height: 52vh;
+    min-height: clamp(360px, 46vh, 460px);
     display: flex;
     align-items: flex-end;
-    padding: 0 2.5rem 5rem;
-    background: var(--blue-deep);
+    padding: 0 2.5rem 4rem;
+    background: linear-gradient(135deg, var(--dark) 0%, var(--blue-deep) 55%, var(--green-deep) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -62,7 +63,7 @@
 }
 
 :root {
-  --greenn: 34, 197, 94;
+  --greenn: 92, 158, 133;
 }
 
 .portfolio-hero-inner {
@@ -75,7 +76,7 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 2rem;
-    padding-top: 7rem;
+    padding-top: clamp(5.5rem, 8vw, 7rem);
 }
 
 .hero-left { flex: 1; }
@@ -228,7 +229,7 @@
     background: var(--green-deep);
     color: var(--white);
     border-color: transparent;
-    box-shadow: 0 4px 14px rgba(26,37,48,.2);
+    box-shadow: 0 4px 14px rgba(36,59,54,.2);
 }
 
 .filter-btn.active:hover {
@@ -241,13 +242,13 @@
 .portfolio-container {
     max-width: 1360px;
     margin: 0 auto;
-    padding: 3rem 2.5rem 6rem;
+    padding: clamp(4.75rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
 }
 
 .results-meta {
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .results-count {
@@ -326,7 +327,7 @@
 .portfolio-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(170deg, transparent 35%, rgba(26,37,48,.7) 100%);
+    background: linear-gradient(170deg, transparent 35%, rgba(36,59,54,.7) 100%);
     opacity: 0;
     transition: opacity var(--t-base);
     display: flex;
@@ -418,7 +419,7 @@
 .empty-state {
     grid-column: 1 / -1;
     text-align: center;
-    padding: 6rem 2rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.5rem, 4vw, 2rem);
 }
 
 .empty-icon-wrap {
@@ -455,7 +456,7 @@
     justify-content: center;
     align-items: center;
     gap: 0.4rem;
-    margin-top: 4rem;
+    margin-top: 2.75rem;
     flex-wrap: wrap;
 }
 
@@ -490,7 +491,7 @@
     background: var(--dark);
     color: var(--white);
     border-color: transparent;
-    box-shadow: 0 4px 14px rgba(26,37,48,.2);
+    box-shadow: 0 4px 14px rgba(36,59,54,.2);
 }
 
 .pagination-wrap span:not(.active) {
@@ -516,7 +517,7 @@
     .filter-bar { top: 64px; padding: 0.7rem 1.25rem; }
     .filter-label { display: none; }
 
-    .portfolio-container { padding: 2rem 1.25rem 4rem; }
+    .portfolio-container { padding: 4.5rem 1.25rem; }
 
     .portfolio-grid { grid-template-columns: 1fr; gap: 1.1rem; }
     .portfolio-item,
@@ -541,7 +542,7 @@
             <div class="hero-eyebrow-row">
                 <div class="hero-line"></div>
                 <span class="section-eyebrow"
-                      style="background:rgba(168,216,234,.12);color:var(--blue-muted);border:1px solid rgba(168,216,234,.25);border-radius: 50px; rounded-full; padding: 0.22rem 0.78rem; font-size: 0.71rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;">
+                      style="background:rgba(168,216,234,.12);color:var(--blue-muted);border:1px solid rgba(168,216,234,.25);border-radius: 50px;  padding: 0.22rem 0.78rem; font-size: 0.71rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;">
                     Karya Pilihan Kami
                 </span>
             </div>
@@ -599,8 +600,10 @@
                     alt="{{ $portfolio->title }}"
                     class="portfolio-image"
                     width="800" height="533"
-                    loading="eager"
-                    onerror="this.src='https://via.placeholder.com/800x533/A8D8EA/FFFFFF?text={{ urlencode($portfolio->title) }}'"
+                    loading="{{ $loop->index < 3 ? 'eager' : 'lazy' }}"
+                    decoding="async"
+                    fetchpriority="{{ $loop->first ? 'high' : 'auto' }}"
+                    onerror="this.onerror=null;this.src='{{ asset('images/placeholder-portfolio.svg') }}'"
                 >
                 <div class="portfolio-overlay">
                     <span class="overlay-cta">

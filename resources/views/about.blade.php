@@ -1,6 +1,11 @@
 @extends('layout')
 
-@section('title', 'Tentang Kami - HalloEO')
+@section('title', 'Tentang HalloEO - Spesialis Dekorasi Styrofoam')
+@section('description', 'Kenali HalloEO, partner dekorasi styrofoam dan maskot custom yang membantu mewujudkan kebutuhan event, promosi, pameran, dan acara spesial dengan hasil kreatif dan rapi.')
+
+@push('preload')
+<link rel="preload" as="image" href="{{ asset('images/bg-home-1080.webp') }}" type="image/webp" fetchpriority="high">
+@endpush
 
 @section('styles')
 <style>
@@ -8,8 +13,8 @@
    HERO, Full-bleed image with overlaid text
    ──────────────────────────────────────────────── */
 .about-hero {
-    height: 90vh;
-    min-height: 580px;
+    height: clamp(560px, 82vh, 760px);
+    min-height: 520px;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -39,11 +44,11 @@
     inset: 0;
     background:
         linear-gradient(180deg,
-            rgba(26,37,48,.55) 0%,
-            rgba(26,37,48,.10) 35%,
-            rgba(26,37,48,.10) 55%,
-            rgba(26,37,48,.82) 85%,
-            rgba(26,37,48,.97) 100%
+            rgba(36,59,54,.55) 0%,
+            rgba(36,59,54,.10) 35%,
+            rgba(36,59,54,.10) 55%,
+            rgba(36,59,54,.82) 85%,
+            rgba(36,59,54,.97) 100%
         );
 }
 
@@ -213,17 +218,17 @@
 .story-section {
     max-width: 1360px;
     margin: 0 auto;
-    padding: 8rem 2.5rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
 }
 
 .story-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    gap: clamp(3rem, 5vw, 4.5rem);
     align-items: center;
 }
 
-.story-grid + .story-grid { margin-top: 8rem; }
+.story-grid + .story-grid { margin-top: clamp(4rem, 6vw, 5.5rem); }
 .story-grid.flip { direction: rtl; }
 .story-grid.flip > * { direction: ltr; }
 
@@ -288,8 +293,8 @@
 
 .mission-tick {
     width: 20px; height: 20px;
-    background: rgba(74,154,130,.12);
-    border: 1.5px solid rgba(74,154,130,.3);
+    background: rgba(92,158,133,.12);
+    border: 1.5px solid rgba(92,158,133,.3);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -323,7 +328,7 @@
 /* Floating badge */
 .float-badge {
     position: absolute;
-    background: rgba(26,37,48,.9);
+    background: rgba(36,59,54,.9);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255,255,255,.08);
@@ -351,14 +356,14 @@
     margin-bottom: 0.1rem;
 }
 
-.float-badge span { font-size: 0.78rem; color: rgba(255,255,255,.45); letter-spacing: 0.04em; }
+.float-badge span { font-size: 0.78rem; color: rgba(255,255,255,.68); letter-spacing: 0.04em; }
 
 /* ────────────────────────────────────────────────
    VALUES, Horizontal cards with icon left
    ──────────────────────────────────────────────── */
 .values-section {
     background: var(--dark);
-    padding: 8rem 2.5rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
     position: relative;
     overflow: hidden;
 }
@@ -391,9 +396,9 @@
 .values-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: end;
-    margin-bottom: 4rem;
+    gap: clamp(2rem, 4vw, 3rem);
+    align-items: start;
+    margin-bottom: clamp(2.75rem, 4vw, 3.5rem);
 }
 
 .values-header-title h2 {
@@ -416,7 +421,7 @@
 
 .values-header-desc p {
     font-size: 1rem;
-    color: rgba(255,255,255,.45);
+    color: rgba(255,255,255,.68);
     line-height: 1.8;
 }
 
@@ -424,14 +429,14 @@
 .values-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
 }
 
 .value-card {
     background: rgba(255,255,255,.04);
     border: 1px solid rgba(255,255,255,.07);
     border-radius: var(--r-xl);
-    padding: 2.25rem 2.5rem;
+    padding: clamp(1.75rem, 3vw, 2.15rem) clamp(1.75rem, 3vw, 2.25rem);
     display: flex;
     align-items: flex-start;
     gap: 1.5rem;
@@ -494,7 +499,7 @@
 
 .value-body p {
     font-size: 0.91rem;
-    color: rgba(255,255,255,.4);
+    color: rgba(255,255,255,.66);
     line-height: 1.72;
     margin: 0;
 }
@@ -505,7 +510,7 @@
 .team-section {
     max-width: 1360px;
     margin: 0 auto;
-    padding: 8rem 2.5rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.75rem, 4vw, 2.5rem);
 }
 
 .team-header {
@@ -596,7 +601,7 @@
 
 .team-card:hover .team-avatar {
     transform: scale(1.1);
-    box-shadow: 0 10px 28px rgba(74,143,171,.4);
+    box-shadow: 0 10px 28px rgba(49,154,154,.4);
 }
 
 .team-name {
@@ -630,10 +635,11 @@
    CTA, Dark with warm copy
    ──────────────────────────────────────────────── */
 .about-cta {
-    margin: 0 2.5rem 5rem;
+    width: min(1420px, calc(100% - 5rem));
+    margin: clamp(1.5rem, 3vw, 2rem) auto clamp(5rem, 7vw, 6.25rem);
     border-radius: 28px;
     background: var(--dark);
-    padding: 5rem 3rem;
+    padding: clamp(4.25rem, 6vw, 5.25rem) clamp(1.75rem, 4vw, 3rem);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -667,7 +673,7 @@
     font-weight: 800;
     color: var(--white);
     letter-spacing: -0.025em;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     line-height: 1.18;
 }
 
@@ -683,7 +689,7 @@
     font-size: 1.02rem;
     color: rgba(255,255,255,.5);
     line-height: 1.8;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.8rem;
 }
 
 .cta-row {
@@ -711,7 +717,7 @@
 
 .btn-solid:hover {
     transform: translateY(-3px);
-    box-shadow: 0 14px 36px rgba(74,143,171,.42);
+    box-shadow: 0 14px 36px rgba(49,154,154,.42);
     opacity: .91;
     color: var(--white);
     text-decoration: none;
@@ -734,7 +740,7 @@
 }
 
 .btn-outline-white:hover {
-    border-color: rgba(255,255,255,.45);
+    border-color: rgba(255,255,255,.68);
     color: var(--white);
     background: rgba(255,255,255,.07);
     transform: translateY(-3px);
@@ -767,25 +773,25 @@
     .stat-item:nth-child(4)    { border-bottom: none; }
 
     /* Story */
-    .story-section { padding: 5rem 1.5rem; }
-    .story-grid     { grid-template-columns: 1fr; gap: 2.5rem; }
+    .story-section { padding: 4.5rem 1.25rem; }
+    .story-grid     { grid-template-columns: 1fr; gap: 2rem; }
     .story-grid.flip { direction: ltr; }
-    .story-grid + .story-grid { margin-top: 4rem; }
+    .story-grid + .story-grid { margin-top: 3rem; }
     .float-badge    { display: none; }
 
     /* Values */
-    .values-section { padding: 5rem 1.5rem; }
-    .values-header  { grid-template-columns: 1fr; gap: 1.25rem; }
-    .value-card     { padding: 1.75rem; }
+    .values-section { padding: 4.5rem 1.25rem; }
+    .values-header  { grid-template-columns: 1fr; gap: 1.35rem; margin-bottom: 2.75rem; }
+    .value-card     { padding: 1.75rem; gap: 1.2rem; }
 
     /* Team */
-    .team-section { padding: 5rem 1.5rem; }
+    .team-section { padding: 4.5rem 1.25rem; }
     .team-header  { grid-template-columns: 1fr; }
     .team-header p { display: none; }
     .team-grid    { grid-template-columns: 1fr 1fr; }
 
     /* CTA */
-    .about-cta { margin: 0 1.25rem 4rem; padding: 3.5rem 1.75rem; }
+    .about-cta { width: calc(100% - 2.5rem); margin: 1.25rem auto 4.5rem; padding: 3.75rem 1.5rem; }
     .cta-row   { flex-direction: column; align-items: center; }
     .btn-solid, .btn-outline-white { width: 100%; max-width: 280px; justify-content: center; }
 }
@@ -802,9 +808,14 @@
 {{-- ════════════════ HERO ════════════════ --}}
 <section class="about-hero">
     <img
-        src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1600&q=80"
-        alt="Tim HalloEO"
+        src="{{ asset('images/bg-home-1080.webp') }}"
+        alt="Dekorasi event karya HalloEO"
         class="about-hero-bg"
+        width="1080"
+        height="1440"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
     >
     <div class="about-hero-overlay"></div>
 
@@ -813,7 +824,7 @@
             <div class="hero-eyebrow">
                 <div class="hero-eyebrow-line"></div>
                 <span class="section-eyebrow"
-                      style="background:rgba(168,216,234,.12);color:var(--blue);border:1px solid rgba(168,216,234,.25);border-radius: 50px; rounded:var(--r-full); padding:0.25rem 0.9rem; font-size:0.75rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">
+                      style="background:rgba(168,216,234,.12);color:var(--blue);border:1px solid rgba(168,216,234,.25);border-radius: 50px;  padding:0.25rem 0.9rem; font-size:0.75rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;">
                     Tentang HalloEO
                 </span>
             </div>
@@ -868,9 +879,12 @@
         <div class="story-visual">
             <div class="story-img-frame">
                 <img
-                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80"
-                    alt="Perjalanan HalloEO"
-                    loading="eager"
+                    src="{{ asset('images/bg-home-768.webp') }}"
+                    alt="Perjalanan karya dekorasi HalloEO"
+                    width="768"
+                    height="1024"
+                    loading="lazy"
+                    decoding="async"
                 >
             </div>
             <div class="float-badge bottom-left">
@@ -885,9 +899,12 @@
         <div class="story-visual">
             <div class="story-img-frame">
                 <img
-                    src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80"
-                    alt="Visi Misi HalloEO"
-                    loading="eager"
+                    src="{{ asset('images/bg-home-768.webp') }}"
+                    alt="Visi dan misi layanan dekorasi HalloEO"
+                    width="768"
+                    height="1024"
+                    loading="lazy"
+                    decoding="async"
                 >
             </div>
             <div class="float-badge bottom-right">

@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('title', 'HalloEO - Dekorasi & Maskot Styrofoam Profesional')
+@section('description', 'HalloEO menyediakan jasa dekorasi styrofoam, maskot custom, properti event, dan dekorasi promosi untuk acara perusahaan, ulang tahun, pameran, dan kebutuhan kreatif di Bekasi, Jakarta, dan sekitarnya.')
 
 @section('styles')
 <style>
@@ -11,32 +12,32 @@
 
 :root {
     --blue:               #A8D8EA;
-    --blue-light:         #D4EDF6;
-    --blue-deep:          #4A8FAB;
-    --blue-mid:           #6BAEC8;
+    --blue-light:         #E5F6F5;
+    --blue-deep:          #319A9A;
+    --blue-mid:           #5FB9B4;
     --green:              #B8E0D2;
-    --green-light:        #D8F0E8;
-    --green-deep:         #4A9A82;
+    --green-light:        #E8F6F0;
+    --green-deep:         #5C9E85;
     --rose:               #F2C4C4;
-    --rose-deep:          #C06060;
-    --gold:               #E8C97A;
-    --dark:               #1A2530;
-    --dark-mid:           #2C3E50;
-    --muted:              #64788A;
-    --surface:            #F7F9FB;
-    --surface-alt:        #EEF3F7;
+    --rose-deep:          #B76565;
+    --gold:               #D2AF65;
+    --dark:               #243B36;
+    --dark-mid:           #3E5651;
+    --muted:              #6F817C;
+    --surface:            #F6F9F7;
+    --surface-alt:        #E9F1EE;
     --white:              #FFFFFF;
 
     --grad-cool:          linear-gradient(135deg, var(--blue) 0%, var(--green) 100%);
     --grad-deep:          linear-gradient(135deg, var(--blue-deep) 0%, var(--green-deep) 100%);
-    --grad-hero:          linear-gradient(160deg, rgba(26,37,48,.82) 0%, rgba(26,37,48,.60) 100%);
+    --grad-hero:          linear-gradient(160deg, rgba(36,59,54,.86) 0%, rgba(36,59,54,.58) 100%);
 
-    --shadow-sm:          0 2px 8px rgba(26,37,48,.07), 0 1px 3px rgba(26,37,48,.05);
-    --shadow-md:          0 6px 20px rgba(26,37,48,.09), 0 2px 6px rgba(26,37,48,.06);
-    --shadow-lg:          0 16px 48px rgba(26,37,48,.12), 0 4px 14px rgba(26,37,48,.08);
-    --shadow-xl:          0 32px 80px rgba(26,37,48,.16);
-    --glow-blue:          0 8px 28px rgba(74,143,171,.30);
-    --glow-green:         0 8px 28px rgba(74,154,130,.28);
+    --shadow-sm:          0 2px 8px rgba(36,59,54,.07), 0 1px 3px rgba(36,59,54,.05);
+    --shadow-md:          0 6px 20px rgba(36,59,54,.09), 0 2px 6px rgba(36,59,54,.06);
+    --shadow-lg:          0 16px 48px rgba(36,59,54,.12), 0 4px 14px rgba(36,59,54,.08);
+    --shadow-xl:          0 32px 80px rgba(36,59,54,.16);
+    --glow-blue:          0 8px 28px rgba(49,154,154,.30);
+    --glow-green:         0 8px 28px rgba(92,158,133,.28);
 
     --r-md:               16px;
     --r-lg:               24px;
@@ -65,7 +66,7 @@
 
 .section-title {
     text-align: center;
-    margin-bottom: 3.5rem;
+    margin-bottom: clamp(2.75rem, 4vw, 3.5rem);
 }
 
 .section-title h2 {
@@ -91,7 +92,7 @@
 ══════════════════════════════════════════ */
 .hero {
     position: relative;
-    min-height: 92vh;
+    min-height: min(820px, calc(100vh - var(--nav-h)));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,7 +151,7 @@
     padding: 2rem 2.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: clamp(2.5rem, 5vw, 4rem);
     align-items: center;
     position: relative;
     z-index: 1;
@@ -339,7 +340,7 @@
    FEATURES
 ══════════════════════════════════════════ */
 .features {
-    padding: 7rem 2rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.5rem, 4vw, 2rem);
     background: var(--white);
 }
 
@@ -348,7 +349,7 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .feature-card {
@@ -437,7 +438,7 @@
    PORTFOLIO
 ══════════════════════════════════════════ */
 .portfolio-section {
-    padding: 7rem 2rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.5rem, 4vw, 2rem);
     background: var(--surface);
 }
 
@@ -522,7 +523,7 @@
 
 .btn-grad:hover {
     transform: translateY(-3px);
-    box-shadow: 0 14px 36px rgba(74,143,171,.4);
+    box-shadow: 0 14px 36px rgba(49,154,154,.4);
     opacity: .92;
 }
 
@@ -530,7 +531,7 @@
    GALLERY
 ══════════════════════════════════════════ */
 .gallery-section {
-    padding: 7rem 0;
+    padding: clamp(5rem, 7vw, 6.25rem) 0;
     background: var(--white);
     overflow: hidden;
 }
@@ -588,7 +589,7 @@
 .gallery-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(26,37,48,.6) 0%, transparent 60%);
+    background: linear-gradient(to top, rgba(36,59,54,.6) 0%, transparent 60%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -705,7 +706,7 @@
    TESTIMONIALS
 ══════════════════════════════════════════ */
 .testimonials {
-    padding: 7rem 0;
+    padding: clamp(5rem, 7vw, 6.25rem) 0;
     background: var(--surface);
     overflow: hidden;
 }
@@ -831,7 +832,7 @@
    TESTIMONIAL FORM
 ══════════════════════════════════════════ */
 .testimonial-form-section {
-    padding: 7rem 2rem;
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.5rem, 4vw, 2rem);
     background: var(--white);
 }
 
@@ -933,7 +934,7 @@
 .btn-submit:hover {
     opacity: .9;
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(74,143,171,.38);
+    box-shadow: 0 12px 32px rgba(49,154,154,.38);
 }
 
 .alert-success {
@@ -954,8 +955,8 @@
    CTA SECTION
 ══════════════════════════════════════════ */
 .cta-section {
-    padding: 7rem 2rem;
-    background: var(--blue-deep);
+    padding: clamp(5rem, 7vw, 6.25rem) clamp(1.5rem, 4vw, 2rem);
+    background: linear-gradient(135deg, var(--dark) 0%, var(--green-deep) 100%);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -984,7 +985,7 @@
 .cta-section > p {
     font-size: 1.1rem;
     color: rgba(255,255,255,.85);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.8rem;
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
@@ -1018,7 +1019,7 @@
 
 .btn-cta-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(74,143,171,.45);
+    box-shadow: 0 16px 40px rgba(49,154,154,.45);
     color: var(--blue-muted);
     text-decoration: none;
 }
@@ -1056,24 +1057,24 @@
 
 @media (max-width: 768px) {
     .features, .portfolio-section,
-    .testimonial-form-section, .cta-section { padding: 4rem 1.25rem; }
-    .gallery-section, .testimonials { padding: 4rem 0; }
+    .testimonial-form-section, .cta-section { padding: 4.5rem 1.25rem; }
+    .gallery-section, .testimonials { padding: 4.5rem 0; }
 
-    .section-title { margin-bottom: 2rem; }
+    .section-title { margin-bottom: 2.5rem; }
 
     /* Hero */
-    .hero { min-height: auto; padding: 6rem 0 3.5rem; }
+    .hero { min-height: auto; padding: 6.5rem 0 4.5rem; }
     .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; padding: 0 1.25rem; }
     .hero-text > p { margin-left: auto; margin-right: auto; }
     .hero-stats { justify-content: center; }
     .hero-buttons { justify-content: center; }
-    .hero-buttons .btn { flex: 1; min-width: 140px; }
+    .hero-buttons .btn { flex: 1 1 160px; min-width: 0; }
     .hero-image { order: -1; }
     .hero-image-container { height: 260px; }
 
     /* Features */
     .features-grid { grid-template-columns: 1fr; gap: 1.1rem; }
-    .feature-card { padding: 1.75rem 1.4rem; border-radius: var(--r-lg); }
+    .feature-card { padding: 2rem 1.5rem; border-radius: var(--r-lg); }
 
     /* Portfolio */
     .portfolio-grid { grid-template-columns: 1fr; }
@@ -1088,7 +1089,7 @@
     .testimonial-card { flex: 0 0 82vw; max-width: 300px; padding: 1.5rem; }
 
     /* Form */
-    .form-container { padding: 1.75rem; border-radius: var(--r-lg); }
+    .form-container { padding: 2rem; border-radius: var(--r-lg); }
     .rating-input label { font-size: 1.75rem; }
 
     /* CTA */
@@ -1106,22 +1107,28 @@
 
 @push('preload')
 {{-- FIX: Preload hero image → LCP lebih cepat --}}
-<link rel="preload" as="image" href="{{ asset('images/bg-home.jpeg') }}" fetchpriority="high">
+<link rel="preload" as="image" href="{{ asset('images/bg-home-1080.webp') }}" type="image/webp" fetchpriority="high">
 @endpush
 
 
 @section('content')
 {{-- ══ HERO ══ --}}
 <section class="hero">
-    <img 
-        src="{{ asset('images/bg-home.jpeg') }}"
-        alt="Dekorasi Styrofoam Event Halloeo"
-        class="hero-bg"
-        fetchpriority="high"
-        loading="eager"
-        width="1920"
-        height="1080"
-    >
+    <picture>
+        <source
+            srcset="{{ asset('images/bg-home-768.webp') }} 768w, {{ asset('images/bg-home-1080.webp') }} 1080w"
+            sizes="100vw"
+            type="image/webp">
+        <img
+            src="{{ asset('images/bg-home.jpeg') }}"
+            alt="Dekorasi styrofoam event karya HalloEO"
+            class="hero-bg"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+            width="1080"
+            height="1440">
+    </picture>
     <div class="hero-content">
         <div class="hero-text">
             <span class="hero-eyebrow">
@@ -1214,7 +1221,8 @@
                     class="portfolio-img"
                     width="400" height="300"
                     loading="lazy"
-                    onerror="this.src='https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text=HalloEO'"
+                    decoding="async"
+                    onerror="this.onerror=null;this.src='{{ asset('images/placeholder-portfolio.svg') }}'"
                 >
             </div>
             <div class="portfolio-info">
@@ -1226,7 +1234,7 @@
         @empty
         <div class="portfolio-card">
             <div class="portfolio-img-wrap">
-                <img src="https://via.placeholder.com/400x300/A8D8EA/FFFFFF?text=Dekorasi+Pernikahan" alt="Sample" class="portfolio-img" width="400" height="300">
+                <img src="{{ asset('images/placeholder-portfolio.svg') }}" alt="Contoh dekorasi HalloEO" class="portfolio-img" width="400" height="300" loading="lazy" decoding="async">
             </div>
             <div class="portfolio-info">
                 <span class="portfolio-category">Dekorasi</span>
@@ -1269,6 +1277,7 @@
                         <img src="{{ asset($gallery->file_path) }}"
                              alt="Galeri HalloEO"
                              loading="{{ $index < 2 ? 'eager' : 'lazy' }}"
+                             decoding="async"
                              width="400" height="300">
                         <div class="gallery-overlay">
                             <i class="fas fa-expand play-icon" style="font-size:2.2rem;"></i>

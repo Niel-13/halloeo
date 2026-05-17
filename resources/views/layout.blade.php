@@ -4,48 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    
-    <!-- Dinamic Title with Fallback -->
-    <title>@yield('title', 'Wujudkan Acara Impian: Dekorasi Memukau & Maskot Kustom | HalloEo')</title>
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ url()->current() }}">
+    <meta name="googlebot" content="index, follow">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21Z8CXY4X7"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-21Z8CXY4X7');
-    </script>
-    
-    <!-- Meta SEO & Open Graph -->
-    <meta name="google-site-verification" content="2Uy8_eapgL0UYUGKRiItcTqqhiMPenaw_ttiZUVJ0_0" />
-    <meta name="description" content="Wujudkan dekorasi impian dengan spesialis styrofoam & maskot kustom profesional. Dari event korporat hingga dekorasi ulang tahun, HalloEO menghadirkan karya seni visual berkualitas tinggi di Indonesia. Konsultasi Gratis!">
-    <meta name="keywords" content="dekorasi styrofoam, jasa pembuatan maskot, patung styrofoam custom, dekorasi balon jakarta, dekorasi event bekasi, spesialis styrofoam indonesia, halloeo, dekorasi ulang tahun styrofoam, dekorasi acara perusahaan, maskot kustom, dekorasi pesta anak, dekorasi pernikahan unik, dekorasi promosi produk, dekorasi event kreatif, dekorasi styrofoam berkualitas">
-    
-    <meta property="og:title" content="HalloEO - Spesialis Dekorasi Styrofoam & Maskot Custom" />
-    <meta property="og:description" content="Wujudkan dekorasi event yang memukau dengan material styrofoam berkualitas. Ahlinya pembuatan maskot dan instalasi kreatif untuk segala acara." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:image" content="{{ asset('images/logohalloeo.png') }}"> 
-    
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Hias Acara Anda dengan Dekorasi Kustom & Maskot Lucu" />
-    <meta name="twitter:description" content="Hadirkan pengalaman visual unik dengan dekorasi acara korporat & maskot merek kustom. Coba konsultasi desain!" />
-    <meta name="twitter:image" content="{{ asset('images/logohalloeo.png') }}" />
-    
-    <!-- Favicon & Fonts -->
-    <link rel="icon" type="image/png" href="{{ asset('images/logohalloeo.png') }}?v={{ time() }}">
+    @php
+        $siteName = 'HalloEO';
+        $pageTitle = trim($__env->yieldContent('title', 'Wujudkan Acara Impian: Dekorasi Memukau & Maskot Kustom | HalloEO'));
+        $pageDescription = trim($__env->yieldContent('description', 'HalloEO adalah spesialis dekorasi styrofoam dan maskot custom untuk event, promosi, ulang tahun, pameran, hingga acara perusahaan di Bekasi, Jakarta, dan sekitarnya.'));
+        $pageKeywords = trim($__env->yieldContent('keywords', 'dekorasi styrofoam, jasa pembuatan maskot, maskot custom, dekorasi event, dekorasi ulang tahun, dekorasi perusahaan, HalloEO'));
+        $canonicalUrl = url()->current();
+        $socialImage = asset('images/logohalloeo.png');
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'LocalBusiness',
+            'name' => 'HalloEO',
+            'url' => url('/'),
+            'image' => $socialImage,
+            'logo' => $socialImage,
+            'description' => $pageDescription,
+            'telephone' => '+6285731112023',
+            'email' => 'infohalloeo@gmail.com',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'addressLocality' => 'Bekasi',
+                'addressCountry' => 'ID',
+            ],
+            'sameAs' => [
+                'https://facebook.com/share/1AoDq8dKsG/',
+                'https://instagram.com/halloeo_official/',
+                'https://tiktok.com/@halloeo_official',
+            ],
+        ];
+    @endphp
+
+    <title>{{ $pageTitle }}</title>
+    <meta name="description" content="{{ $pageDescription }}">
+    <meta name="keywords" content="{{ $pageKeywords }}">
+    <link rel="canonical" href="{{ $canonicalUrl }}">
+
+    <meta name="google-site-verification" content="2Uy8_eapgL0UYUGKRiItcTqqhiMPenaw_ttiZUVJ0_0">
+
+    <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
+    <meta property="og:image" content="{{ $socialImage }}">
+    <meta property="og:locale" content="id_ID">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $pageTitle }}">
+    <meta name="twitter:description" content="{{ $pageDescription }}">
+    <meta name="twitter:image" content="{{ $socialImage }}">
+
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
     <link rel="apple-touch-icon" href="{{ asset('images/logohalloeo.png') }}">
+
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    @stack('preload')
+
+    <link rel="preload" as="image" href="{{ asset('images/logohalloeo-320.webp') }}" type="image/webp">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"></noscript>
+
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <script type="application/ld+json">
+        {!! json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-21Z8CXY4X7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-21Z8CXY4X7', { 'anonymize_ip': true });
+    </script>
+
     <style>
     /* ── Font Fallback (CLS fix) ── */
     @font-face {
@@ -60,24 +99,24 @@
     /* ── Design Tokens ── */
     :root {
         --blue:        #A8D8EA;
-        --blue-deep:   #5A9DB8;
-        --blue-muted:  #D4EDF6;
+        --blue-deep:   #319A9A;
+        --blue-muted:  #E5F6F5;
         --green:       #B8E0D2;
-        --green-deep:  #5FA38E;
+        --green-deep:  #5C9E85;
         --red-pastel:  #D88A8A;
-        --red-deep:    #B85C5C;
-        --gold:        #C9A96E;
-        --dark:        #1E2B38;
-        --dark-mid:    #2C3E50;
-        --muted:       #6B7C8E;
-        --light:       #F5F7FA;
+        --red-deep:    #B76565;
+        --gold:        #D2AF65;
+        --dark:        #243B36;
+        --dark-mid:    #3E5651;
+        --muted:       #6F817C;
+        --light:       #F4F8F6;
         --white:       #FFFFFF;
-        --surface:     #FAFBFC;
+        --surface:     #FBFCFB;
 
-        --shadow-sm:   0 1px 3px rgba(30,43,56,.06), 0 1px 2px rgba(30,43,56,.04);
-        --shadow-md:   0 4px 16px rgba(30,43,56,.08), 0 2px 6px rgba(30,43,56,.05);
-        --shadow-lg:   0 12px 40px rgba(30,43,56,.12), 0 4px 12px rgba(30,43,56,.08);
-        --shadow-xl:   0 24px 64px rgba(30,43,56,.15);
+        --shadow-sm:   0 1px 3px rgba(36,59,54,.06), 0 1px 2px rgba(36,59,54,.04);
+        --shadow-md:   0 4px 16px rgba(36,59,54,.08), 0 2px 6px rgba(36,59,54,.05);
+        --shadow-lg:   0 12px 40px rgba(36,59,54,.12), 0 4px 12px rgba(36,59,54,.08);
+        --shadow-xl:   0 24px 64px rgba(36,59,54,.15);
 
         --radius-sm:   6px;
         --radius-md:   12px;
@@ -197,7 +236,7 @@
 
     .nav-links a:hover {
         color: var(--blue-deep);
-        background: var(--blue-muted);
+        background: rgba(49,154,154,.10);
     }
 
     .nav-links a:hover::after,
@@ -219,14 +258,14 @@
         font-weight: 600;
         font-size: 0.9rem;
         letter-spacing: 0.02em;
-        box-shadow: 0 4px 14px rgba(90,157,184,.35);
+        box-shadow: 0 4px 14px rgba(49,154,154,.35);
         transition: box-shadow var(--transition), transform var(--transition) !important;
     }
 
     .nav-cta:hover {
         background: linear-gradient(135deg, var(--blue-deep), var(--green-deep)) !important;
         transform: translateY(-2px) !important;
-        box-shadow: 0 8px 22px rgba(90,157,184,.45) !important;
+        box-shadow: 0 8px 22px rgba(49,154,154,.45) !important;
     }
 
     .nav-cta::after { display: none !important; }
@@ -234,7 +273,7 @@
     .mobile-menu-btn {
         display: none;
         background: none;
-        border: 1.5px solid rgba(90,157,184,.3);
+        border: 1.5px solid rgba(49,154,154,.3);
         border-radius: var(--radius-sm);
         width: 40px; height: 40px;
         color: var(--blue-deep);
@@ -354,12 +393,13 @@
         FOOTER (Updated Design)
     ══════════════════════════════ */
     .footer {
-        background: var(--white); /* Updated to White */
-        color: var(--blue-deep); /* Updated Content Base Color */
-        padding: 5rem 2.5rem 2.5rem;
-        margin-top: 6rem;
+        background: linear-gradient(180deg, #ffffff 0%, var(--light) 100%);
+        color: var(--dark-mid);
+        padding: 4.5rem 2.5rem 2rem;
+        margin-top: 0;
         position: relative;
         overflow: hidden;
+        border-top: 1px solid rgba(36,59,54,.08);
     }
 
     .footer::before {
@@ -382,25 +422,25 @@
         font-family: 'Playfair Display', serif;
         font-size: 1.6rem;
         font-weight: 700;
-        color: var(--blue-deep); /* Updated to Blue Deep */
+        color: var(--dark);
         text-decoration: none;
         display: inline-block;
         margin-bottom: 1rem;
     }
 
     .footer-brand p {
-        font-size: 0.9rem;
-        line-height: 1.8;
-        color: var(--blue-deep); /* Updated to Blue Deep */
-        max-width: 280px;
-        opacity: 0.8;
+        font-size: 0.95rem;
+        line-height: 1.85;
+        color: var(--muted);
+        max-width: 310px;
+        opacity: 1;
     }
 
     .footer-section h4 {
         font-family: 'Playfair Display', serif;
         font-size: 1rem;
-        font-weight: 600;
-        color: var(--blue-deep); /* Updated to Blue Deep */
+        font-weight: 700;
+        color: var(--dark);
         margin-bottom: 1.25rem;
         letter-spacing: 0.01em;
     }
@@ -414,9 +454,9 @@
 
     .footer-section ul a {
         text-decoration: none;
-        color: var(--blue-deep); /* Updated to Blue Deep */
-        opacity: 0.8;
-        font-size: 0.9rem;
+        color: var(--muted);
+        opacity: 1;
+        font-size: 0.92rem;
         display: inline-flex;
         align-items: center;
         gap: 0;
@@ -427,14 +467,14 @@
         content: '';
         width: 0;
         height: 1.5px;
-        background: var(--blue-deep); /* Updated to Blue Deep */
+        background: var(--green-deep);
         transition: width 0.3s ease;
         display: inline-block;
         margin-right: 0;
     }
 
     .footer-section ul a:hover {
-        color: var(--blue-deep);
+        color: var(--green-deep);
         opacity: 1;
         padding-left: 6px;
     }
@@ -446,13 +486,13 @@
         align-items: flex-start;
         gap: 0.75rem;
         margin-bottom: 0.85rem;
-        font-size: 0.9rem;
-        color: var(--blue-deep); /* Updated to Blue Deep */
-        opacity: 0.8;
+        font-size: 0.92rem;
+        color: var(--muted);
+        opacity: 1;
     }
 
     .footer-contact-item i {
-        color: var(--blue-deep); /* Updated to Blue Deep */
+        color: var(--green-deep);
         margin-top: 3px;
         flex-shrink: 0;
         font-size: 0.85rem;
@@ -468,42 +508,42 @@
 
     .social-links a {
         width: 38px; height: 38px;
-        border: 1px solid rgba(90,157,184,.3); /* Border color based on blue-deep */
+        border: 1px solid rgba(49,154,154,.26);
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--blue-deep); /* Updated to Blue Deep */
+        color: var(--dark-mid);
         font-size: 1rem;
         text-decoration: none;
         transition: all 0.3s ease;
     }
 
     .social-links a:hover {
-        background: var(--blue-deep);
-        border-color: var(--blue-deep);
+        background: var(--green-deep);
+        border-color: var(--green-deep);
         color: var(--white);
         transform: translateY(-3px);
-        box-shadow: 0 6px 16px rgba(90,157,184,.25);
+        box-shadow: 0 6px 16px rgba(92,158,133,.26);
     }
 
     .footer-divider {
         max-width: 1360px;
         margin: 3rem auto 0;
         border: none;
-        border-top: 1px solid rgba(90,157,184,.2); /* Updated color for divider */
+        border-top: 1px solid rgba(36,59,54,.10);
     }
 
     .footer-bottom {
         max-width: 1360px;
         margin: 0 auto;
-        padding-top: 1.5rem;
+        padding-top: 1.35rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-size: 0.85rem;
-        color: var(--blue-deep); /* Updated */
-        opacity: 0.8;
+        color: var(--muted);
+        opacity: 1;
     }
 
     .footer-bottom-links {
@@ -512,12 +552,48 @@
     }
 
     .footer-bottom-links a {
-        color: var(--blue-deep);
+        color: var(--dark-mid);
         text-decoration: none;
         transition: opacity 0.3s ease;
     }
 
     .footer-bottom-links a:hover { opacity: 1; }
+
+
+
+    /* ══════════════════════════════
+        VISUAL RHYTHM PATCH
+    ══════════════════════════════ */
+    .section-title,
+    .section-intro,
+    .ct-section-intro,
+    .sv-section-intro,
+    .portfolio-section-title {
+        margin-bottom: clamp(2rem, 4vw, 3.2rem);
+    }
+
+    .features,
+    .portfolio-section,
+    .testimonial-form-section,
+    .cta-section,
+    .story-section,
+    .values-section,
+    .team-section,
+    .faq-section,
+    .process-section,
+    .related-section {
+        scroll-margin-top: calc(var(--nav-h) + 20px);
+    }
+
+    @media (max-width: 768px) {
+        .section-title,
+        .section-intro,
+        .ct-section-intro,
+        .sv-section-intro,
+        .portfolio-section-title {
+            margin-bottom: 1.8rem;
+        }
+    }
 
     /* ══════════════════════════════
         FLOATING SHAPES (bg deco)
@@ -574,6 +650,15 @@
         .footer-content { grid-template-columns: 1fr 1fr; }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
     @media (max-width: 768px) {
         :root { --nav-h: 64px; }
 
@@ -625,6 +710,7 @@
     }
     </style>
     @yield('styles')
+    @stack('head')
 </head>
 <body>
     <div class="floating-shapes">
@@ -636,20 +722,25 @@
     <!-- Navbar -->
     <nav class="navbar scrolled" id="navbar">
         <div class="nav-container">
-            <a href="{{ route('home') }}" class="logo" style="display: inline-flex; align-items: center; text-decoration: none; height: 65px;">  
-            <img 
-                src="{{ asset('images/logohalloeo.png') }}" 
-                alt="Logo HalloEO" 
-                width="200" 
-                height="60" 
-                style="max-height: 100%; width: auto; object-fit: contain;">                
+            <a href="{{ route('home') }}" class="logo" aria-label="Beranda HalloEO">
+                <picture>
+                    <source srcset="{{ asset('images/logohalloeo-320.webp') }}" type="image/webp">
+                    <img
+                        src="{{ asset('images/logohalloeo.png') }}"
+                        alt="Logo HalloEO"
+                        width="200"
+                        height="60"
+                        decoding="async"
+                        fetchpriority="high"
+                        style="max-height: 60px; width: auto; object-fit: contain;">
+                </picture>
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
                 <li><a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">Tentang Kami</a></li>
                 <li><a href="{{ route('services') }}" class="{{ request()->routeIs('services') ? 'active' : '' }}">Layanan Kami</a></li>
                 <li><a href="{{ route('portfolio.index') }}" class="{{ request()->routeIs('portfolio.*') ? 'active' : '' }}">Portofolio</a></li>
-                <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}" class="nav-cta">Kontak</a></li>
+                <li><a href="{{ route('contact') }}" class="nav-cta {{ request()->routeIs('contact') ? 'active' : '' }}">Kontak</a></li>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fa-solid fa-bars"></i>
@@ -692,7 +783,7 @@
                 <ul>
                     @foreach($footerServices as $service)
                         <li>
-                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}">
+                            <a href="{{ route('services') }}">
                                 {{ $service->title }}
                             </a>
                         </li>
@@ -746,35 +837,47 @@
     </a>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const navbar = document.getElementById('navbar');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        });
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (icon) {
+                        icon.classList.toggle('fa-bars');
+                        icon.classList.toggle('fa-times');
+                    }
+                });
 
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.nav-container')) {
+                        navLinks.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                });
             }
-        });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-container')) {
-                navLinks.classList.remove('active');
-                const icon = mobileMenuBtn.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
+            let ticking = false;
+            const updateNavbar = () => {
+                if (navbar) {
+                    navbar.classList.toggle('scrolled', window.scrollY > 50);
+                }
+                ticking = false;
+            };
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateNavbar);
+                    ticking = true;
+                }
+            }, { passive: true });
         });
     </script>
     @yield('scripts')
