@@ -17,16 +17,14 @@ export default defineConfig({
     },
     build: {
         cssMinify: true,
-        target: ['es2020', 'chrome80', 'firefox80', 'safari14'],
+        target: 'esnext',
         rollupOptions: {
             output: {
-                // Pisahkan vendor chunk agar caching lebih efisien
                 manualChunks(id) {
                     if (id.includes('node_modules')) {
                         return 'vendor';
                     }
                 },
-                // Nama file dengan hash untuk cache busting
                 entryFileNames: 'js/[name]-[hash].js',
                 chunkFileNames: 'js/[name]-[hash].js',
                 assetFileNames: 'assets/[name]-[hash][extname]',
