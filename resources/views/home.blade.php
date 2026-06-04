@@ -1414,7 +1414,7 @@
                 <p>{{ Str::limit($portfolio->description, 100) }}</p>
             </div>
         </div>
-        @empty
+        @empty 
         @endforelse
     </div>
     <div class="portfolio-cta">
