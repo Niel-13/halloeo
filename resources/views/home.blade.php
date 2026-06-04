@@ -92,12 +92,12 @@
 ══════════════════════════════════════════ */
 .hero-home {
     position: relative;
-    min-height: 720px;
+    min-height: 660px;
     overflow: hidden;
     display: flex;
-    align-items: center;
-    padding: 118px 6% 72px;
-    background: #10231f;
+    align-items: flex-start;
+    padding: 40px 6% 56px;
+    background: linear-gradient(135deg, #f8fbf9 0%, #e8f6f0 100%);
 }
 
 .hero-bg {
@@ -111,9 +111,9 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center right;
     transform: scale(1.02);
-    filter: saturate(0.96) contrast(1.04);
+    filter: saturate(1.05) contrast(1.02);
 }
 
 .hero-overlay {
@@ -121,90 +121,119 @@
     inset: 0;
     z-index: 1;
     background:
-        linear-gradient(90deg, rgba(13, 32, 28, 0.90) 0%, rgba(13, 32, 28, 0.76) 42%, rgba(13, 32, 28, 0.40) 100%),
-        linear-gradient(180deg, rgba(13, 32, 28, 0.10) 0%, rgba(13, 32, 28, 0.62) 100%);
+        radial-gradient(circle at 82% 18%, rgba(242, 196, 196, 0.42), transparent 28%),
+        radial-gradient(circle at 72% 72%, rgba(168, 216, 234, 0.34), transparent 30%),
+        linear-gradient(90deg, rgba(248, 251, 249, 0.96) 0%, rgba(248, 251, 249, 0.88) 42%, rgba(248, 251, 249, 0.45) 100%);
+}
+
+.hero-home::before {
+    content: "";
+    position: absolute;
+    right: -90px;
+    top: 120px;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: rgba(184, 224, 210, 0.45);
+    filter: blur(28px);
+    z-index: 1;
 }
 
 .hero-home::after {
     content: "";
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 130px;
-    z-index: 2;
-    background: linear-gradient(to top, var(--surface), transparent);
-    pointer-events: none;
+    left: -120px;
+    bottom: -140px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: rgba(168, 216, 234, 0.32);
+    filter: blur(34px);
+    z-index: 1;
 }
 
 .hero-container {
     position: relative;
     z-index: 3;
     width: 100%;
-    max-width: 1220px;
+    max-width: 1240px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.75fr);
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
     align-items: center;
-    gap: 44px;
+    gap: 54px;
+    transform: translateY(-10px);
 }
 
-.hero-content {
-    max-width: 650px;
+.hero-copy {
+    max-width: 640px;
 }
 
-.hero-content h1 {
-    margin: 0;
-    color: var(--white);
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 5.2vw, 4.9rem);
-    line-height: 1.03;
-    letter-spacing: -0.04em;
+.hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px 17px;
+    margin-bottom: 24px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(49, 154, 154, 0.16);
+    color: var(--blue-deep);
+    box-shadow: 0 10px 30px rgba(36, 59, 54, 0.08);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
-.hero-content h1 span {
-    color: var(--green);
-    position: relative;
-    display: inline-block;
-}
-
-.hero-content h1 span::after {
-    content: "";
-    position: absolute;
-    left: 3px;
-    right: 3px;
-    bottom: 8px;
+.kicker-dot {
+    width: 10px;
     height: 10px;
-    background: rgba(242, 196, 196, 0.34);
-    z-index: -1;
-    border-radius: var(--r-full);
+    border-radius: 50%;
+    background: var(--rose);
+    box-shadow: 0 0 0 7px rgba(242, 196, 196, 0.28);
 }
 
-.hero-content p {
+.hero-copy h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 4.65rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+    color: var(--dark);
+}
+
+.hero-copy h1 span {
+    display: inline;
+    color: var(--blue-deep);
+    background: linear-gradient(180deg, transparent 58%, rgba(184, 224, 210, 0.75) 58%);
+    padding: 0 0.04em;
+}
+
+.hero-copy p {
     margin: 24px 0 0;
-    max-width: 560px;
-    color: rgba(255, 255, 255, 0.84);
+    max-width: 570px;
+    color: var(--dark-mid);
     font-size: 1.03rem;
-    line-height: 1.8;
+    line-height: 1.85;
     font-weight: 500;
 }
 
 .hero-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 15px;
     margin-top: 34px;
     flex-wrap: wrap;
 }
 
-.btn-primary-hero,
-.btn-secondary-hero {
+.hero-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-height: 54px;
     padding: 0 28px;
-    border-radius: var(--r-full);
+    border-radius: 999px;
     font-family: var(--font-body);
     font-size: 0.96rem;
     font-weight: 800;
@@ -212,137 +241,170 @@
     transition: transform var(--t-base), box-shadow var(--t-base), background var(--t-base);
 }
 
-.btn-primary-hero {
+.hero-btn-primary {
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue-deep), var(--green-deep));
+    box-shadow: 0 16px 34px rgba(49, 154, 154, 0.28);
+}
+
+.hero-btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 46px rgba(49, 154, 154, 0.34);
+    color: var(--white);
+    text-decoration: none;
+}
+
+.hero-btn-outline {
+    color: var(--dark);
+    background: rgba(255, 255, 255, 0.72);
+    border: 1.5px solid rgba(49, 154, 154, 0.18);
+    box-shadow: 0 10px 28px rgba(36, 59, 54, 0.08);
+}
+
+.hero-btn-outline:hover {
     background: var(--white);
-    color: var(--blue-deep);
-    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.22);
-}
-
-.btn-primary-hero:hover {
     transform: translateY(-3px);
-    box-shadow: 0 22px 52px rgba(0, 0, 0, 0.30);
     color: var(--blue-deep);
     text-decoration: none;
 }
 
-.btn-secondary-hero {
-    color: var(--white);
-    border: 1.5px solid rgba(255, 255, 255, 0.38);
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-}
-
-.btn-secondary-hero:hover {
-    background: rgba(255, 255, 255, 0.16);
-    transform: translateY(-3px);
-    color: var(--white);
-    text-decoration: none;
-}
-
-.hero-stats {
+.hero-trust {
     display: flex;
     gap: 14px;
     margin-top: 38px;
     flex-wrap: wrap;
 }
 
-.hero-stats div {
+.hero-trust div {
     min-width: 132px;
     padding: 15px 17px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.09);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(49, 154, 154, 0.12);
+    box-shadow: 0 12px 28px rgba(36, 59, 54, 0.08);
     backdrop-filter: blur(12px);
 }
 
-.hero-stats strong {
+.hero-trust strong {
     display: block;
-    color: var(--white);
-    font-size: 1.25rem;
+    color: var(--dark);
+    font-size: 1.22rem;
     line-height: 1;
     margin-bottom: 7px;
 }
 
-.hero-stats span {
-    color: rgba(255, 255, 255, 0.72);
+.hero-trust span {
+    display: block;
+    color: var(--muted);
     font-size: 0.78rem;
     font-weight: 600;
+    line-height: 1.35;
 }
 
-.hero-showcase {
+.hero-visual {
     position: relative;
-    min-height: 360px;
+    min-height: 430px;
 }
 
-.showcase-card {
+.hero-image-card {
     position: absolute;
-    border-radius: 28px;
-    background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(18px);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+    right: 10px;
+    top: 34px;
+    width: min(430px, 100%);
+    height: 470px;
+    border-radius: 42px;
+    overflow: hidden;
+    border: 10px solid rgba(255, 255, 255, 0.72);
+    box-shadow: 0 34px 80px rgba(36, 59, 54, 0.22);
+    transform: rotate(2deg);
+    background: var(--white);
 }
 
-.main-card {
-    right: 16px;
-    top: 92px;
-    width: min(335px, 90%);
-    padding: 28px;
+.hero-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
-.card-label {
-    display: inline-block;
-    margin-bottom: 52px;
-    color: var(--green);
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+.hero-image-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 42%, rgba(36, 59, 54, 0.34));
 }
 
-.main-card h3 {
-    color: var(--white);
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    line-height: 1.12;
-    margin: 0 0 13px;
+.hero-floating-card {
+    position: absolute;
+    z-index: 4;
+    padding: 16px 18px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.84);
+    border: 1px solid rgba(49, 154, 154, 0.16);
+    box-shadow: 0 18px 42px rgba(36, 59, 54, 0.16);
+    backdrop-filter: blur(16px);
 }
 
-.main-card p {
-    color: rgba(255, 255, 255, 0.78);
-    line-height: 1.7;
-    margin: 0;
-    font-size: 0.9rem;
+.hero-floating-card span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 700;
+    margin-bottom: 4px;
 }
 
-.mini-card {
-    width: 130px;
-    height: 130px;
-    left: 10px;
-    top: 78px;
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-    border-radius: 30px;
-    transform: rotate(-8deg);
-    background: rgba(184, 224, 210, 0.22);
+.hero-floating-card strong {
+    display: block;
+    color: var(--dark);
+    font-size: 1.06rem;
+    line-height: 1;
 }
 
-.mini-card.second {
-    left: auto;
+.card-one {
+    left: 6px;
+    top: 110px;
+    transform: rotate(-7deg);
+}
+
+.card-two {
     right: 0;
-    bottom: 34px;
-    top: auto;
-    width: 118px;
-    height: 118px;
-    transform: rotate(10deg);
-    background: rgba(242, 196, 196, 0.22);
+    bottom: 48px;
+    transform: rotate(6deg);
 }
 
-.mini-card span {
-    color: var(--white);
-    font-weight: 800;
-    font-size: 1rem;
+.hero-badge-year {
+    position: absolute;
+    left: 54px;
+    bottom: 28px;
+    z-index: 5;
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--green));
+    color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 22px 48px rgba(36, 59, 54, 0.18);
+    border: 8px solid rgba(255, 255, 255, 0.72);
+}
+
+.hero-badge-year strong {
+    font-size: 2.1rem;
+    line-height: 1;
+    font-family: var(--font-display);
+}
+
+.hero-badge-year span {
+    width: 86px;
+    margin-top: 6px;
+    color: rgba(36, 59, 54, 0.78);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.25;
 }
 
 /* ══════════════════════════════════════════
@@ -1145,12 +1207,13 @@
     }
 
     .hero-container {
-        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.65fr);
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.75fr);
         gap: 32px;
     }
 
-    .hero-showcase {
-        min-height: 330px;
+    .hero-image-card {
+        width: min(360px, 100%);
+        height: 420px;
     }
 }
 
@@ -1172,51 +1235,84 @@
     }
 
     .hero-home {
-        min-height: 660px;
-        padding: 108px 1.25rem 58px;
+        min-height: auto;
+        padding: 88px 1.25rem 52px;
+        align-items: flex-start;
     }
 
     .hero-overlay {
         background:
-            linear-gradient(90deg, rgba(13, 32, 28, 0.92) 0%, rgba(13, 32, 28, 0.78) 100%),
-            linear-gradient(180deg, rgba(13, 32, 28, 0.10) 0%, rgba(13, 32, 28, 0.68) 100%);
+            linear-gradient(90deg, rgba(248, 251, 249, 0.96) 0%, rgba(248, 251, 249, 0.90) 100%),
+            linear-gradient(180deg, rgba(248, 251, 249, 0.18), rgba(248, 251, 249, 0.72));
     }
 
     .hero-container {
         grid-template-columns: 1fr;
-        gap: 0;
+        gap: 28px;
+        transform: translateY(-6px);
     }
 
-    .hero-content {
+    .hero-copy {
         max-width: 100%;
     }
 
-    .hero-content h1 {
-        font-size: clamp(2.75rem, 11vw, 4rem);
-        line-height: 1.04;
+    .hero-copy h1 {
+        font-size: clamp(2.45rem, 11vw, 3.85rem);
+        line-height: 1.06;
     }
 
-    .hero-content p {
-        max-width: 520px;
+    .hero-copy p {
+        max-width: 540px;
         font-size: 0.96rem;
         line-height: 1.75;
     }
 
-    .hero-showcase {
-        display: none;
+    .hero-visual {
+        min-height: 330px;
+        max-width: 430px;
+        width: 100%;
+        margin: 0 auto;
     }
 
-    .hero-actions {
-        gap: 12px;
+    .hero-image-card {
+        position: relative;
+        right: auto;
+        top: auto;
+        width: 100%;
+        height: 330px;
+        border-radius: 32px;
+        transform: rotate(0);
     }
 
-    .hero-stats {
+    .card-one {
+        left: -4px;
+        top: 32px;
+    }
+
+    .card-two {
+        right: -4px;
+        bottom: 18px;
+    }
+
+    .hero-badge-year {
+        left: 22px;
+        bottom: -28px;
+        width: 108px;
+        height: 108px;
+        border-width: 6px;
+    }
+
+    .hero-badge-year strong {
+        font-size: 1.7rem;
+    }
+
+    .hero-trust {
         gap: 10px;
         margin-top: 30px;
     }
 
-    .hero-stats div {
-        min-width: 128px;
+    .hero-trust div {
+        min-width: 126px;
         padding: 14px 15px;
     }
 
@@ -1286,26 +1382,44 @@
 
 @media (max-width: 480px) {
     .hero-home {
-        min-height: 620px;
-        padding-top: 104px;
+        padding-top: 82px;
+        padding-bottom: 48px;
     }
 
-    .hero-content h1 {
-        font-size: clamp(2.45rem, 13vw, 3.35rem);
+    .hero-container {
+        transform: translateY(0);
+    }
+
+    .hero-kicker {
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
+        padding: 9px 13px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(2.25rem, 13vw, 3.15rem);
     }
 
     .hero-actions {
         align-items: stretch;
     }
 
-    .btn-primary-hero,
-    .btn-secondary-hero {
+    .hero-btn {
         width: 100%;
     }
 
-    .hero-stats {
+    .hero-trust {
         display: grid;
         grid-template-columns: 1fr;
+    }
+
+    .hero-floating-card {
+        padding: 13px 15px;
+        border-radius: 20px;
+    }
+
+    .hero-badge-year {
+        display: none;
     }
 }
 </style>
@@ -1321,78 +1435,90 @@
 {{-- ══ HERO ══ --}}
 <section class="hero-home" id="home">
     <picture class="hero-bg">
-    <source
-        media="(max-width: 768px)"
-        srcset="{{ asset('images/bg-home-768.webp') }}"
-        type="image/webp">
+        <source
+            media="(max-width: 768px)"
+            srcset="{{ asset('images/bg-home-768.webp') }}"
+            type="image/webp">
 
-    <source
-        media="(min-width: 769px)"
-        srcset="{{ asset('images/bg-home-1080.webp') }}"
-        type="image/webp">
+        <source
+            media="(min-width: 769px)"
+            srcset="{{ asset('images/bg-home-1080.webp') }}"
+            type="image/webp">
 
-    <img
-        src="{{ asset('images/bg-home-1080.webp') }}"
-        alt="Dekorasi styrofoam HalloEO"
-        fetchpriority="high"
-        decoding="async">
+        <img
+            src="{{ asset('images/bg-home-1080.webp') }}"
+            alt="Dekorasi styrofoam custom HalloEO"
+            fetchpriority="high"
+            decoding="async">
     </picture>
 
     <div class="hero-overlay"></div>
 
     <div class="hero-container">
-        <div class="hero-content">
+        <div class="hero-copy">
+            <div class="hero-kicker">
+                <span class="kicker-dot"></span>
+                Spesialis Dekorasi & Maskot Styrofoam
+            </div>
+
             <h1>
-                Wujudkan Dekorasi
-                <span>Impian</span>
-                untuk Acara Anda
+                Dekorasi Custom yang Membuat
+                <span>Acara Lebih Berkesan</span>
             </h1>
 
             <p>
-                HalloEO menghadirkan dekorasi dan maskot styrofoam custom
-                dengan pengerjaan profesional, detail rapi, dan desain yang
-                disesuaikan untuk berbagai kebutuhan event.
+                HalloEO membantu mewujudkan dekorasi event, maskot styrofoam,
+                display produk, dan kebutuhan visual brand dengan desain yang
+                rapi, kreatif, dan profesional.
             </p>
 
             <div class="hero-actions">
-                <a href="#portfolio" class="btn-primary-hero">
+                <a href="#portfolio" class="hero-btn hero-btn-primary">
                     Lihat Portofolio
                 </a>
 
-                <a href="#kontak" class="btn-secondary-hero">
+                <a href="#kontak" class="hero-btn hero-btn-outline">
                     Konsultasi Sekarang
                 </a>
             </div>
 
-            <div class="hero-stats">
+            <div class="hero-trust">
                 <div>
                     <strong>2008</strong>
-                    <span>Sejak Berdiri</span>
+                    <span>Berpengalaman sejak</span>
                 </div>
                 <div>
                     <strong>Custom</strong>
-                    <span>Dekorasi & Maskot</span>
+                    <span>Desain sesuai kebutuhan</span>
                 </div>
                 <div>
                     <strong>Event</strong>
-                    <span>Indoor & Outdoor</span>
+                    <span>Dekorasi & display</span>
                 </div>
             </div>
         </div>
 
-        <div class="hero-showcase">
-            <div class="showcase-card main-card">
-                <span class="card-label">Featured Work</span>
-                <h3>Dekorasi Tematik Custom</h3>
-                <p>Desain visual styrofoam untuk booth, event, display, dan kebutuhan brand.</p>
+        <div class="hero-visual">
+            <div class="hero-image-card">
+                <img
+                    src="{{ asset('images/bg-home-1080.webp') }}"
+                    alt="Contoh dekorasi styrofoam HalloEO"
+                    decoding="async">
             </div>
 
-            <div class="showcase-card mini-card">
+            <div class="hero-floating-card card-one">
                 <span>Maskot</span>
+                <strong>Custom</strong>
             </div>
 
-            <div class="showcase-card mini-card second">
+            <div class="hero-floating-card card-two">
                 <span>Display</span>
+                <strong>Branding</strong>
+            </div>
+
+            <div class="hero-badge-year">
+                <strong>15+</strong>
+                <span>Tahun pengalaman</span>
             </div>
         </div>
     </div>
