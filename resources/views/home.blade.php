@@ -1289,7 +1289,7 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span></span>
-                Spesialis Styrofoam Indonesia
+                Spesialis Styrofoam Indonesia Yey
             </div>
 
             <h1>
