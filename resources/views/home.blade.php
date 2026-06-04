@@ -153,31 +153,6 @@
     max-width: 650px;
 }
 
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 17px;
-    margin-bottom: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: var(--r-full);
-    color: #d4edf6;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-}
-
-.hero-badge span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 0 7px rgba(184, 224, 210, 0.15);
-}
-
 .hero-content h1 {
     margin: 0;
     color: var(--white);
@@ -1315,12 +1290,6 @@
         padding-top: 104px;
     }
 
-    .hero-badge {
-        font-size: 0.66rem;
-        letter-spacing: 0.1em;
-        padding: 9px 14px;
-    }
-
     .hero-content h1 {
         font-size: clamp(2.45rem, 13vw, 3.35rem);
     }
@@ -1373,11 +1342,6 @@
 
     <div class="hero-container">
         <div class="hero-content">
-            <div class="hero-badge">
-                <span></span>
-                Spesialis Styrofoam Indonesia Yey
-            </div>
-
             <h1>
                 Wujudkan Dekorasi
                 <span>Impian</span>
