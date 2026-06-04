@@ -90,157 +90,322 @@
 /* ══════════════════════════════════════════
    HERO
 ══════════════════════════════════════════ */
-.hero {
+.hero-home {
     position: relative;
-    min-height: min(820px, calc(100vh - var(--nav-h)));
+    min-height: 100vh;
+    overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    padding: 120px 6% 80px;
+    background: #10231f;
 }
 
 .hero-bg {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
-
-.hero::before,
-.hero::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.hero::before {
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(168,216,234,.13) 0%, transparent 70%);
-    top: -260px; right: -200px;
-    animation: hero-pulse 10s ease-in-out infinite;
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--grad-hero);
     z-index: 0;
 }
 
-.hero::after {
-    content: '';
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(circle, rgba(168,216,234,.13) 0%, transparent 70%);
-    top: -260px;
-    right: -200px;
-    border-radius: 50%;
-    animation: hero-pulse 10s ease-in-out infinite reverse;
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.04);
+    filter: saturate(0.9) contrast(1.02);
 }
 
-@keyframes hero-pulse {
-    0%, 100% { transform: scale(1); opacity: .6; }
-    50%       { transform: scale(1.2); opacity: .3; }
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+        radial-gradient(circle at 78% 28%, rgba(184, 224, 210, 0.32), transparent 28%),
+        radial-gradient(circle at 90% 76%, rgba(242, 196, 196, 0.24), transparent 25%),
+        linear-gradient(90deg, rgba(15, 30, 28, 0.92) 0%, rgba(15, 30, 28, 0.78) 42%, rgba(15, 30, 28, 0.35) 100%),
+        linear-gradient(180deg, rgba(15, 30, 28, 0.24), rgba(15, 30, 28, 0.82));
+}
+
+.hero-home::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 160px;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(247, 249, 251, 1), transparent);
+    pointer-events: none;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 64px;
 }
 
 .hero-content {
-    max-width: 1360px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 2rem 2.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2.5rem, 5vw, 4rem);
-    align-items: center;
-    position: relative;
-    z-index: 1;
+    max-width: 720px;
 }
 
-/* Hero eyebrow */
-.hero-eyebrow {
+.hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.11em;
+    gap: 12px;
+    padding: 11px 18px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    color: #D4EDF6;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--blue);
-    background: rgba(168,216,234,.15);
-    border: 1px solid rgba(168,216,234,.3);
-    padding: 0.45rem 1.1rem;
-    border-radius: var(--r-full);
-    margin-bottom: 1.25rem;
-    animation: fade-up .8s cubic-bezier(0,0,.2,1) both;
 }
 
-.hero-text h1 {
-    font-family: var(--font-display);
-    font-size: clamp(2.4rem, 5.5vw, 4rem);
-    font-weight: 800;
-    color: var(--white);
-    line-height: 1.14;
-    letter-spacing: -0.025em;
-    margin-bottom: 1.4rem;
-    text-shadow: 0 2px 24px rgba(0,0,0,.22);
-    animation: fade-up .8s cubic-bezier(0,0,.2,1) .1s both;
+.hero-badge span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #B8E0D2;
+    box-shadow: 0 0 0 7px rgba(184, 224, 210, 0.15);
 }
 
-.hero-text h1 em {
-    font-style: normal;
-    background: linear-gradient(135deg, var(--blue) 0%, var(--green) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.hero-content h1 {
+    margin: 0;
+    color: #ffffff;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(48px, 7vw, 92px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    max-width: 760px;
 }
 
-.hero-text > p {
-    font-size: 1.12rem;
-    color: rgba(255,255,255,.85);
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    max-width: 460px;
-    animation: fade-up .8s cubic-bezier(0,0,.2,1) .2s both;
+.hero-content h1 span {
+    color: #B8E0D2;
+    position: relative;
+    display: inline-block;
 }
 
-/* Stats */
-.hero-stats {
+.hero-content h1 span::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    bottom: 8px;
+    height: 13px;
+    background: rgba(242, 196, 196, 0.38);
+    z-index: -1;
+    border-radius: 999px;
+}
+
+.hero-content p {
+    margin: 28px 0 0;
+    max-width: 640px;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 18px;
+    line-height: 1.9;
+    font-weight: 500;
+}
+
+.hero-actions {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    margin-bottom: 2.25rem;
-    animation: fade-up .8s cubic-bezier(0,0,.2,1) .3s both;
-}
-
-.hero-stat { display: flex; flex-direction: column; gap: 0.1rem; }
-
-.hero-stat strong {
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1;
-}
-
-.hero-stat span {
-    font-size: 0.76rem;
-    color: rgba(255,255,255,.5);
-    letter-spacing: 0.04em;
-}
-
-.hero-stat-divider {
-    width: 1px;
-    height: 36px;
-    background: rgba(255,255,255,.15);
-}
-
-/* Buttons */
-.hero-buttons {
-    display: flex;
-    gap: 1rem;
+    gap: 18px;
+    margin-top: 38px;
     flex-wrap: wrap;
-    animation: fade-up .8s cubic-bezier(0,0,.2,1) .4s both;
+}
+
+.btn-primary-hero,
+.btn-secondary-hero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 58px;
+    padding: 0 30px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: all 0.28s ease;
+}
+
+.btn-primary-hero {
+    background: #ffffff;
+    color: #2d8d80;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+}
+
+.btn-primary-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary-hero {
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+}
+
+.btn-secondary-hero:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-3px);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 18px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+}
+
+.hero-stats div {
+    min-width: 150px;
+    padding: 18px 20px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(16px);
+}
+
+.hero-stats strong {
+    display: block;
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.hero-stats span {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.hero-showcase {
+    position: relative;
+    min-height: 470px;
+}
+
+.showcase-card {
+    position: absolute;
+    border-radius: 34px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    backdrop-filter: blur(24px);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.22);
+}
+
+.main-card {
+    right: 24px;
+    top: 88px;
+    width: min(390px, 90%);
+    padding: 34px;
+}
+
+.card-label {
+    display: inline-block;
+    margin-bottom: 72px;
+    color: #B8E0D2;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.main-card h3 {
+    color: #ffffff;
+    font-size: 34px;
+    line-height: 1.08;
+    margin: 0 0 16px;
+    font-family: "Playfair Display", Georgia, serif;
+}
+
+.main-card p {
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.7;
+    margin: 0;
+    font-size: 15px;
+}
+
+.mini-card {
+    width: 170px;
+    height: 170px;
+    left: 18px;
+    top: 48px;
+    display: flex;
+    align-items: end;
+    padding: 24px;
+    border-radius: 38px;
+    transform: rotate(-8deg);
+    background: rgba(184, 224, 210, 0.22);
+}
+
+.mini-card.second {
+    left: auto;
+    right: 0;
+    bottom: 56px;
+    top: auto;
+    width: 150px;
+    height: 150px;
+    transform: rotate(10deg);
+    background: rgba(242, 196, 196, 0.22);
+}
+
+.mini-card span {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+@media (max-width: 992px) {
+    .hero-home {
+        padding: 130px 6% 72px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-showcase {
+        display: none;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(44px, 12vw, 72px);
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-home {
+        min-height: auto;
+        padding-top: 120px;
+    }
+
+    .hero-actions {
+        align-items: stretch;
+    }
+
+    .btn-primary-hero,
+    .btn-secondary-hero {
+        width: 100%;
+    }
+
+    .hero-stats {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 }
 
 .btn {
@@ -1113,53 +1278,71 @@
 
 @section('content')
 {{-- ══ HERO ══ --}}
-<section class="hero">
-    <picture>
-        <source
-            srcset="{{ asset('images/bg-home-768.webp') }} 768w, {{ asset('images/bg-home-1080.webp') }} 1080w"
-            sizes="100vw"
-            type="image/webp">
-        <img
-            src="{{ asset('images/bg-home.jpeg') }}"
-            alt="Dekorasi styrofoam event karya HalloEO"
-            class="hero-bg"
-            fetchpriority="high"
-            loading="eager"
-            decoding="async"
-            width="1080"
-            height="1440">
-    </picture>
-    <div class="hero-content">
-        <div class="hero-text">
-            <span class="hero-eyebrow">
-                <i class="fas fa-certificate"></i> Spesialis Styrofoam Indonesia
-            </span>
-            <h1>Wujudkan Dekorasi <em>Impian</em> Anda!</h1>
-            <p>HalloEO adalah spesialis pembuatan dekorasi dan maskot dari styrofoam yang profesional, kreatif, dan berkualitas tinggi untuk berbagai kebutuhan event Anda.</p>
-            <div class="hero-buttons">
-                <a href="{{ route('portfolio.index') }}" class="btn btn-primary">
+<section class="hero-home" id="home">
+    <div class="hero-bg">
+        <img src="{{ asset('images/hero-bg.jpg') }}" alt="Dekorasi styrofoam HalloEO">
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span></span>
+                Spesialis Styrofoam Indonesia
+            </div>
+
+            <h1>
+                Wujudkan Dekorasi
+                <span>Impian</span>
+                untuk Acara Anda
+            </h1>
+
+            <p>
+                HalloEO menghadirkan dekorasi dan maskot styrofoam custom
+                dengan pengerjaan profesional, detail rapi, dan desain yang
+                disesuaikan untuk berbagai kebutuhan event.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#portfolio" class="btn-primary-hero">
                     Lihat Portofolio
                 </a>
-                <a href="{{ route('contact') }}" class="btn btn-outline">
-                    Hubungi Kami
+
+                <a href="#kontak" class="btn-secondary-hero">
+                    Konsultasi Sekarang
                 </a>
+            </div>
+
+            <div class="hero-stats">
+                <div>
+                    <strong>2008</strong>
+                    <span>Sejak Berdiri</span>
+                </div>
+                <div>
+                    <strong>Custom</strong>
+                    <span>Dekorasi & Maskot</span>
+                </div>
+                <div>
+                    <strong>Event</strong>
+                    <span>Indoor & Outdoor</span>
+                </div>
             </div>
         </div>
 
-        <div class="hero-image">
-            <div class="hero-image-container">
-                <svg class="floating-img" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#A8D8EA;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#B8E0D2;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <rect x="50" y="100" width="120" height="200" rx="20" fill="url(#grad1)" opacity="0.8"/>
-                    <circle cx="230" cy="150" r="80" fill="#D88A8A" opacity="0.7"/>
-                    <polygon points="280,250 350,300 280,350 210,300" fill="#A8D8EA" opacity="0.6"/>
-                    <rect x="100" y="50" width="80" height="80" rx="40" fill="#B8E0D2" opacity="0.5"/>
-                </svg>
+        <div class="hero-showcase">
+            <div class="showcase-card main-card">
+                <span class="card-label">Featured Work</span>
+                <h3>Dekorasi Tematik Custom</h3>
+                <p>Desain visual styrofoam untuk booth, event, display, dan kebutuhan brand.</p>
+            </div>
+
+            <div class="showcase-card mini-card">
+                <span>Maskot</span>
+            </div>
+
+            <div class="showcase-card mini-card second">
+                <span>Display</span>
             </div>
         </div>
     </div>
