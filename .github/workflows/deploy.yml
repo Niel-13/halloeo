@@ -69,8 +69,8 @@ jobs:
           port: 21
           security: loose
           local-dir: ./
-          server-dir: /halloeoweb/
-          state-name: .ftp-deploy-sync-state-core.json
+          server-dir: halloeoweb/
+          state-name: .ftp-deploy-sync-state-app.json
           exclude: |
             **/.git*
             **/.git*/**
@@ -99,7 +99,7 @@ jobs:
           port: 21
           security: loose
           local-dir: public/
-          server-dir: /public_html/
+          server-dir: public_html/
           state-name: .ftp-deploy-sync-state-public.json
           exclude: |
             portfolio/**
