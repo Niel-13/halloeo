@@ -1,4 +1,4 @@
-name: Deploy to cPanel via FTP
+name: Deploy Laravel to cPanel via FTP
 
 on:
   push:
@@ -8,17 +8,57 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: Checkout source code
+        uses: actions/checkout@v4
 
-      - name: Disable IPv6
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_mysql, fileinfo, openssl, tokenizer, xml, ctype, json, bcmath
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build frontend assets
+        run: npm run build
+
+      - name: Prepare public index for cPanel structure
         run: |
-          sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
-          sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+          cat > public/index.php <<'PHP'
+          <?php
 
-      - name: Sync Files to Core Folder
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+          use Illuminate\Foundation\Application;
+          use Illuminate\Http\Request;
+
+          define('LARAVEL_START', microtime(true));
+
+          if (file_exists($maintenance = __DIR__.'/../laravel_app/storage/framework/maintenance.php')) {
+              require $maintenance;
+          }
+
+          require __DIR__.'/../laravel_app/vendor/autoload.php';
+
+          /** @var Application $app */
+          $app = require_once __DIR__.'/../laravel_app/bootstrap/app.php';
+
+          $app->usePublicPath(__DIR__);
+
+          $app->handleRequest(Request::capture());
+          PHP
+
+      - name: Deploy Laravel core to laravel_app
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -28,16 +68,26 @@ jobs:
           security: loose
           local-dir: ./
           server-dir: laravel_app/
-          state-name: .ftp-deploy-sync-state-app.json
+          state-name: .ftp-deploy-sync-state-core.json
           exclude: |
             **/.git*
             **/.git*/**
-            public/**
+            .github/**
+            .env
+            .env.*
             node_modules/**
-            vendor/**
+            public/**
+            tests/**
+            vendor.zip
+            README.md
+            storage/logs/**
+            storage/framework/cache/**
+            storage/framework/sessions/**
+            storage/framework/views/**
+            bootstrap/cache/*.php
 
-      - name: Sync Public Files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy public files to public_html
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -49,6 +99,7 @@ jobs:
           server-dir: public_html/
           state-name: .ftp-deploy-sync-state-public.json
           exclude: |
-            **/.git*
-            index.php
-            .htaccess
+            portfolio/**
+            galleries/**
+            services/**
+            storage/**
