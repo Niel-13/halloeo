@@ -18,6 +18,7 @@ jobs:
         with:
           php-version: '8.2'
           extensions: mbstring, pdo_mysql, fileinfo, openssl, tokenizer, xml, ctype, json, bcmath
+          tools: composer:v2
 
       - name: Install Composer dependencies
         run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
@@ -26,6 +27,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install Node dependencies
         run: npm ci
@@ -43,21 +45,21 @@ jobs:
 
           define('LARAVEL_START', microtime(true));
 
-          if (file_exists($maintenance = __DIR__.'/../laravel_app/storage/framework/maintenance.php')) {
+          if (file_exists($maintenance = __DIR__.'/../halloeoweb/storage/framework/maintenance.php')) {
               require $maintenance;
           }
 
-          require __DIR__.'/../laravel_app/vendor/autoload.php';
+          require __DIR__.'/../halloeoweb/vendor/autoload.php';
 
           /** @var Application $app */
-          $app = require_once __DIR__.'/../laravel_app/bootstrap/app.php';
+          $app = require_once __DIR__.'/../halloeoweb/bootstrap/app.php';
 
           $app->usePublicPath(__DIR__);
 
           $app->handleRequest(Request::capture());
           PHP
 
-      - name: Deploy Laravel core to laravel_app
+      - name: Deploy Laravel core to halloeoweb
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -67,7 +69,7 @@ jobs:
           port: 21
           security: loose
           local-dir: ./
-          server-dir: laravel_app/
+          server-dir: halloeoweb/
           state-name: .ftp-deploy-sync-state-core.json
           exclude: |
             **/.git*
@@ -78,6 +80,7 @@ jobs:
             node_modules/**
             public/**
             tests/**
+            vendor/**
             vendor.zip
             README.md
             storage/logs/**
