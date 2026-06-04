@@ -1415,16 +1415,6 @@
             </div>
         </div>
         @empty
-        <div class="portfolio-card">
-            <div class="portfolio-img-wrap">
-                <img src="{{ asset('images/placeholder-portfolio.svg') }}" alt="Contoh dekorasi HalloEO" class="portfolio-img" width="400" height="300" loading="lazy" decoding="async">
-            </div>
-            <div class="portfolio-info">
-                <span class="portfolio-category">Dekorasi</span>
-                <h3>Dekorasi Pernikahan Elegant</h3>
-                <p>Dekorasi pernikahan dengan tema elegant dan modern menggunakan styrofoam berkualitas premium.</p>
-            </div>
-        </div>
         @endforelse
     </div>
     <div class="portfolio-cta">
