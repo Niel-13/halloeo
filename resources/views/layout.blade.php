@@ -191,16 +191,11 @@
         gap: 0.6rem;
         text-decoration: none;
         transition: transform var(--transition);
+        width: 30px;
+        height: 30px;
     }
 
     .logo:hover { transform: translateY(-1px); }
-
-    .logo-img {
-        width: 42px;
-        height: 42px;
-        object-fit: contain;
-        border-radius: 10px;
-    }
 
     .nav-links {
         display: flex;
@@ -728,8 +723,8 @@
                     <img
                         src="{{ asset('images/logohalloeo.png') }}"
                         alt="Logo HalloEO"
-                        width="200"
-                        height="60"
+                        width="auto"
+                        height="50"
                         decoding="async"
                         fetchpriority="high"
                         style="max-height: 60px; width: auto; object-fit: contain;">
