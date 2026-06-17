@@ -197,35 +197,32 @@
     opacity: .92;
 }
 
-/* Gallery */
+/* ── Gallery ── */
 .gallery-block { margin-bottom: 2rem; }
 
-.gallery-masonry {
+.gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.85rem;
+    gap: 0.75rem;
     margin-top: 1.25rem;
-}
-
-/* First gallery item spans 2 cols */
-.gallery-masonry .gallery-item:first-child {
-    grid-column: span 2;
-    aspect-ratio: 4 / 3;
 }
 
 .gallery-item {
     position: relative;
-    border-radius: var(--r-lg);
+    border-radius: 16px;
     overflow: hidden;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
     background: var(--surface);
-    cursor: pointer;
-    transition: transform var(--t-base), box-shadow var(--t-base);
+    cursor: zoom-in;
+    transition: transform .4s cubic-bezier(.22,.68,0,1.2),
+                box-shadow .4s cubic-bezier(.22,.68,0,1.2);
 }
+
+.gallery-item.video-item { cursor: pointer; }
 
 .gallery-item:hover {
     transform: scale(1.03);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 16px 40px rgba(36,59,54,.18);
     z-index: 2;
 }
 
@@ -233,38 +230,168 @@
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform var(--t-slow);
+    transition: transform .5s cubic-bezier(.4,0,.2,1);
 }
 
-.gallery-item:hover .gallery-media { transform: scale(1.06); }
+.gallery-item:hover .gallery-media { transform: scale(1.07); }
 
 .gallery-item-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(36,59,54,.4);
+    background: rgba(36,59,54,.45);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity var(--t-base);
+    transition: opacity .3s ease;
 }
 
 .gallery-item:hover .gallery-item-overlay { opacity: 1; }
 
 .gallery-item-overlay i {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--white);
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,.3));
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,.4));
 }
 
-.gallery-video-wrapper {
-    width: 100%; height: 100%;
+/* Video badge */
+.video-badge {
+    position: absolute;
+    top: 0.65rem;
+    left: 0.65rem;
+    background: rgba(36,59,54,.75);
+    backdrop-filter: blur(6px);
+    color: var(--white);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* ── Lightbox ── */
+.lightbox-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,20,18,.92);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+    backdrop-filter: blur(6px);
+}
+
+.lightbox-backdrop.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.lightbox-inner {
     position: relative;
+    max-width: min(1100px, 94vw);
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.gallery-video-wrapper video {
-    width: 100%; height: 100%;
-    object-fit: cover;
+.lightbox-media {
+    max-width: 100%;
+    max-height: 88vh;
+    border-radius: 16px;
+    object-fit: contain;
+    box-shadow: 0 32px 80px rgba(0,0,0,.6);
+    transform: scale(.92);
+    transition: transform .35s cubic-bezier(.22,.68,0,1.2);
+    display: block;
+}
+
+.lightbox-video {
+    max-width: min(900px, 94vw);
+    max-height: 80vh;
+    border-radius: 16px;
+    box-shadow: 0 32px 80px rgba(0,0,0,.6);
+    transform: scale(.92);
+    transition: transform .35s cubic-bezier(.22,.68,0,1.2);
+    display: block;
+}
+
+.lightbox-backdrop.open .lightbox-media,
+.lightbox-backdrop.open .lightbox-video {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,.12);
+    border: 1.5px solid rgba(255,255,255,.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+    backdrop-filter: blur(8px);
+    z-index: 9001;
+}
+
+.lightbox-close:hover {
+    background: rgba(255,255,255,.22);
+    transform: rotate(90deg);
+}
+
+.lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px; height: 46px;
+    background: rgba(255,255,255,.1);
+    border: 1.5px solid rgba(255,255,255,.18);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .2s ease, transform .3s ease;
+    backdrop-filter: blur(8px);
+    z-index: 9001;
+}
+
+.lightbox-nav:hover { background: rgba(255,255,255,.22); }
+.lightbox-nav.prev { left: 1.25rem; }
+.lightbox-nav.next { right: 1.25rem; }
+.lightbox-nav.prev:hover { transform: translateY(-50%) translateX(-3px); }
+.lightbox-nav.next:hover { transform: translateY(-50%) translateX(3px); }
+
+.lightbox-counter {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(8px);
+    color: rgba(255,255,255,.8);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    z-index: 9001;
+    letter-spacing: 0.04em;
 }
 
 /* Share */
@@ -535,20 +662,22 @@
 .related-card {
     background: var(--white);
     border: 1.5px solid var(--surface-alt);
-    border-radius: var(--r-xl);
+    border-radius: 24px;
     overflow: hidden;
     box-shadow: var(--shadow-sm);
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
-    transition: transform var(--t-slow), box-shadow var(--t-slow), border-color var(--t-base);
+    transition: transform .45s cubic-bezier(.22,.68,0,1.2),
+                box-shadow .45s cubic-bezier(.22,.68,0,1.2),
+                border-color .25s ease;
 }
 
 .related-card:hover {
-    transform: translateY(-7px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--blue-light);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 48px rgba(36,59,54,.16);
+    border-color: rgba(49,154,154,.3);
     text-decoration: none;
     color: inherit;
 }
@@ -651,11 +780,16 @@
     .detail-cover-content { padding: 0 1.25rem 2.5rem; }
     .detail-layout { padding: 4.5rem 1.25rem; }
     .detail-sidebar { grid-template-columns: 1fr; }
-    .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
-    .gallery-masonry .gallery-item:first-child { grid-column: span 2; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     .related-section { padding: 4.5rem 1.25rem; }
     .related-grid { grid-template-columns: 1fr; }
     .back-row { padding: 0 1.25rem 4.5rem; }
+    .lightbox-nav.prev { left: 0.5rem; }
+    .lightbox-nav.next { right: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
 }
 </style>
 @endsection
@@ -729,30 +863,50 @@
         @if(isset($portfolio->galleries) && $portfolio->galleries->count() > 0)
         <div class="gallery-block">
             <div class="block-label">Galeri Proyek</div>
-            <div class="gallery-masonry">
+            <div class="gallery-grid">
                 @foreach($portfolio->galleries as $gallery)
-                <div class="gallery-item">
+                <div class="gallery-item {{ $gallery->type == 'video' ? 'video-item' : '' }}"
+                     data-index="{{ $loop->index }}"
+                     data-type="{{ $gallery->type }}"
+                     data-src="{{ asset($gallery->file_path) }}"
+                     onclick="openLightbox({{ $loop->index }})">
+
                     @if($gallery->type == 'video')
-                        <div class="gallery-video-wrapper">
-                            <video controls class="gallery-media">
-                                <source src="{{ asset($gallery->file_path) }}" type="video/mp4">
-                            </video>
-                        </div>
+                        <video class="gallery-media" muted preload="metadata">
+                            <source src="{{ asset($gallery->file_path) }}" type="video/mp4">
+                        </video>
+                        <span class="video-badge"><i class="fas fa-play"></i> Video</span>
                     @else
                         <img
                             src="{{ asset($gallery->file_path) }}"
-                            alt="Galeri {{ $portfolio->title }}"
+                            alt="Galeri {{ $portfolio->title }} {{ $loop->iteration }}"
                             class="gallery-media"
                             loading="{{ $loop->first ? 'eager' : 'lazy' }}"
                             decoding="async"
                         >
-                        <div class="gallery-item-overlay">
-                            <i class="fas fa-expand-alt"></i>
-                        </div>
                     @endif
+
+                    <div class="gallery-item-overlay">
+                        <i class="fas {{ $gallery->type == 'video' ? 'fa-play-circle' : 'fa-expand-alt' }}"></i>
+                    </div>
                 </div>
                 @endforeach
             </div>
+        </div>
+
+        {{-- Lightbox --}}
+        <div class="lightbox-backdrop" id="lightbox" onclick="closeLightboxOnBackdrop(event)">
+            <button class="lightbox-close" onclick="closeLightbox()" aria-label="Tutup">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav prev" onclick="lightboxNav(-1)" aria-label="Sebelumnya">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav next" onclick="lightboxNav(1)" aria-label="Berikutnya">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-inner" id="lightboxInner"></div>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
         </div>
         @endif
 
@@ -890,4 +1044,71 @@
     </a>
 </div>
 
+@endsection
+
+@section('scripts')
+<script>
+const galleryItems = [
+    @if(isset($portfolio->galleries) && $portfolio->galleries->count() > 0)
+    @foreach($portfolio->galleries as $g)
+    { type: '{{ $g->type }}', src: '{{ asset($g->file_path) }}' },
+    @endforeach
+    @endif
+];
+
+let currentIndex = 0;
+
+function openLightbox(index) {
+    currentIndex = index;
+    renderLightbox();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    const inner = document.getElementById('lightboxInner');
+    const vid = inner.querySelector('video');
+    if (vid) vid.pause();
+    setTimeout(() => { inner.innerHTML = ''; }, 300);
+}
+
+function closeLightboxOnBackdrop(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+function lightboxNav(dir) {
+    const inner = document.getElementById('lightboxInner');
+    const vid = inner.querySelector('video');
+    if (vid) vid.pause();
+    currentIndex = (currentIndex + dir + galleryItems.length) % galleryItems.length;
+    renderLightbox();
+}
+
+function renderLightbox() {
+    const item = galleryItems[currentIndex];
+    const inner = document.getElementById('lightboxInner');
+    const counter = document.getElementById('lightboxCounter');
+
+    if (item.type === 'video') {
+        inner.innerHTML = `<video class="lightbox-video" controls autoplay>
+            <source src="${item.src}" type="video/mp4">
+        </video>`;
+    } else {
+        inner.innerHTML = `<img src="${item.src}" class="lightbox-media" alt="Galeri ${currentIndex + 1}">`;
+    }
+
+    counter.textContent = `${currentIndex + 1} / ${galleryItems.length}`;
+}
+
+document.addEventListener('keydown', function(e) {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+});
+</script>
 @endsection
