@@ -3,6 +3,98 @@
 @section('title', 'Kelola Portfolio')
 @section('page-title', 'Kelola Portfolio')
 
+@push('styles')
+<style>
+    /* =============================================
+       PAGINATION STYLES
+    ============================================= */
+    .pagination-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding: 1.25rem 1.5rem;
+        border-top: 1px solid var(--light, #eee);
+    }
+
+    .pagination-info {
+        font-size: 0.85rem;
+        color: #7f8c8d;
+    }
+
+    .pagination-list {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .pagination-item {}
+
+    .pagination-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #555;
+        background: transparent;
+        text-decoration: none;
+        transition: background 0.15s, color 0.15s;
+        cursor: pointer;
+        border: 1px solid transparent;
+    }
+
+    .pagination-link:hover {
+        background: var(--pastel-blue, #aad4f5);
+        color: #fff;
+        border-color: var(--pastel-blue, #aad4f5);
+    }
+
+    .pagination-item.active .pagination-link {
+        background: var(--pastel-blue, #aad4f5);
+        color: #fff;
+        border-color: var(--pastel-blue, #aad4f5);
+        font-weight: 600;
+        cursor: default;
+    }
+
+    .pagination-item.disabled .pagination-link {
+        color: #ccc;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    .pagination-dots {
+        width: auto;
+        padding: 0 0.25rem;
+        letter-spacing: 0.05em;
+        border: none;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    /* Ikon chevron lebih kecil dan rapi */
+    .pagination-link i {
+        font-size: 0.7rem;
+    }
+
+    /* Responsive: stack pada layar kecil */
+    @media (max-width: 480px) {
+        .pagination-nav {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>
+@endpush
+
 @section('content')
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
     <div>
@@ -75,10 +167,9 @@
         </table>
     </div>
 
+    {{-- Pagination --}}
     @if($portfolios->hasPages())
-    <div style="padding: 1.5rem; border-top: 1px solid var(--light);">
-        {{ $portfolios->links() }}
-    </div>
+        {{ $portfolios->links('vendor.pagination.custom') }}
     @endif
 </div>
 @endsection
