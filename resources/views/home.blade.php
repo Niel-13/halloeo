@@ -124,28 +124,6 @@
     max-width: 560px;
 }
 
-.hero-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.45rem 0.95rem 0.45rem 0.7rem;
-    margin-bottom: 1.75rem;
-    border-radius: var(--r-full);
-    border: 1px solid var(--line);
-    background: var(--white);
-    color: var(--ink-soft);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-}
-
-.kicker-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-}
-
 .hero-copy h1 {
     margin: 0;
     font-family: var(--font-display);
@@ -1101,11 +1079,6 @@
 <section class="hero-home" id="home">
     <div class="hero-container">
         <div class="hero-copy">
-            <div class="hero-kicker">
-                <span class="kicker-dot"></span>
-                Spesialis Dekorasi & Maskot Styrofoam
-            </div>
-
             <h1>
                 Dekorasi custom yang membuat acara <em>lebih berkesan</em>
             </h1>
