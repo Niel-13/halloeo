@@ -202,7 +202,7 @@
     padding: 0.48rem 1.05rem;
     background: var(--white);
     border: 1.5px solid var(--surface-alt);
-    border-radius: var(--r-full);
+    border-radius: 50px;
     color: var(--muted);
     font-family: var(--font-body);
     font-weight: 600;
@@ -211,16 +211,15 @@
     text-decoration: none;
     white-space: nowrap;
     flex-shrink: 0;
-    transition: all var(--t-base);
+    transition: all .3s cubic-bezier(.22,.68,0,1.2);
     box-shadow: var(--shadow-xs);
-    border-radius: 50px;
 }
 
 .filter-btn:hover {
     border-color: var(--blue-mid);
     color: var(--blue-deep);
     background: var(--blue-light);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
     text-decoration: none;
 }
@@ -234,7 +233,7 @@
 
 .filter-btn.active:hover {
     background: var(--green);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
     color: var(--white);
 }
 
@@ -248,7 +247,7 @@
 .results-meta {
     display: flex;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .results-count {
@@ -258,31 +257,28 @@
 
 .results-count strong { color: var(--dark); font-weight: 700; }
 
-/* ── Editorial Grid ── */
+/* ── Uniform 3-Column Grid ── */
 .portfolio-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
     align-items: start;
 }
 
-/* 3 per row = span 4 */
-.portfolio-item { grid-column: span 4; }
-
-/* 1st & 5th items span wider */
-.portfolio-item:first-child  { grid-column: span 8; }
-.portfolio-item:nth-child(5) { grid-column: span 8; }
-
+/* ── Portfolio Card ── */
 .portfolio-item {
     background: var(--white);
-    border-radius: var(--r-xl);
+    border-radius: 24px;
     overflow: hidden;
     border: 1.5px solid var(--surface-alt);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 8px rgba(36,59,54,.06);
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    transition: transform var(--t-slow), box-shadow var(--t-slow), border-color var(--t-base);
+    transition:
+        transform .45s cubic-bezier(.22,.68,0,1.2),
+        box-shadow .45s cubic-bezier(.22,.68,0,1.2),
+        border-color .25s ease;
     animation: fade-up .55s cubic-bezier(0,0,.2,1) backwards;
 }
 
@@ -297,21 +293,16 @@
 .portfolio-item:nth-child(9) { animation-delay: .36s; }
 
 .portfolio-item:hover {
-    transform: translateY(-7px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--blue-light);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 48px rgba(36,59,54,.16);
+    border-color: rgba(49,154,154,.3);
 }
 
 /* Image */
 .portfolio-image-wrapper {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 3 / 2;
-}
-
-.portfolio-item:first-child .portfolio-image-wrapper,
-.portfolio-item:nth-child(5) .portfolio-image-wrapper {
-    aspect-ratio: 16 / 7;
+    aspect-ratio: 4 / 3;
 }
 
 .portfolio-image {
@@ -321,15 +312,15 @@
     transition: transform .6s cubic-bezier(.4,0,.2,1);
 }
 
-.portfolio-item:hover .portfolio-image { transform: scale(1.06); }
+.portfolio-item:hover .portfolio-image { transform: scale(1.07); }
 
 /* Overlay */
 .portfolio-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(170deg, transparent 35%, rgba(36,59,54,.7) 100%);
+    background: linear-gradient(170deg, transparent 30%, rgba(20,40,36,.72) 100%);
     opacity: 0;
-    transition: opacity var(--t-base);
+    transition: opacity .35s ease;
     display: flex;
     align-items: flex-end;
     padding: 1.4rem;
@@ -348,12 +339,18 @@
     font-size: 0.82rem;
     font-weight: 600;
     padding: 0.45rem 1rem;
-    border-radius: var(--r-full);
-    transform: translateY(8px);
-    transition: transform var(--t-base), background var(--t-base);
+    border-radius: 50px;
+    transform: translateY(10px);
+    opacity: 0;
+    transition:
+        transform .35s cubic-bezier(.22,.68,0,1.2) .05s,
+        opacity .3s ease .05s;
 }
 
-.portfolio-item:hover .overlay-cta { transform: translateY(0); }
+.portfolio-item:hover .overlay-cta {
+    transform: translateY(0);
+    opacity: 1;
+}
 
 /* Card body */
 .portfolio-details {
@@ -371,7 +368,7 @@
     background: var(--blue-light);
     color: var(--blue-deep);
     padding: 0.22rem 0.78rem;
-    border-radius: var(--r-full);
+    border-radius: 50px;
     font-size: 0.71rem;
     font-weight: 700;
     letter-spacing: 0.07em;
@@ -386,7 +383,7 @@
     color: var(--dark);
     line-height: 1.3;
     margin: 0;
-    transition: color var(--t-base);
+    transition: color .3s ease;
 }
 
 .portfolio-item:hover .portfolio-title { color: var(--blue-deep); }
@@ -474,7 +471,7 @@
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: all var(--t-base);
+    transition: all .3s cubic-bezier(.22,.68,0,1.2);
     box-shadow: var(--shadow-xs);
 }
 
@@ -502,9 +499,10 @@
 
 /* ── Responsive ── */
 @media (max-width: 1100px) {
-    .portfolio-item             { grid-column: span 6; }
-    .portfolio-item:first-child,
-    .portfolio-item:nth-child(5){ grid-column: span 12; }
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -519,12 +517,14 @@
 
     .portfolio-container { padding: 4.5rem 1.25rem; }
 
-    .portfolio-grid { grid-template-columns: 1fr; gap: 1.1rem; }
-    .portfolio-item,
-    .portfolio-item:first-child,
-    .portfolio-item:nth-child(5)  { grid-column: span 1; }
-    .portfolio-item:first-child .portfolio-image-wrapper,
-    .portfolio-item:nth-child(5)  .portfolio-image-wrapper { aspect-ratio: 3 / 2; }
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1.1rem;
+    }
+
+    .portfolio-item:hover {
+        transform: translateY(-4px) scale(1.005);
+    }
 }
 </style>
 @endsection
@@ -599,7 +599,7 @@
                     src="{{ asset($portfolio->image_path) }}"
                     alt="{{ $portfolio->title }}"
                     class="portfolio-image"
-                    width="800" height="533"
+                    width="800" height="600"
                     loading="{{ $loop->index < 3 ? 'eager' : 'lazy' }}"
                     decoding="async"
                     fetchpriority="{{ $loop->first ? 'high' : 'auto' }}"
