@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'HalloEO-Dekorasi & Maskot Styrofoam Profesional')
+@section('title', 'HalloEO - Layanan Dekorasi dan Maskot Styrofoam Custom di Bekasi & Jakarta')
 @section('description', 'HalloEO menyediakan jasa dekorasi styrofoam, maskot custom, properti event, dan dekorasi promosi untuk acara perusahaan, ulang tahun, pameran, dan kebutuhan kreatif di Bekasi, Jakarta, dan sekitarnya.')
 
 @section('styles')
